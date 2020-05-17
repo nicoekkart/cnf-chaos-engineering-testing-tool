@@ -1,0 +1,28 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: vppagent-endpoint-chaos
+  namespace: default
+spec:
+  annotationCheck: 'true'
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=vppagent-endpoint'
+    appkind: 'deployment'
+  chaosServiceAccount: container-kill-sa
+  # use retain to keep the job for debug
+  jobCleanUpPolicy: 'retain' 
+  experiments:
+    - name: container-kill
+      spec:
+        components:
+          env:
+            # specify the name of the container to be killed
+            - name: TARGET_CONTAINER
+              value: 'vppagent-endpoint'
+            - name: LIB_IMAGE
+              value: 'gprasath/crictl:ci'
+            - name: LIB
+              value: 'containerd'
+
