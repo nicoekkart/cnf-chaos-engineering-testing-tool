@@ -1,0 +1,51 @@
+---
+apiVersion: networkservicemesh.io/v1alpha1
+kind: NetworkService
+metadata:
+  name: web-service
+spec:
+  payload: IP
+  matches:
+    - match:
+      sourceSelector:
+        app: simple-client
+      route:
+        - destination: 
+          destinationSelector:
+            app: passthrough-1
+    - match:
+      sourseSelector:
+        app: passthrough-1
+      route:
+        - destination:
+          destinationSelector:
+            app: proxy-nsc
+  # COLORS
+{{- range $color_i, $color := $.Values.colors }}
+    - match:
+      sourceSelector:
+        app: proxy
+        color: {{$color}}
+      route:
+        - destination:
+          destinationSelector:
+            app: acl-filter
+            color: {{$color}}
+    - match:
+      sourceSelector:
+        app: acl-filter
+        color: {{$color}}
+      route:
+        - destination:
+          destinationSelector:
+            app: nginx
+            color: {{$color}}
+{{ end -}}
+    # DEFAULT
+    - match:
+      sourceSelector:
+        app: proxy
+      route:
+        - destination:
+          destinationSelector:
+            app: acl-filter

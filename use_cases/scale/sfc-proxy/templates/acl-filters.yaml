@@ -1,0 +1,59 @@
+{{- range $color_i, $color := $.Values.colors }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  selector:
+    matchLabels:
+      networkservicemesh.io/app: "acl-filter"
+      networkservicemesh.io/impl: "web-service"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        networkservicemesh.io/app: "acl-filter"
+        networkservicemesh.io/impl: "web-service"
+    spec:
+      containers:
+        - name: acl-filter
+          image: nicoekkart/secure-intranet-vppagent-endpoint:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENDPOINT_NETWORK_SERVICE
+              value: "web-service"
+            - name: ENDPOINT_LABELS
+              value: "app=acl-filter,color={{$color}}"
+            - name: CLIENT_NETWORK_SERVICE
+              value: "web-service"
+            - name: CLIENT_LABELS
+              value: "app=acl-filter,color={{$color}}"
+            - name: TRACER_ENABLED
+              value: "true"
+          resources:
+            limits:
+              networkservicemesh.io/socket: 1
+          volumeMounts:
+            - mountPath: /etc/vppagent-acl-filter/config.yaml
+              subPath: config.yaml
+              name: acl-filter-config-volume
+      volumes:
+        - name: acl-filter-config-volume
+          configMap:
+            name: acl-filter-config-file-{{$color}}
+metadata:
+  name: acl-filter-nse-{{$color}}
+  annotations:
+    reloader.stakater.com/auto: "true"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: acl-filter-config-file-{{$color}}
+data:
+  config.yaml: |
+    aclRules:
+      "Allow ICMP": "action=reflect,icmptype=8"
+      "Allow TCP 80": "action=reflect,tcplowport=80,tcpupport=80"
+
+{{ end -}}
