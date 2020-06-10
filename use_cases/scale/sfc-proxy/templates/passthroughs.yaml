@@ -1,12 +1,15 @@
+{{- range $color_i, $color := $.Values.colors }}
+{{ $count := $.Values.passthrough.sfc_replicas | int }}
+{{- range $replica_i := until $count }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       networkservicemesh.io/app: "passthrough"
       networkservicemesh.io/impl: "web-service"
-  replicas: 1
   template:
     metadata:
       labels:
@@ -21,17 +24,20 @@ spec:
             - name: ENDPOINT_NETWORK_SERVICE
               value: "web-service"
             - name: ENDPOINT_LABELS
-              value: "app=passthrough-1"
+              value: "app=passthrough-{{add $replica_i 1}},color={{$color}}"
             - name: CLIENT_NETWORK_SERVICE
               value: "web-service"
             - name: CLIENT_LABELS
-              value: "app=passthrough-1"
+              value: "app=passthrough-{{add $replica_i 1}},color={{$color}}"
             - name: TRACER_ENABLED
               value: "true"
           resources:
             limits:
               networkservicemesh.io/socket: 1
 metadata:
-  name: passthrough-1
+  name: passthrough-{{add $replica_i 1}}-{{$color}}
   annotations:
     reloader.stakater.com/auto: "true"
+
+{{ end -}}
+{{ end -}}

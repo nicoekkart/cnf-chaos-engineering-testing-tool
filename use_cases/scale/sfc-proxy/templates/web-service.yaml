@@ -6,20 +6,6 @@ metadata:
 spec:
   payload: IP
   matches:
-    - match:
-      sourceSelector:
-        app: simple-client
-      route:
-        - destination: 
-          destinationSelector:
-            app: passthrough-1
-    - match:
-      sourseSelector:
-        app: passthrough-1
-      route:
-        - destination:
-          destinationSelector:
-            app: proxy-nsc
   # COLORS
 {{- range $color_i, $color := $.Values.colors }}
     - match:
@@ -34,6 +20,29 @@ spec:
     - match:
       sourceSelector:
         app: acl-filter
+        color: {{$color}}
+      route:
+        - destination:
+          destinationSelector:
+            app: passthrough-1
+            color: {{$color}}
+
+
+  {{ $count := sub $.Values.passthrough.sfc_replicas 1 | int }}
+  {{ range $replica_i, $e := until $count }}
+    - match:
+      sourceSelector:
+        app: passthrough-{{add $replica_i 1}}
+        color: {{$color}}
+      route:
+        - destination:
+          destinationSelector:
+            app: passthrough-{{add $replica_i 2}}
+            color: {{$color}}
+  {{ end }}
+    - match:
+      sourceSelector:
+        app: passthrough-{{ $.Values.passthrough.sfc_replicas }}
         color: {{$color}}
       route:
         - destination:
