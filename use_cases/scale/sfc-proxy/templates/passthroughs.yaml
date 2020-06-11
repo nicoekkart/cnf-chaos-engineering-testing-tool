@@ -13,6 +13,7 @@ spec:
   template:
     metadata:
       labels:
+        app: passthrough-{{add $replica_i 1}}
         networkservicemesh.io/app: "passthrough"
         networkservicemesh.io/impl: "web-service"
     spec:
@@ -36,6 +37,8 @@ spec:
               networkservicemesh.io/socket: 1
 metadata:
   name: passthrough-{{add $replica_i 1}}-{{$color}}
+  labels:
+    app: passthrough-{{add $replica_i 1}}
   annotations:
     reloader.stakater.com/auto: "true"
 
