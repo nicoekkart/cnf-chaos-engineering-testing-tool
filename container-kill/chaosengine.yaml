@@ -12,7 +12,7 @@ spec:
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
   # use retain to keep the job for debug
-  jobCleanUpPolicy: 'delete' 
+  jobCleanUpPolicy: 'retain' 
   experiments:
     - name: container-kill
       spec:
@@ -22,7 +22,7 @@ spec:
             - name: TARGET_CONTAINER
               value: 'passthrough'
             - name: LIB_IMAGE
-              value: 'gprasath/crictl:ci'
+              value: 'litmuschaos/container-killer:latest'
             - name: LIB
               value: 'containerd'
 
