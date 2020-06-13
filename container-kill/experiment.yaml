@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.19
+  version: 0.1.20
 spec:
   definition:
     scope: Namespaced
@@ -51,7 +51,7 @@ spec:
 
     # It supports pumba and containerd 
     - name: LIB
-      value: 'pumba'
+      value: 'containerd'
 
     # provide the chaos interval
     - name: CHAOS_INTERVAL
@@ -66,11 +66,11 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-killer:latest
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: litmuschaos/container-killer:latest
+    # For containerd image use: litmuschaos/container-kill-helper:latest
     - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/container-kill-helper:latest' 
 
     labels:
       name: container-kill

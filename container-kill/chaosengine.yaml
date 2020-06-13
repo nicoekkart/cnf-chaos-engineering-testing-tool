@@ -22,7 +22,7 @@ spec:
             - name: TARGET_CONTAINER
               value: 'passthrough'
             - name: LIB_IMAGE
-              value: 'litmuschaos/container-killer:latest'
+              value: 'litmuschaos/container-kill-helper:latest'
             - name: LIB
               value: 'containerd'
 
