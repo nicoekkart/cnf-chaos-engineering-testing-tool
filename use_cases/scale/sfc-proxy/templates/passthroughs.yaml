@@ -13,7 +13,6 @@ spec:
   template:
     metadata:
       labels:
-        app: passthrough-{{add $replica_i 1}}
         networkservicemesh.io/app: "passthrough"
         networkservicemesh.io/impl: "web-service"
     spec:

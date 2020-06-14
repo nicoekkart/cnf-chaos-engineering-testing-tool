@@ -1,0 +1,24 @@
+# Contains a single run of an experiment
+---
+name: scale-test
+experiments:
+  - name: Container Kiler
+    path: experiments/container-kill/
+
+conditions:
+  - name: Wget should work
+    command: |
+      wget -O - localhost:8080 --header="NSM-Color: blue"
+    type: [pre, post]
+
+aut:
+  chart: 
+    path: use_cases/scale/sfc-proxy
+    name: scale-test
+  values:
+    passthrough.sfc_replicas:
+      - 1..5
+  include_list:
+    - type: deploy
+      name: nginx-blue
+      container: [nginx]

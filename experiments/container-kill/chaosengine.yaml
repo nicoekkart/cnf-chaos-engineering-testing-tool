@@ -8,7 +8,7 @@ spec:
   engineState: 'active'
   appinfo:
     appns: 'default'
-    applabel: 'app=passthrough-1'
+    applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
   # use retain to keep the job for debug
@@ -20,7 +20,7 @@ spec:
           env:
             # specify the name of the container to be killed
             - name: TARGET_CONTAINER
-              value: 'passthrough'
+              value: 'nginx'
             - name: LIB_IMAGE
               value: 'litmuschaos/container-kill-helper:latest'
             - name: LIB
