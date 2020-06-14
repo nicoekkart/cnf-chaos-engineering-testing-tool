@@ -1,28 +1,48 @@
 import yaml
-import logging
 from pprint import pformat
+from itertools import product
+
+from aut import AUT
+from experiment import Experiment
+from logger import logger
 
 class Chaos:
     def __init__(self, config_file):
-        self.setup_logging()
-        self.parse_config_file(config_file)
+        self.logger = logger(__name__)
+        self.config = self.parse_config_file(config_file)
+        self.auts = self.create_auts()
+        self.logger.debug(self.auts)
+        self.experiments = self.create_experiments()
     
-    def setup_logging(self, name=None):
-        if not name: name=__name__
-        self.logger = logging.getLogger(name)
-        c_handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        self.logger.setLevel(logging.DEBUG)
-        c_handler.setFormatter(formatter)
-        self.logger.addHandler(c_handler)
 
-    def parse_file(self, filename):
+    def parse_config_file(self, filename):
+        """
+        Parses the yaml config file and loads it in self.config
+        """
         self.logger.info(f'Loading config file: {filename}')
         with open(filename, 'r') as f:
-            self.config = yaml.load(f, Loader=yaml.FullLoader)
+            return yaml.load(f, Loader=yaml.FullLoader)
+
+    def create_auts(self):
+        """
+        Creates all possible AUTs from configuration and returns them
+        """
+        self.logger.info('Creating AUTs')
+        values = list(map(AUT.expand_value, self.config['aut']['values'].items()))
+        return [AUT(configuration, self.config['aut']) for configuration in product(*values)]
+             
+    def create_experiments(self):
+        """
+        Creates all possible experiments from configuration and returns them
+        """
+        self.logger.info('Creating experiments')
+        return [Experiment()]
 
     def run(self):
         self.logger.info('Started run')
         self.logger.debug(f'Parsed config file \n{pformat(self.config)}')
-
+        for aut in self.auts:
+            for experiment in self.experiments:
+                aut.run()
+                experiment.run(aut) 
 

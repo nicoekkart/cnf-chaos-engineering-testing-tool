@@ -16,8 +16,7 @@ aut:
     path: use_cases/scale/sfc-proxy
     name: scale-test
   values:
-    passthrough.sfc_replicas:
-      - 1..5
+    passthrough.sfc_replicas: 5
   include_list:
     - type: deploy
       name: nginx-blue
