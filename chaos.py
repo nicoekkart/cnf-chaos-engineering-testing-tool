@@ -41,8 +41,10 @@ class Chaos:
     def run(self):
         self.logger.info('Started run')
         self.logger.debug(f'Parsed config file \n{pformat(self.config)}')
+        
         for aut in self.auts:
             for experiment in self.experiments:
-                aut.run()
+                aut.install()
                 experiment.run(aut) 
+                aut.delete()
 

@@ -1,5 +1,7 @@
-from logger import logger
 import subprocess
+from pprint import pformat
+
+from logger import logger
 
 class AUT:
     def __init__(self, values, aut_config):
@@ -7,13 +9,17 @@ class AUT:
         self.values = values
         self.config = aut_config
 
-    def run(self):
+    def install(self):
         self.logger.info(f"Running {self.config['chart']['name']} with values {self.values}")
         helm_install = subprocess.run(['helm', 'install', self.config['chart']['path'], 
             '--name', self.config['chart']['name'], 
-            '--set', ','.join('='.join(i) for i in self.values)
-            ], stdout=subprocess.PIPE)
-        self.logger.debug(helm_install.stdout)
+            '--set', ','.join('='.join(i) for i in self.values),
+            '--wait'], stdout=subprocess.PIPE)
+        self.logger.debug(pformat(helm_install.stdout.decode('utf-8')))
+
+    def delete(self):
+        self.logger.info(f"Deleting {self.config['chart']['name']}")
+        helm_delete = subprocess.run(['helm', 'del', self.config['chart']['name'], '--purge'], stdout=subprocess.PIPE)
         
 
     @staticmethod
