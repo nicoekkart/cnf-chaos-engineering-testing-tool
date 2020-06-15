@@ -10,6 +10,8 @@ colors:
   - green
   - blue
 
+chaosdeploy: nginx-blue
+
 networkservice: web-service
 
 replicaCount: 1

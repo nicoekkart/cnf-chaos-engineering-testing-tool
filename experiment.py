@@ -26,47 +26,18 @@ class Experiment:
         return dst
         
     def run(self, aut):
-        sleep(10)
         self.logger.info(f"Starting {self.config['name']}")
         url = self.make_temp_copy()
+        kubectl_apply = subprocess.run(['kubectl', 'apply', '-f', self.config['path']], stdout=subprocess.PIPE)
+        self.logger.debug(pformat(kubectl_apply.stdout.decode('utf-8')))
+        sleep(20)
+        
         # annotate the aut
-        for d in aut.include_list:
-            self.logger.info(f"Annotating {d['name']}")
-            kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="true"'], stdout=subprocess.PIPE)
-            self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-        kubectl_apply = subprocess.run(['kubectl', 'apply', '-f', self.config['path']], stdout=subprocess.PIPE)
-        self.logger.debug(pformat(kubectl_apply.stdout.decode('utf-8')))
-        sleep(10)
-        for d in aut.include_list:
-            self.logger.info(f"Annotating {d['name']}")
-            kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="false"', '--overwrite'], stdout=subprocess.PIPE)
-            self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-        sleep(10)
-        for d in aut.include_list:
-            self.logger.info(f"Annotating {d['name']}")
-            kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="true"', '--overwrite'], stdout=subprocess.PIPE)
-            self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-        sleep(10)
-        sleep(10)
-        kubectl_apply = subprocess.run(['kubectl', 'delete', '-f', self.config['path']], stdout=subprocess.PIPE)
-        self.logger.debug(pformat(kubectl_apply.stdout.decode('utf-8')))
-        sleep(10)
-        kubectl_apply = subprocess.run(['kubectl', 'apply', '-f', self.config['path']], stdout=subprocess.PIPE)
-        self.logger.debug(pformat(kubectl_apply.stdout.decode('utf-8')))
-        sleep(60)
-
-        for d in aut.include_list:
-            self.logger.info(f"Annotating {d['name']}")
-            kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="false"', '--overwrite'], stdout=subprocess.PIPE)
-            self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-        sleep(10)
-        for d in aut.include_list:
-            self.logger.info(f"Annotating {d['name']}")
-            kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="true"', '--overwrite'], stdout=subprocess.PIPE)
-            self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-
-        while True:
-            sleep(1) 
+        #for d in aut.include_list:
+        #    self.logger.info(f"Annotating {d['name']}")
+        #    kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="true"'], stdout=subprocess.PIPE)
+        #    self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
+        while True: sleep(1)
         self.logger.info(f"{self.config['name']} finished")
     
     def delete(self):
