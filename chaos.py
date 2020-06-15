@@ -39,7 +39,7 @@ class Chaos:
         return [Experiment()]
 
     def run(self):
-        self.logger.info('Started run')
+        self.logger.info(f"Started {self.config['name']}")
         self.logger.debug(f'Parsed config file \n{pformat(self.config)}')
         
         for aut in self.auts:
