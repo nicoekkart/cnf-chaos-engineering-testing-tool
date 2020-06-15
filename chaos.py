@@ -36,7 +36,7 @@ class Chaos:
         Creates all possible experiments from configuration and returns them
         """
         self.logger.info('Creating experiments')
-        return [Experiment()]
+        return [Experiment(exp_conf, self.config['conditions']) for exp_conf in self.config['experiments']]
 
     def run(self):
         self.logger.info(f"Started {self.config['name']}")
@@ -46,5 +46,6 @@ class Chaos:
             for experiment in self.experiments:
                 aut.install()
                 experiment.run(aut) 
+                experiment.delete() 
                 aut.delete()
 

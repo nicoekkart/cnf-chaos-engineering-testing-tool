@@ -12,6 +12,7 @@ spec:
       labels:
         networkservicemesh.io/app: "nginx-nse"
         networkservicemesh.io/impl: "web-service"
+        app: "nginx"
     spec:
       containers:
         - name: sidecar-nse

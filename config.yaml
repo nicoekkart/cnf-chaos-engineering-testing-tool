@@ -1,8 +1,8 @@
 # Contains a single run of an experiment
 ---
-name: scale-test
+name: scale
 experiments:
-  - name: Container Kiler
+  - name: container_killer
     path: experiments/container-kill/
 
 conditions:
@@ -14,10 +14,10 @@ conditions:
 aut:
   chart: 
     path: use_cases/scale/sfc-proxy
-    name: scale-test
+    name: scale
   values:
-    passthrough.sfc_replicas: 1..3
+    passthrough.sfc_replicas: 3
   include_list:
     - type: deploy
-      name: nginx-blue
+      name: nginx-red
       container: [nginx]
