@@ -29,6 +29,7 @@ class Chaos:
         """
         self.logger.info('Creating AUTs')
         values = list(map(AUT.expand_value, self.config['aut']['values'].items()))
+        self.logger.debug(values)
         return [AUT(configuration, self.config['aut']) for configuration in product(*values)]
              
     def create_experiments(self):

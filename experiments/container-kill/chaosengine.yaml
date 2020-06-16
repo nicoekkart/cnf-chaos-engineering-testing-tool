@@ -8,7 +8,7 @@ spec:
   engineState: 'active'
   appinfo:
     appns: 'default'
-    applabel: 'app=nginx'
+    applabel: 'app=acl-filter'
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
   # use retain to keep the job for debug
@@ -20,9 +20,12 @@ spec:
           env:
             # specify the name of the container to be killed
             - name: TARGET_CONTAINER
-              value: 'nginx'
+              value: 'acl-filter'
             - name: LIB_IMAGE
               value: 'litmuschaos/container-kill-helper:latest'
             - name: LIB
               value: 'containerd'
-
+            - name: PRECONDITION
+              value: 'wget -O - localhost:8080 --header="NSM-Color: blue"'
+            - name: POSTCONDITION
+              value: 'wget -O - localhost:8080 --header="NSM-Color: blue"'

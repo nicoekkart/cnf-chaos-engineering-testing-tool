@@ -17,4 +17,4 @@ aut:
     name: scale
   values:
     passthrough.sfc_replicas: 3
-    chaosdeploy: nginx-red
+    chaosdeploy: acl-filter-nse-blue

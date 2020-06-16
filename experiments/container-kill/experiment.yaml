@@ -66,6 +66,12 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
+    - name: PRECONDITION
+      value: 'echo "precondition"'
+
+    - name: POSTCONDITION
+      value: 'echo "precondition"'
+
     # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
     # For containerd image use: litmuschaos/container-kill-helper:latest

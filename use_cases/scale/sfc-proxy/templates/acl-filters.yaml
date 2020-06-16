@@ -1,4 +1,5 @@
 {{- range $color_i, $color := $.Values.colors }}
+{{- $podname := printf "acl-filter-nse-%s" $color -}}
 
 ---
 apiVersion: apps/v1
@@ -14,6 +15,7 @@ spec:
       labels:
         networkservicemesh.io/app: "acl-filter"
         networkservicemesh.io/impl: "web-service"
+        app: acl-filter
     spec:
       containers:
         - name: acl-filter
@@ -43,8 +45,15 @@ spec:
             name: acl-filter-config-file-{{$color}}
 metadata:
   name: acl-filter-nse-{{$color}}
+  labels:
+    app: acl-filter
   annotations:
     reloader.stakater.com/auto: "true"
+    {{ if eq $.Values.chaosdeploy $podname }} 
+    litmuschaos.io/chaos: "true"
+    {{ else }} 
+    litmuschaos.io/chaos: "false"
+    {{ end }}
 ---
 apiVersion: v1
 kind: ConfigMap
