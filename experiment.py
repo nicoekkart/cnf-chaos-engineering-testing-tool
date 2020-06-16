@@ -3,6 +3,7 @@ import yaml
 import subprocess
 from pprint import pformat
 import shutil
+import kubernetes
 
 from logger import logger
 
@@ -24,25 +25,47 @@ class Experiment:
         self.set_name(dst)
         self.location = dst
         return dst
-        
+    
+    @property
+    def is_initialized(self):
+        kubernetes.config.load_kube_config()
+        custom = kubernetes.client.CustomObjectsApi()
+        try:
+           obj = custom.get_namespaced_custom_object(name=self.config['name'], group='litmuschaos.io', version='v1alpha1', namespace='default', plural='chaosengines')
+           return obj['status']['engineStatus']=='initialized'
+        except kubernetes.client.rest.ApiException as _:
+            return False
+
+    @property
+    def is_completed(self):
+        kubernetes.config.load_kube_config()
+        custom = kubernetes.client.CustomObjectsApi()
+        try:
+           obj = custom.get_namespaced_custom_object(name=self.config['name'], group='litmuschaos.io', version='v1alpha1', namespace='default', plural='chaosengines')
+           return obj['status']['engineStatus']=='completed'
+        except kubernetes.client.rest.ApiException as _:
+            return False
+
     def run(self, aut):
         self.logger.info(f"Starting {self.config['name']}")
         url = self.make_temp_copy()
-        kubectl_apply = subprocess.run(['kubectl', 'apply', '-f', self.config['path']], stdout=subprocess.PIPE)
+        kubectl_apply = subprocess.run(['kubectl', 'apply', '-f', url], stdout=subprocess.PIPE)
         self.logger.debug(pformat(kubectl_apply.stdout.decode('utf-8')))
-        sleep(20)
         
-        # annotate the aut
-        #for d in aut.include_list:
-        #    self.logger.info(f"Annotating {d['name']}")
-        #    kubectl_annotate = subprocess.run(['kubectl', 'annotate', f"{d['type']}/{d['name']}", 'litmuschaos.io/chaos="true"'], stdout=subprocess.PIPE)
-        #    self.logger.debug(pformat(kubectl_annotate.stdout.decode('utf-8')))
-        while True: sleep(1)
+        for i in range(60):
+            self.logger.info(f'Waiting for engine initialization ({i+1}/60)')
+            if self.is_initialized: break
+            sleep(1)
+        self.logger.info('Engine initialized')
+        for i in range(60):
+            self.logger.info(f'Waiting for engine completion ({i+1}/60)')
+            if self.is_completed: break
+            sleep(5)
         self.logger.info(f"{self.config['name']} finished")
     
     def delete(self):
         self.logger.info(f"Deleting {self.config['name']}")
-        kubectl_delete = subprocess.run(['kubectl', 'delete', '-f', self.config['path']], stdout=subprocess.PIPE)
+        kubectl_delete = subprocess.run(['kubectl', 'delete', '-f', self.location], stdout=subprocess.PIPE)
         self.logger.debug(pformat(kubectl_delete.stdout.decode('utf-8')))
 
         
