@@ -67,10 +67,13 @@ spec:
       value: '20'
 
     - name: PRECONDITION
-      value: 'echo "precondition"'
+      value: 'wget -O - 10.60.1.0'
 
     - name: POSTCONDITION
-      value: 'echo "precondition"'
+      value: 'wget -O - 10.60.1.0'
+
+    - name: ENTRYPOINT
+      value: 'gogtp-enb'
 
     # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
     # For pumba image use: gaiaadm/pumba:0.6.5

@@ -8,7 +8,7 @@ spec:
   engineState: 'active'
   appinfo:
     appns: 'default'
-    applabel: 'app=acl-filter'
+    applabel: 'app=enb'
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
   # use retain to keep the job for debug
@@ -20,12 +20,16 @@ spec:
           env:
             # specify the name of the container to be killed
             - name: TARGET_CONTAINER
-              value: 'acl-filter'
+              value: 'enb'
             - name: LIB_IMAGE
               value: 'litmuschaos/container-kill-helper:latest'
             - name: LIB
               value: 'containerd'
             - name: PRECONDITION
-              value: 'wget -O - localhost:8080 --header="NSM-Color: blue"'
+              value: 'wget --timeout 5 -O - 10.60.1.1'
             - name: POSTCONDITION
-              value: 'wget -O - localhost:8080 --header="NSM-Color: blue"'
+              value: 'wget --timeout 5 -O - 10.60.1.1'
+            - name: ENTRYPOINT
+              value: 'gogtp-ue'
+            - name: ENTRYPOINT_CONTAINER
+              value: 'gogtp-ue'

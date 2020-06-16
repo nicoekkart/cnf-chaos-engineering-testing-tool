@@ -1,0 +1,19 @@
+# Contains a single run of an experiment
+---
+name: scale
+experiments:
+  - name: container-killer
+    path: experiments/container-kill/
+
+conditions:
+  - name: Wget should work
+    command: |
+      echo "works"
+    type: [pre, post]
+
+aut:
+  chart: 
+    path: use_cases/complexity/gogtp
+    name: gogtp
+  values:
+    chaosdeploy: enb

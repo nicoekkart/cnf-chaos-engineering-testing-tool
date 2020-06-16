@@ -12,6 +12,7 @@ spec:
       labels:
         networkservicemesh.io/app: {{ $k }}
         networkservicemesh.io/impl: {{ $.Chart.Name }}
+        app: {{ $k }}
     spec:
       containers:
       {{ if $v.endpoint_ip }}
@@ -39,7 +40,7 @@ spec:
         image: python:slim
         command: ["python", "-m", "http.server", "{{ $v.idPort }}"]
         imagePullPolicy: IfNotPresent
-      - name: {{ $.Chart.Name }}-{{ $k }}
+      - name: {{ $k }}
         image: "soelvkaer/gogtp:{{$k}}"
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh","-c"]
@@ -72,9 +73,16 @@ spec:
         #kubernetes.io/hostname: {{ $v.node }}
 metadata:
   name: {{ $.Chart.Name }}-{{$k}}
+  labels:
+    app: {{ $k }}
   annotations:
     {{ if $v.networks }}
     ns.networkservicemesh.io: {{ $local := dict "first" true }}{{ range $i, $network := $v.networks }}{{ if not $local.first }},{{ end }}{{$.Chart.Name}}?app={{ $network }}{{ $_ := set $local "first" false }}{{ end }}
+    {{ end }}
+    {{ if eq $.Values.chaosdeploy $k }} 
+    litmuschaos.io/chaos: "true"
+    {{ else }} 
+    litmuschaos.io/chaos: "false"
     {{ end }}
 {{ end }}
 
