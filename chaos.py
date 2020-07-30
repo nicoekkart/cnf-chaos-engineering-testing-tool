@@ -1,6 +1,7 @@
 import yaml
 from pprint import pformat
 from itertools import product
+from datetime import datetime
 
 from aut import AUT
 from experiment import Experiment
@@ -13,6 +14,7 @@ class Chaos:
         self.auts = self.create_auts()
         self.logger.debug(self.auts)
         self.experiments = self.create_experiments()
+        self.start_time = datetime.now()
     
 
     def parse_config_file(self, filename):
@@ -43,10 +45,17 @@ class Chaos:
         self.logger.info(f"Started {self.config['name']}")
         self.logger.debug(f'Parsed config file \n{pformat(self.config)}')
         
+        total_time = 0
         for aut in self.auts:
             for experiment in self.experiments:
                 aut.install()
                 experiment.run(aut) 
-                experiment.delete() 
+                experiment.delete()
                 aut.delete()
+                self.logger.info('Experiment verdict: {}'.format(experiment.verdict))
+                self.logger.info('Installing AUT took {}'.format(aut.install_duration))
+                self.logger.info('Experiment took {}'.format(experiment.duration))
+        elapsed_time = datetime.now() - self.start_time
+        self.logger.info('Total elapsed time: {}'.format(elapsed_time))
+        
 

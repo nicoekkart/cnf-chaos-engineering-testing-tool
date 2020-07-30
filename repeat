@@ -1,0 +1,9 @@
+echo "" > testresults_container
+for i in {1..20}
+do
+        echo $i 
+        echo "~~~~~~~~~~" >> testresults_container
+        python main.py config_scale.yaml 2>> testresults_container
+	sleep 5
+done
+

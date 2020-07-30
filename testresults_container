@@ -1,0 +1,2657 @@
+
+~~~~~~~~~~
+2020-07-28 07:24:43,390 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:24:43,396 [chaos] - INFO - Creating AUTs
+2020-07-28 07:24:43,396 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:24:43,396 [chaos] - DEBUG - [<aut.AUT object at 0x7f5b752e4fd0>]
+2020-07-28 07:24:43,396 [chaos] - INFO - Creating experiments
+2020-07-28 07:24:43,396 [chaos] - INFO - Started scale
+2020-07-28 07:24:43,397 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:24:43,397 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:25:16,530 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:24:43 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-8nw56  32s\n'
+ 'acl-filter-nse-green-d478579c7-9x4st  31s\n'
+ 'acl-filter-nse-red-795cd877f7-n8ktx   32s\n'
+ 'nginx-blue-7c457f4665-rmtk2           31s\n'
+ 'nginx-green-5fbf684b7d-tmx4q          32s\n'
+ 'nginx-red-569bdbbcbf-m9wsb            32s\n'
+ 'passthrough-1-blue-5bd57b5484-ztz7f   32s\n'
+ 'passthrough-1-green-5bcfb575d4-jmzfk  32s\n'
+ 'passthrough-1-red-766495976-nrk7q     32s\n'
+ 'passthrough-2-blue-66d66c7d48-x4h6c   32s\n'
+ 'passthrough-2-green-7c86cc797d-65lv2  32s\n'
+ 'passthrough-2-red-585998c5f4-9bsb2    32s\n'
+ 'passthrough-3-blue-6546f768d-bsgx5    32s\n'
+ 'passthrough-3-green-76cb7f74c6-7jprd  32s\n'
+ 'passthrough-3-red-5d76ccb876-gzkkt    32s\n'
+ 'proxy-nsc-59d894899f-kx62j            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:25:16,531 [experiment] - INFO - Starting container-killer
+2020-07-28 07:25:16,548 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:25:17,851 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:25:17,851 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:25:17,896 [experiment] - INFO - Engine initialized
+2020-07-28 07:25:17,896 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:25:22,937 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:25:28,000 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:25:33,069 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:25:38,113 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:25:43,157 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:25:48,200 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:25:53,245 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:25:58,289 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:26:03,333 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:26:08,376 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:26:13,420 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:26:18,465 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:26:23,509 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:26:28,553 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:26:33,598 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:26:38,643 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:26:43,695 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:26:48,740 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:26:53,786 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:26:58,831 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:27:03,919 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:27:08,963 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:27:14,008 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:27:19,053 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:27:24,099 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:27:29,143 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:27:34,188 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:27:34,227 [experiment] - INFO - container-killer finished
+2020-07-28 07:27:34,263 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"54a33d72-9ea1-4d54-8201-3f1aa36ae15e","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:26:02Z', 'generation': 2, 'labels': {'chaosUID': '54a33d72-9ea1-4d54-8201-3f1aa36ae15e', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14590476', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '605d9ee0-c7b7-4b30-85fa-7c0a55e89858'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:27:34,400 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:27:34,401 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:27:34,940 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:27:34,940 [aut] - INFO - Deleting scale
+2020-07-28 07:27:36,744 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:27:36,744 [chaos] - INFO - Installing AUT took 0:00:33.132379
+2020-07-28 07:27:36,744 [chaos] - INFO - Experiment took 0:02:17.696745
+2020-07-28 07:27:36,744 [chaos] - INFO - Total elapsed time: 0:02:53.347978
+~~~~~~~~~~
+2020-07-28 07:27:42,357 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:27:42,363 [chaos] - INFO - Creating AUTs
+2020-07-28 07:27:42,363 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:27:42,363 [chaos] - DEBUG - [<aut.AUT object at 0x7f1b02964fd0>]
+2020-07-28 07:27:42,363 [chaos] - INFO - Creating experiments
+2020-07-28 07:27:42,363 [chaos] - INFO - Started scale
+2020-07-28 07:27:42,364 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:27:42,364 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:28:15,516 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:27:42 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-h4x4g  31s\n'
+ 'acl-filter-nse-green-d478579c7-rvgv7  32s\n'
+ 'acl-filter-nse-red-795cd877f7-sf9zx   32s\n'
+ 'nginx-blue-7c457f4665-gmgrh           32s\n'
+ 'nginx-green-5fbf684b7d-tknxj          32s\n'
+ 'nginx-red-569bdbbcbf-9xf2f            32s\n'
+ 'passthrough-1-blue-5bd57b5484-z4svk   32s\n'
+ 'passthrough-1-green-5bcfb575d4-bv9b6  32s\n'
+ 'passthrough-1-red-766495976-zh22g     32s\n'
+ 'passthrough-2-blue-66d66c7d48-99hnp   32s\n'
+ 'passthrough-2-green-7c86cc797d-5n2b2  32s\n'
+ 'passthrough-2-red-585998c5f4-skjm8    32s\n'
+ 'passthrough-3-blue-6546f768d-vj568    32s\n'
+ 'passthrough-3-green-76cb7f74c6-7drqb  32s\n'
+ 'passthrough-3-red-5d76ccb876-9z82h    32s\n'
+ 'proxy-nsc-59d894899f-fbtql            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:28:15,516 [experiment] - INFO - Starting container-killer
+2020-07-28 07:28:15,531 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:28:16,457 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:28:16,458 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:28:16,502 [experiment] - INFO - Engine initialized
+2020-07-28 07:28:16,502 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:28:21,543 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:28:26,607 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:28:31,716 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:28:36,761 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:28:41,839 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:28:46,883 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:28:51,957 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:28:57,002 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:29:02,064 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:29:07,109 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:29:12,152 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:29:17,196 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:29:22,239 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:29:27,283 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:29:32,327 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:29:37,372 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:29:42,417 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:29:47,462 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:29:52,503 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:29:57,548 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:30:02,592 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:30:07,638 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:30:12,680 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:30:17,724 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:30:22,768 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:30:27,812 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:30:32,856 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:30:37,900 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 07:30:37,939 [experiment] - INFO - container-killer finished
+2020-07-28 07:30:37,973 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"161fde81-acfb-4a95-8a98-d62b35d07c7f","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:29:00Z', 'generation': 2, 'labels': {'chaosUID': '161fde81-acfb-4a95-8a98-d62b35d07c7f', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14591750', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '090ee187-b21b-4352-b528-029e2c764336'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:30:42,296 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:30:42,298 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:30:42,798 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:30:42,798 [aut] - INFO - Deleting scale
+2020-07-28 07:30:48,639 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:30:48,640 [chaos] - INFO - Installing AUT took 0:00:33.150846
+2020-07-28 07:30:48,640 [chaos] - INFO - Experiment took 0:02:22.422602
+2020-07-28 07:30:48,640 [chaos] - INFO - Total elapsed time: 0:03:06.276795
+~~~~~~~~~~
+2020-07-28 07:30:54,246 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:30:54,252 [chaos] - INFO - Creating AUTs
+2020-07-28 07:30:54,252 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:30:54,253 [chaos] - DEBUG - [<aut.AUT object at 0x7f1b6a726fd0>]
+2020-07-28 07:30:54,253 [chaos] - INFO - Creating experiments
+2020-07-28 07:30:54,253 [chaos] - INFO - Started scale
+2020-07-28 07:30:54,254 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:30:54,254 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:31:28,081 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:30:54 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-7kbg2  33s\n'
+ 'acl-filter-nse-green-d478579c7-whz8t  32s\n'
+ 'acl-filter-nse-red-795cd877f7-h89zx   32s\n'
+ 'nginx-blue-7c457f4665-tck85           32s\n'
+ 'nginx-green-5fbf684b7d-vv686          33s\n'
+ 'nginx-red-569bdbbcbf-fvp9k            32s\n'
+ 'passthrough-1-blue-5bd57b5484-dwfzt   33s\n'
+ 'passthrough-1-green-5bcfb575d4-t4phw  32s\n'
+ 'passthrough-1-red-766495976-bc585     33s\n'
+ 'passthrough-2-blue-66d66c7d48-c8bg5   33s\n'
+ 'passthrough-2-green-7c86cc797d-cvxbr  33s\n'
+ 'passthrough-2-red-585998c5f4-d5qpn    32s\n'
+ 'passthrough-3-blue-6546f768d-88wd5    33s\n'
+ 'passthrough-3-green-76cb7f74c6-76p9z  33s\n'
+ 'passthrough-3-red-5d76ccb876-8tbdg    33s\n'
+ 'proxy-nsc-59d894899f-n2khr            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:31:28,081 [experiment] - INFO - Starting container-killer
+2020-07-28 07:31:28,100 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:31:29,073 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:31:29,074 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:31:29,118 [experiment] - INFO - Engine initialized
+2020-07-28 07:31:29,118 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:31:34,220 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:31:39,264 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:31:44,307 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:31:49,351 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:31:54,548 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:31:59,591 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:32:04,635 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:32:09,678 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:32:14,721 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:32:19,777 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:32:24,831 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:32:29,875 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:32:34,919 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:32:39,962 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:32:45,005 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:32:50,050 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:32:55,094 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:33:00,142 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:33:05,185 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:33:10,228 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:33:15,272 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:33:20,317 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:33:25,361 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:33:30,402 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:33:35,466 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:33:40,509 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:33:45,563 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:33:45,601 [experiment] - INFO - container-killer finished
+2020-07-28 07:33:45,636 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"cef668ea-546a-450c-a3f5-36fdff9ea0ae","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:32:11Z', 'generation': 2, 'labels': {'chaosUID': 'cef668ea-546a-450c-a3f5-36fdff9ea0ae', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14593059', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'b885b9fd-f60b-4f1d-bd7f-60906cc192bf'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:33:45,818 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:33:45,819 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:33:46,272 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:33:46,273 [aut] - INFO - Deleting scale
+2020-07-28 07:33:48,488 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:33:48,488 [chaos] - INFO - Installing AUT took 0:00:33.826623
+2020-07-28 07:33:48,489 [chaos] - INFO - Experiment took 0:02:17.519319
+2020-07-28 07:33:48,489 [chaos] - INFO - Total elapsed time: 0:02:54.235934
+~~~~~~~~~~
+2020-07-28 07:33:54,092 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:33:54,098 [chaos] - INFO - Creating AUTs
+2020-07-28 07:33:54,098 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:33:54,099 [chaos] - DEBUG - [<aut.AUT object at 0x7ff070fd0fd0>]
+2020-07-28 07:33:54,099 [chaos] - INFO - Creating experiments
+2020-07-28 07:33:54,099 [chaos] - INFO - Started scale
+2020-07-28 07:33:54,100 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:33:54,100 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:34:27,458 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:33:54 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-hmt5d  32s\n'
+ 'acl-filter-nse-green-d478579c7-8nssq  33s\n'
+ 'acl-filter-nse-red-795cd877f7-f5x6m   32s\n'
+ 'nginx-blue-7c457f4665-8d86g           32s\n'
+ 'nginx-green-5fbf684b7d-vrgdn          32s\n'
+ 'nginx-red-569bdbbcbf-8b7r2            32s\n'
+ 'passthrough-1-blue-5bd57b5484-vrcrs   33s\n'
+ 'passthrough-1-green-5bcfb575d4-c5222  32s\n'
+ 'passthrough-1-red-766495976-shm8s     32s\n'
+ 'passthrough-2-blue-66d66c7d48-x77dz   32s\n'
+ 'passthrough-2-green-7c86cc797d-5cgnm  33s\n'
+ 'passthrough-2-red-585998c5f4-6knkg    32s\n'
+ 'passthrough-3-blue-6546f768d-8dd69    31s\n'
+ 'passthrough-3-green-76cb7f74c6-pc2p2  32s\n'
+ 'passthrough-3-red-5d76ccb876-ldd56    33s\n'
+ 'proxy-nsc-59d894899f-r55w7            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:34:27,459 [experiment] - INFO - Starting container-killer
+2020-07-28 07:34:27,476 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:34:28,407 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:34:28,407 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:34:28,452 [experiment] - INFO - Engine initialized
+2020-07-28 07:34:28,453 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:34:33,494 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:34:38,554 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:34:43,597 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:34:48,639 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:34:53,683 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:34:58,726 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:35:03,770 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:35:08,813 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:35:13,857 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:35:18,899 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:35:23,961 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:35:29,004 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:35:34,046 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:35:39,088 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:35:44,219 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:35:49,271 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:35:54,318 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:35:59,362 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:36:04,407 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:36:09,536 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:36:14,579 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:36:19,623 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:36:24,668 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:36:29,712 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:36:34,756 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:36:39,799 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:36:44,855 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:36:49,899 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 07:36:49,937 [experiment] - INFO - container-killer finished
+2020-07-28 07:36:49,972 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"8c906783-a67b-4325-b7f3-42048277d871","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:35:11Z', 'generation': 2, 'labels': {'chaosUID': '8c906783-a67b-4325-b7f3-42048277d871', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14594347', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'fb33006a-b627-4d84-bff6-8cc1df2178cd'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:36:50,174 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:36:50,175 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:36:51,217 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:36:51,217 [aut] - INFO - Deleting scale
+2020-07-28 07:36:53,043 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:36:53,044 [chaos] - INFO - Installing AUT took 0:00:33.357993
+2020-07-28 07:36:53,044 [chaos] - INFO - Experiment took 0:02:22.478302
+2020-07-28 07:36:53,044 [chaos] - INFO - Total elapsed time: 0:02:58.945205
+~~~~~~~~~~
+2020-07-28 07:36:58,681 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:36:58,688 [chaos] - INFO - Creating AUTs
+2020-07-28 07:36:58,688 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:36:58,688 [chaos] - DEBUG - [<aut.AUT object at 0x7ff07c469fd0>]
+2020-07-28 07:36:58,688 [chaos] - INFO - Creating experiments
+2020-07-28 07:36:58,688 [chaos] - INFO - Started scale
+2020-07-28 07:36:58,689 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:36:58,689 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:37:32,270 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:36:59 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-bpnw8  33s\n'
+ 'acl-filter-nse-green-d478579c7-7s5k6  33s\n'
+ 'acl-filter-nse-red-795cd877f7-qt7dx   33s\n'
+ 'nginx-blue-7c457f4665-6l2rm           32s\n'
+ 'nginx-green-5fbf684b7d-s2qcz          32s\n'
+ 'nginx-red-569bdbbcbf-znhqx            33s\n'
+ 'passthrough-1-blue-5bd57b5484-sdhdr   33s\n'
+ 'passthrough-1-green-5bcfb575d4-czjhq  33s\n'
+ 'passthrough-1-red-766495976-h7lzj     32s\n'
+ 'passthrough-2-blue-66d66c7d48-pxlp6   33s\n'
+ 'passthrough-2-green-7c86cc797d-8d5fn  33s\n'
+ 'passthrough-2-red-585998c5f4-mclcd    33s\n'
+ 'passthrough-3-blue-6546f768d-ckk9k    33s\n'
+ 'passthrough-3-green-76cb7f74c6-rw2jc  33s\n'
+ 'passthrough-3-red-5d76ccb876-gmznx    33s\n'
+ 'proxy-nsc-59d894899f-4rt8j            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:37:32,271 [experiment] - INFO - Starting container-killer
+2020-07-28 07:37:32,289 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:37:33,185 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:37:33,185 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:37:33,230 [experiment] - INFO - Engine initialized
+2020-07-28 07:37:33,230 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:37:38,271 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:37:43,313 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:37:48,356 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:37:53,400 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:37:58,445 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:38:03,488 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:38:08,533 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:38:13,575 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:38:18,619 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:38:23,703 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:38:28,745 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:38:33,831 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:38:38,875 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:38:43,921 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:38:48,963 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:38:54,014 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:38:59,115 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:39:04,158 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:39:09,200 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:39:14,243 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:39:19,285 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:39:24,330 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:39:29,373 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:39:34,483 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:39:39,524 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:39:44,568 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:39:49,611 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:39:54,674 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 07:39:54,710 [experiment] - INFO - container-killer finished
+2020-07-28 07:39:54,745 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"7f875e84-64d9-4661-bf47-d930adad456d","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:38:19Z', 'generation': 2, 'labels': {'chaosUID': '7f875e84-64d9-4661-bf47-d930adad456d', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14595651', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'ae59ab39-59e6-4d3f-9e6a-7a3b426271f7'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:39:54,919 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:39:54,920 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:39:55,492 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:39:55,492 [aut] - INFO - Deleting scale
+2020-07-28 07:39:56,327 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:39:56,328 [chaos] - INFO - Installing AUT took 0:00:33.580641
+2020-07-28 07:39:56,328 [chaos] - INFO - Experiment took 0:02:22.439028
+2020-07-28 07:39:56,328 [chaos] - INFO - Total elapsed time: 0:02:57.640083
+~~~~~~~~~~
+2020-07-28 07:40:01,960 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:40:01,967 [chaos] - INFO - Creating AUTs
+2020-07-28 07:40:01,967 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:40:01,967 [chaos] - DEBUG - [<aut.AUT object at 0x7f8402d84fd0>]
+2020-07-28 07:40:01,967 [chaos] - INFO - Creating experiments
+2020-07-28 07:40:01,967 [chaos] - INFO - Started scale
+2020-07-28 07:40:01,968 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:40:01,968 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:40:35,055 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:40:02 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-4l4v8  32s\n'
+ 'acl-filter-nse-green-d478579c7-79ltz  33s\n'
+ 'acl-filter-nse-red-795cd877f7-hf2rw   31s\n'
+ 'nginx-blue-7c457f4665-979lm           33s\n'
+ 'nginx-green-5fbf684b7d-ch9hn          32s\n'
+ 'nginx-red-569bdbbcbf-h4k8h            33s\n'
+ 'passthrough-1-blue-5bd57b5484-qgltd   32s\n'
+ 'passthrough-1-green-5bcfb575d4-w8bd2  33s\n'
+ 'passthrough-1-red-766495976-vkpkv     32s\n'
+ 'passthrough-2-blue-66d66c7d48-2vb7z   33s\n'
+ 'passthrough-2-green-7c86cc797d-xscj5  33s\n'
+ 'passthrough-2-red-585998c5f4-286n8    33s\n'
+ 'passthrough-3-blue-6546f768d-xwtj6    33s\n'
+ 'passthrough-3-green-76cb7f74c6-vn7k9  32s\n'
+ 'passthrough-3-red-5d76ccb876-dv8nc    33s\n'
+ 'proxy-nsc-59d894899f-49qkv            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:40:35,056 [experiment] - INFO - Starting container-killer
+2020-07-28 07:40:35,074 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:40:35,948 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:40:35,948 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:40:35,993 [experiment] - INFO - Engine initialized
+2020-07-28 07:40:35,993 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:40:41,034 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:40:46,077 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:40:51,125 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:40:56,172 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:41:01,215 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:41:06,259 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:41:11,304 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:41:16,348 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:41:21,392 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:41:26,437 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:41:31,480 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:41:36,523 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:41:41,567 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:41:46,611 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:41:51,718 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:41:56,793 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:42:01,840 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:42:06,984 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:42:12,027 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:42:17,071 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:42:22,114 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:42:27,157 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:42:32,198 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:42:37,241 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:42:42,296 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:42:47,339 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:42:52,458 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:42:57,501 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 07:43:02,544 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-28 07:43:02,582 [experiment] - INFO - container-killer finished
+2020-07-28 07:43:02,630 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"f6902505-992f-4a2b-8d3b-4e534f2f8bb1","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:41:24Z', 'generation': 2, 'labels': {'chaosUID': 'f6902505-992f-4a2b-8d3b-4e534f2f8bb1', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14596950', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '1f66fa03-19cd-4a46-a41a-e1b17e91d507'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:43:06,858 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:43:06,859 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:43:07,309 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:43:07,309 [aut] - INFO - Deleting scale
+2020-07-28 07:43:13,691 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:43:13,691 [chaos] - INFO - Installing AUT took 0:00:33.086327
+2020-07-28 07:43:13,691 [chaos] - INFO - Experiment took 0:02:27.526561
+2020-07-28 07:43:13,692 [chaos] - INFO - Total elapsed time: 0:03:11.724342
+~~~~~~~~~~
+2020-07-28 07:43:19,331 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:43:19,338 [chaos] - INFO - Creating AUTs
+2020-07-28 07:43:19,338 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:43:19,338 [chaos] - DEBUG - [<aut.AUT object at 0x7f8cb33aefd0>]
+2020-07-28 07:43:19,338 [chaos] - INFO - Creating experiments
+2020-07-28 07:43:19,338 [chaos] - INFO - Started scale
+2020-07-28 07:43:19,339 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:43:19,339 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:43:58,889 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:43:19 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   38s\n'
+ 'acl-filter-nse-green  38s\n'
+ 'acl-filter-nse-red    38s\n'
+ 'nginx-blue            38s\n'
+ 'nginx-green           38s\n'
+ 'nginx-red             38s\n'
+ 'passthrough-1-blue    38s\n'
+ 'passthrough-1-green   38s\n'
+ 'passthrough-1-red     38s\n'
+ 'passthrough-2-blue    38s\n'
+ 'passthrough-2-green   38s\n'
+ 'passthrough-2-red     38s\n'
+ 'passthrough-3-blue    38s\n'
+ 'passthrough-3-green   38s\n'
+ 'passthrough-3-red     38s\n'
+ 'proxy-nsc             38s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-bbggk  37s\n'
+ 'acl-filter-nse-green-d478579c7-72gjv  38s\n'
+ 'acl-filter-nse-red-795cd877f7-bjlfn   38s\n'
+ 'nginx-blue-7c457f4665-djz7v           38s\n'
+ 'nginx-green-5fbf684b7d-sp56m          38s\n'
+ 'nginx-red-569bdbbcbf-5vl9p            38s\n'
+ 'passthrough-1-blue-5bd57b5484-nbcwl   38s\n'
+ 'passthrough-1-green-5bcfb575d4-cgdxm  38s\n'
+ 'passthrough-1-red-766495976-4vfpr     38s\n'
+ 'passthrough-2-blue-66d66c7d48-mq7zg   38s\n'
+ 'passthrough-2-green-7c86cc797d-tr24r  38s\n'
+ 'passthrough-2-red-585998c5f4-nrxpm    38s\n'
+ 'passthrough-3-blue-6546f768d-5zqlt    38s\n'
+ 'passthrough-3-green-76cb7f74c6-52wkz  38s\n'
+ 'passthrough-3-red-5d76ccb876-77jhm    38s\n'
+ 'proxy-nsc-59d894899f-b4859            38s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  38s\n'
+ '\n'
+ '\n')
+2020-07-28 07:43:58,890 [experiment] - INFO - Starting container-killer
+2020-07-28 07:43:58,908 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:43:59,998 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:43:59,998 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:44:00,051 [experiment] - INFO - Engine initialized
+2020-07-28 07:44:00,051 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:44:05,093 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:44:10,138 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:44:15,179 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:44:20,222 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:44:25,276 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:44:30,319 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:44:35,363 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:44:40,406 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:44:45,449 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:44:50,525 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:44:55,569 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:45:00,612 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:45:05,654 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:45:10,699 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:45:15,743 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:45:20,797 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:45:25,844 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:45:30,887 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:45:35,929 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:45:40,972 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:45:46,052 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:45:51,095 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:45:56,138 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:46:01,181 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:46:06,231 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:46:11,274 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:46:16,317 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:46:16,355 [experiment] - INFO - container-killer finished
+2020-07-28 07:46:16,390 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"6672e7a6-01c3-4b6d-86e9-e41b2fba2db9","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:44:41Z', 'generation': 2, 'labels': {'chaosUID': '6672e7a6-01c3-4b6d-86e9-e41b2fba2db9', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14598279', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '8d056f4e-7ef3-4fdd-b3fc-f9d0bdb9dc8e'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:46:16,532 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:46:16,534 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:46:17,128 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:46:17,129 [aut] - INFO - Deleting scale
+2020-07-28 07:46:19,696 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:46:19,696 [chaos] - INFO - Installing AUT took 0:00:39.549287
+2020-07-28 07:46:19,696 [chaos] - INFO - Experiment took 0:02:17.465636
+2020-07-28 07:46:19,697 [chaos] - INFO - Total elapsed time: 0:03:00.358277
+~~~~~~~~~~
+2020-07-28 07:46:25,335 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:46:25,341 [chaos] - INFO - Creating AUTs
+2020-07-28 07:46:25,341 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:46:25,341 [chaos] - DEBUG - [<aut.AUT object at 0x7fe20aab4f60>]
+2020-07-28 07:46:25,341 [chaos] - INFO - Creating experiments
+2020-07-28 07:46:25,342 [chaos] - INFO - Started scale
+2020-07-28 07:46:25,342 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:46:25,342 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:46:58,555 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:46:25 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-qvzkh  32s\n'
+ 'acl-filter-nse-green-d478579c7-xgv8b  32s\n'
+ 'acl-filter-nse-red-795cd877f7-p4r2s   32s\n'
+ 'nginx-blue-7c457f4665-wzkrf           31s\n'
+ 'nginx-green-5fbf684b7d-7krwk          32s\n'
+ 'nginx-red-569bdbbcbf-4dsp9            32s\n'
+ 'passthrough-1-blue-5bd57b5484-txcqq   32s\n'
+ 'passthrough-1-green-5bcfb575d4-fdb6k  32s\n'
+ 'passthrough-1-red-766495976-pqx8m     32s\n'
+ 'passthrough-2-blue-66d66c7d48-5dpx8   32s\n'
+ 'passthrough-2-green-7c86cc797d-7ls95  32s\n'
+ 'passthrough-2-red-585998c5f4-tmp9j    32s\n'
+ 'passthrough-3-blue-6546f768d-p2qdv    32s\n'
+ 'passthrough-3-green-76cb7f74c6-x99r2  32s\n'
+ 'passthrough-3-red-5d76ccb876-s56tc    32s\n'
+ 'proxy-nsc-59d894899f-fwbff            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:46:58,555 [experiment] - INFO - Starting container-killer
+2020-07-28 07:46:58,573 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:46:59,435 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:46:59,435 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:46:59,477 [experiment] - INFO - Engine initialized
+2020-07-28 07:46:59,477 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:47:04,517 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:47:09,561 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:47:14,604 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:47:19,647 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:47:24,691 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:47:29,759 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:47:34,802 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:47:39,844 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:47:44,887 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:47:49,955 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:47:54,998 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:48:00,041 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:48:05,081 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:48:10,125 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:48:15,167 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:48:20,211 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:48:25,262 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:48:30,306 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:48:35,364 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:48:40,407 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:48:45,452 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:48:50,496 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:48:55,540 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:49:00,583 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:49:05,627 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:49:10,671 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:49:15,715 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:49:15,754 [experiment] - INFO - container-killer finished
+2020-07-28 07:49:15,788 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"6bddeff3-4ad5-4894-b729-55b4a8ad566a","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:47:42Z', 'generation': 2, 'labels': {'chaosUID': '6bddeff3-4ad5-4894-b729-55b4a8ad566a', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14599581', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '088310a2-cb66-4875-b997-d5f54a35c71e'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:49:15,968 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:49:15,969 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:49:16,523 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:49:16,523 [aut] - INFO - Deleting scale
+2020-07-28 07:49:19,270 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:49:19,271 [chaos] - INFO - Installing AUT took 0:00:33.211683
+2020-07-28 07:49:19,271 [chaos] - INFO - Experiment took 0:02:17.198455
+2020-07-28 07:49:19,271 [chaos] - INFO - Total elapsed time: 0:02:53.929788
+~~~~~~~~~~
+2020-07-28 07:49:24,909 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:49:24,916 [chaos] - INFO - Creating AUTs
+2020-07-28 07:49:24,916 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:49:24,916 [chaos] - DEBUG - [<aut.AUT object at 0x7f57a2668fd0>]
+2020-07-28 07:49:24,916 [chaos] - INFO - Creating experiments
+2020-07-28 07:49:24,916 [chaos] - INFO - Started scale
+2020-07-28 07:49:24,917 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:49:24,917 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:50:04,425 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:49:25 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-48wzc  38s\n'
+ 'acl-filter-nse-green-d478579c7-hhsjh  39s\n'
+ 'acl-filter-nse-red-795cd877f7-9fcdv   38s\n'
+ 'nginx-blue-7c457f4665-mbc8k           39s\n'
+ 'nginx-green-5fbf684b7d-6n6f9          39s\n'
+ 'nginx-red-569bdbbcbf-gf2d9            39s\n'
+ 'passthrough-1-blue-5bd57b5484-6tjss   39s\n'
+ 'passthrough-1-green-5bcfb575d4-2m5q4  39s\n'
+ 'passthrough-1-red-766495976-cqv5z     38s\n'
+ 'passthrough-2-blue-66d66c7d48-fb8lw   37s\n'
+ 'passthrough-2-green-7c86cc797d-sx4vt  39s\n'
+ 'passthrough-2-red-585998c5f4-gfjrk    38s\n'
+ 'passthrough-3-blue-6546f768d-7z6rc    38s\n'
+ 'passthrough-3-green-76cb7f74c6-wmhcp  39s\n'
+ 'passthrough-3-red-5d76ccb876-vgxdm    39s\n'
+ 'proxy-nsc-59d894899f-vsg9b            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 07:50:04,425 [experiment] - INFO - Starting container-killer
+2020-07-28 07:50:04,442 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:50:05,275 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:50:05,276 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:50:05,355 [experiment] - INFO - Engine initialized
+2020-07-28 07:50:05,355 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:50:10,396 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:50:15,439 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:50:20,484 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:50:25,528 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:50:30,572 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:50:35,615 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:50:40,659 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:50:45,704 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:50:50,747 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:50:55,791 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:51:00,835 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:51:05,879 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:51:10,923 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:51:15,967 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:51:21,017 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:51:26,062 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:51:31,106 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:51:36,150 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:51:41,194 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:51:46,237 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:51:51,281 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:51:56,340 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:52:01,384 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:52:06,427 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:52:11,471 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:52:16,526 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:52:21,569 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:52:21,606 [experiment] - INFO - container-killer finished
+2020-07-28 07:52:21,641 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"02fb4569-8c5e-424c-a453-72db2708909c","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:50:47Z', 'generation': 2, 'labels': {'chaosUID': '02fb4569-8c5e-424c-a453-72db2708909c', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14600927', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '26f39379-8ec2-4ad9-a0b2-59234e22d87b'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:52:21,868 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:52:21,870 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:52:22,471 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:52:22,471 [aut] - INFO - Deleting scale
+2020-07-28 07:52:24,910 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:52:24,910 [chaos] - INFO - Installing AUT took 0:00:39.506885
+2020-07-28 07:52:24,910 [chaos] - INFO - Experiment took 0:02:17.181390
+2020-07-28 07:52:24,910 [chaos] - INFO - Total elapsed time: 0:02:59.994389
+~~~~~~~~~~
+2020-07-28 07:52:30,515 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:52:30,522 [chaos] - INFO - Creating AUTs
+2020-07-28 07:52:30,522 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:52:30,522 [chaos] - DEBUG - [<aut.AUT object at 0x7fdd2b320fd0>]
+2020-07-28 07:52:30,522 [chaos] - INFO - Creating experiments
+2020-07-28 07:52:30,522 [chaos] - INFO - Started scale
+2020-07-28 07:52:30,523 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:52:30,523 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:53:03,534 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:52:30 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   32s\n'
+ 'acl-filter-nse-green  32s\n'
+ 'acl-filter-nse-red    32s\n'
+ 'nginx-blue            32s\n'
+ 'nginx-green           32s\n'
+ 'nginx-red             32s\n'
+ 'passthrough-1-blue    32s\n'
+ 'passthrough-1-green   32s\n'
+ 'passthrough-1-red     32s\n'
+ 'passthrough-2-blue    32s\n'
+ 'passthrough-2-green   32s\n'
+ 'passthrough-2-red     32s\n'
+ 'passthrough-3-blue    32s\n'
+ 'passthrough-3-green   32s\n'
+ 'passthrough-3-red     32s\n'
+ 'proxy-nsc             32s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-qhsjt  32s\n'
+ 'acl-filter-nse-green-d478579c7-mpgsh  32s\n'
+ 'acl-filter-nse-red-795cd877f7-mnw2p   32s\n'
+ 'nginx-blue-7c457f4665-btx6x           32s\n'
+ 'nginx-green-5fbf684b7d-555fm          32s\n'
+ 'nginx-red-569bdbbcbf-bb966            32s\n'
+ 'passthrough-1-blue-5bd57b5484-wlzxm   31s\n'
+ 'passthrough-1-green-5bcfb575d4-stvmq  32s\n'
+ 'passthrough-1-red-766495976-np87c     31s\n'
+ 'passthrough-2-blue-66d66c7d48-ks476   32s\n'
+ 'passthrough-2-green-7c86cc797d-j7kdl  32s\n'
+ 'passthrough-2-red-585998c5f4-tl8rc    32s\n'
+ 'passthrough-3-blue-6546f768d-ppwhj    32s\n'
+ 'passthrough-3-green-76cb7f74c6-rp2kh  32s\n'
+ 'passthrough-3-red-5d76ccb876-qw44h    32s\n'
+ 'proxy-nsc-59d894899f-77kpz            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  32s\n'
+ '\n'
+ '\n')
+2020-07-28 07:53:03,534 [experiment] - INFO - Starting container-killer
+2020-07-28 07:53:03,552 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:53:04,732 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:53:04,732 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:53:04,775 [experiment] - INFO - Engine initialized
+2020-07-28 07:53:04,775 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:53:09,813 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:53:14,862 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:53:19,905 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:53:24,948 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:53:29,992 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:53:35,035 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:53:40,147 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:53:45,190 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:53:50,233 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:53:55,275 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:54:00,319 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:54:05,364 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:54:10,406 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:54:15,478 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:54:20,522 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:54:25,574 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:54:30,622 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:54:35,665 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:54:40,709 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:54:45,842 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:54:50,885 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:54:55,928 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:55:00,972 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:55:06,017 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:55:11,094 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:55:16,162 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:55:21,203 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 07:55:26,248 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 07:55:26,287 [experiment] - INFO - container-killer finished
+2020-07-28 07:55:26,320 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"9c5ffd1c-f8a5-41f3-82b0-d1db0e74e52e","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:53:47Z', 'generation': 2, 'labels': {'chaosUID': '9c5ffd1c-f8a5-41f3-82b0-d1db0e74e52e', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14602221', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'e26ea62f-39f9-4aee-a134-461d1da5b26f'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:55:30,012 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:55:30,014 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:55:30,577 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:55:30,578 [aut] - INFO - Deleting scale
+2020-07-28 07:55:35,990 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:55:35,990 [chaos] - INFO - Installing AUT took 0:00:33.010184
+2020-07-28 07:55:35,990 [chaos] - INFO - Experiment took 0:02:22.752612
+2020-07-28 07:55:35,991 [chaos] - INFO - Total elapsed time: 0:03:05.468598
+~~~~~~~~~~
+2020-07-28 07:55:41,625 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:55:41,631 [chaos] - INFO - Creating AUTs
+2020-07-28 07:55:41,631 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:55:41,632 [chaos] - DEBUG - [<aut.AUT object at 0x7ff511582fd0>]
+2020-07-28 07:55:41,632 [chaos] - INFO - Creating experiments
+2020-07-28 07:55:41,632 [chaos] - INFO - Started scale
+2020-07-28 07:55:41,633 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:55:41,633 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:56:21,122 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:55:41 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-p8mv8  39s\n'
+ 'acl-filter-nse-green-d478579c7-lxf55  38s\n'
+ 'acl-filter-nse-red-795cd877f7-csvrw   39s\n'
+ 'nginx-blue-7c457f4665-wvczk           39s\n'
+ 'nginx-green-5fbf684b7d-f9nzv          39s\n'
+ 'nginx-red-569bdbbcbf-9nktj            39s\n'
+ 'passthrough-1-blue-5bd57b5484-s62bm   39s\n'
+ 'passthrough-1-green-5bcfb575d4-tv7mb  39s\n'
+ 'passthrough-1-red-766495976-v8zhf     39s\n'
+ 'passthrough-2-blue-66d66c7d48-lsq58   39s\n'
+ 'passthrough-2-green-7c86cc797d-slddg  39s\n'
+ 'passthrough-2-red-585998c5f4-ftbpx    39s\n'
+ 'passthrough-3-blue-6546f768d-dgsz5    39s\n'
+ 'passthrough-3-green-76cb7f74c6-bc5vp  39s\n'
+ 'passthrough-3-red-5d76ccb876-28ch9    39s\n'
+ 'proxy-nsc-59d894899f-84h9m            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 07:56:21,122 [experiment] - INFO - Starting container-killer
+2020-07-28 07:56:21,140 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:56:22,067 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:56:22,068 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:56:22,130 [experiment] - INFO - Engine initialized
+2020-07-28 07:56:22,131 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:56:27,187 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:56:32,229 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:56:37,305 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:56:42,349 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:56:47,392 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:56:52,436 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:56:57,479 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:57:02,520 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 07:57:07,564 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 07:57:12,607 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 07:57:17,649 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 07:57:22,716 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 07:57:27,759 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 07:57:32,803 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 07:57:37,846 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 07:57:42,897 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 07:57:47,944 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 07:57:52,987 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 07:57:58,031 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 07:58:03,074 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 07:58:08,116 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 07:58:13,160 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 07:58:18,203 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 07:58:23,246 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 07:58:28,289 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 07:58:33,333 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 07:58:33,374 [experiment] - INFO - container-killer finished
+2020-07-28 07:58:33,411 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"95e14c04-6b9a-4f1f-9693-7e71fc4dce88","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:57:04Z', 'generation': 2, 'labels': {'chaosUID': '95e14c04-6b9a-4f1f-9693-7e71fc4dce88', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14603531', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'c3a0ffdb-6139-441d-90d6-b2ca805015d6'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 07:58:33,542 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 07:58:33,544 [experiment] - INFO - Deleting container-killer
+2020-07-28 07:58:34,071 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 07:58:34,072 [aut] - INFO - Deleting scale
+2020-07-28 07:58:36,276 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 07:58:36,277 [chaos] - INFO - Installing AUT took 0:00:39.488548
+2020-07-28 07:58:36,277 [chaos] - INFO - Experiment took 0:02:12.251554
+2020-07-28 07:58:36,277 [chaos] - INFO - Total elapsed time: 0:02:54.645600
+~~~~~~~~~~
+2020-07-28 07:58:41,916 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 07:58:41,923 [chaos] - INFO - Creating AUTs
+2020-07-28 07:58:41,923 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 07:58:41,923 [chaos] - DEBUG - [<aut.AUT object at 0x7f182f2cefd0>]
+2020-07-28 07:58:41,923 [chaos] - INFO - Creating experiments
+2020-07-28 07:58:41,923 [chaos] - INFO - Started scale
+2020-07-28 07:58:41,924 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 07:58:41,924 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 07:59:15,363 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 07:58:42 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-zxmjs  32s\n'
+ 'acl-filter-nse-green-d478579c7-bpntz  32s\n'
+ 'acl-filter-nse-red-795cd877f7-54lmg   32s\n'
+ 'nginx-blue-7c457f4665-brkgf           32s\n'
+ 'nginx-green-5fbf684b7d-5jbkn          32s\n'
+ 'nginx-red-569bdbbcbf-7hv4w            32s\n'
+ 'passthrough-1-blue-5bd57b5484-twb2t   32s\n'
+ 'passthrough-1-green-5bcfb575d4-pmg8m  32s\n'
+ 'passthrough-1-red-766495976-cvpth     32s\n'
+ 'passthrough-2-blue-66d66c7d48-sfgf2   31s\n'
+ 'passthrough-2-green-7c86cc797d-8sx9x  32s\n'
+ 'passthrough-2-red-585998c5f4-jmz8w    32s\n'
+ 'passthrough-3-blue-6546f768d-bhzwq    33s\n'
+ 'passthrough-3-green-76cb7f74c6-6fkqj  32s\n'
+ 'passthrough-3-red-5d76ccb876-r9n8r    32s\n'
+ 'proxy-nsc-59d894899f-4lhn7            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 07:59:15,363 [experiment] - INFO - Starting container-killer
+2020-07-28 07:59:15,382 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 07:59:16,292 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 07:59:16,293 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 07:59:16,337 [experiment] - INFO - Engine initialized
+2020-07-28 07:59:16,337 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 07:59:21,379 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 07:59:26,424 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 07:59:31,497 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 07:59:36,542 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 07:59:41,586 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 07:59:46,628 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 07:59:51,673 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 07:59:56,736 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:00:01,781 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:00:06,826 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:00:11,869 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:00:16,914 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:00:21,956 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:00:27,000 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:00:32,044 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:00:37,095 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:00:42,142 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:00:47,186 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:00:52,230 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:00:57,274 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:01:02,321 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:01:07,417 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:01:12,460 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:01:17,502 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:01:22,560 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:01:27,606 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:01:32,650 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:01:32,688 [experiment] - INFO - container-killer finished
+2020-07-28 08:01:32,724 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"66ddd873-fde5-4130-a820-003d4f742272","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T13:59:59Z', 'generation': 2, 'labels': {'chaosUID': '66ddd873-fde5-4130-a820-003d4f742272', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14604802', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '061a50c9-51e7-4798-8f10-bb06d007445e'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:01:32,859 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:01:32,860 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:01:33,574 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:01:33,575 [aut] - INFO - Deleting scale
+2020-07-28 08:01:35,603 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:01:35,603 [chaos] - INFO - Installing AUT took 0:00:33.437858
+2020-07-28 08:01:35,603 [chaos] - INFO - Experiment took 0:02:17.325374
+2020-07-28 08:01:35,604 [chaos] - INFO - Total elapsed time: 0:02:53.680485
+~~~~~~~~~~
+2020-07-28 08:01:41,243 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:01:41,250 [chaos] - INFO - Creating AUTs
+2020-07-28 08:01:41,250 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:01:41,250 [chaos] - DEBUG - [<aut.AUT object at 0x7f57c5bc6fd0>]
+2020-07-28 08:01:41,250 [chaos] - INFO - Creating experiments
+2020-07-28 08:01:41,250 [chaos] - INFO - Started scale
+2020-07-28 08:01:41,251 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:01:41,251 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:02:20,806 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:01:41 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-46jht  38s\n'
+ 'acl-filter-nse-green-d478579c7-bpmcq  38s\n'
+ 'acl-filter-nse-red-795cd877f7-7n8ht   38s\n'
+ 'nginx-blue-7c457f4665-pxwhf           38s\n'
+ 'nginx-green-5fbf684b7d-78pxp          37s\n'
+ 'nginx-red-569bdbbcbf-zfrzp            38s\n'
+ 'passthrough-1-blue-5bd57b5484-x76ng   38s\n'
+ 'passthrough-1-green-5bcfb575d4-bv6hp  38s\n'
+ 'passthrough-1-red-766495976-nx626     38s\n'
+ 'passthrough-2-blue-66d66c7d48-nqm6m   38s\n'
+ 'passthrough-2-green-7c86cc797d-q8vzn  39s\n'
+ 'passthrough-2-red-585998c5f4-cbwm9    38s\n'
+ 'passthrough-3-blue-6546f768d-nhjpq    38s\n'
+ 'passthrough-3-green-76cb7f74c6-h8hf8  38s\n'
+ 'passthrough-3-red-5d76ccb876-d9d4k    38s\n'
+ 'proxy-nsc-59d894899f-f9s9h            38s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 08:02:20,806 [experiment] - INFO - Starting container-killer
+2020-07-28 08:02:20,824 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:02:21,790 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:02:21,790 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:02:21,835 [experiment] - INFO - Engine initialized
+2020-07-28 08:02:21,836 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:02:26,876 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:02:31,921 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:02:36,965 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:02:42,009 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:02:47,052 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:02:52,096 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:02:57,140 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:03:02,201 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:03:07,245 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:03:12,289 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:03:17,331 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:03:22,375 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:03:27,419 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:03:32,464 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:03:37,509 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:03:42,554 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:03:47,690 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:03:52,733 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:03:57,807 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:04:02,851 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:04:07,895 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:04:12,938 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:04:17,981 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:04:23,027 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:04:28,097 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:04:33,141 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:04:38,185 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:04:38,224 [experiment] - INFO - container-killer finished
+2020-07-28 08:04:38,258 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"03d06f1c-8139-40d5-b4de-3064b67f7fd3","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:03:03Z', 'generation': 2, 'labels': {'chaosUID': '03d06f1c-8139-40d5-b4de-3064b67f7fd3', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14606125', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '52b8f052-5ba4-4a2b-a929-396c8896201a'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:04:38,805 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:04:38,806 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:04:39,329 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:04:39,330 [aut] - INFO - Deleting scale
+2020-07-28 08:04:41,480 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:04:41,480 [chaos] - INFO - Installing AUT took 0:00:39.553994
+2020-07-28 08:04:41,480 [chaos] - INFO - Experiment took 0:02:17.417693
+2020-07-28 08:04:41,480 [chaos] - INFO - Total elapsed time: 0:03:00.230249
+~~~~~~~~~~
+2020-07-28 08:04:47,105 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:04:47,111 [chaos] - INFO - Creating AUTs
+2020-07-28 08:04:47,112 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:04:47,112 [chaos] - DEBUG - [<aut.AUT object at 0x7fbc39811fd0>]
+2020-07-28 08:04:47,112 [chaos] - INFO - Creating experiments
+2020-07-28 08:04:47,112 [chaos] - INFO - Started scale
+2020-07-28 08:04:47,113 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:04:47,113 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:05:20,684 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:04:47 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   32s\n'
+ 'acl-filter-nse-green  32s\n'
+ 'acl-filter-nse-red    32s\n'
+ 'nginx-blue            32s\n'
+ 'nginx-green           32s\n'
+ 'nginx-red             32s\n'
+ 'passthrough-1-blue    32s\n'
+ 'passthrough-1-green   32s\n'
+ 'passthrough-1-red     32s\n'
+ 'passthrough-2-blue    32s\n'
+ 'passthrough-2-green   32s\n'
+ 'passthrough-2-red     32s\n'
+ 'passthrough-3-blue    32s\n'
+ 'passthrough-3-green   32s\n'
+ 'passthrough-3-red     32s\n'
+ 'proxy-nsc             32s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-fmpbn  32s\n'
+ 'acl-filter-nse-green-d478579c7-sb4lc  32s\n'
+ 'acl-filter-nse-red-795cd877f7-lfssr   31s\n'
+ 'nginx-blue-7c457f4665-nbtcr           31s\n'
+ 'nginx-green-5fbf684b7d-cbb62          32s\n'
+ 'nginx-red-569bdbbcbf-crqv2            32s\n'
+ 'passthrough-1-blue-5bd57b5484-nxkwn   32s\n'
+ 'passthrough-1-green-5bcfb575d4-ppz99  31s\n'
+ 'passthrough-1-red-766495976-8wzct     32s\n'
+ 'passthrough-2-blue-66d66c7d48-g57ls   32s\n'
+ 'passthrough-2-green-7c86cc797d-m9tdf  32s\n'
+ 'passthrough-2-red-585998c5f4-ntqxd    32s\n'
+ 'passthrough-3-blue-6546f768d-s8zxn    32s\n'
+ 'passthrough-3-green-76cb7f74c6-5pjwn  31s\n'
+ 'passthrough-3-red-5d76ccb876-2l6qz    32s\n'
+ 'proxy-nsc-59d894899f-gn7xb            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  32s\n'
+ '\n'
+ '\n')
+2020-07-28 08:05:20,684 [experiment] - INFO - Starting container-killer
+2020-07-28 08:05:20,702 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:05:21,610 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:05:21,610 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:05:21,653 [experiment] - INFO - Engine initialized
+2020-07-28 08:05:21,654 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:05:26,693 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:05:31,736 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:05:36,779 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:05:41,823 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:05:46,866 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:05:51,909 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:05:56,968 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:06:02,011 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:06:07,055 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:06:12,098 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:06:17,139 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:06:22,183 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:06:27,227 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:06:32,270 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:06:37,313 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:06:42,364 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:06:47,411 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:06:52,453 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:06:57,497 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:07:02,650 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:07:07,693 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:07:12,737 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:07:17,806 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:07:22,865 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:07:27,909 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:07:32,952 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:07:37,994 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:07:38,032 [experiment] - INFO - container-killer finished
+2020-07-28 08:07:38,066 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"855c29b0-2349-4f7e-8815-5ca3e65b2e7d","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:06:04Z', 'generation': 2, 'labels': {'chaosUID': '855c29b0-2349-4f7e-8815-5ca3e65b2e7d', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14607413', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '232f500a-6e3d-42b7-adab-02e120677488'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:07:41,535 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:07:41,537 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:07:41,975 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:07:41,975 [aut] - INFO - Deleting scale
+2020-07-28 08:07:47,848 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:07:47,849 [chaos] - INFO - Installing AUT took 0:00:33.570156
+2020-07-28 08:07:47,849 [chaos] - INFO - Experiment took 0:02:17.348016
+2020-07-28 08:07:47,849 [chaos] - INFO - Total elapsed time: 0:03:00.737294
+~~~~~~~~~~
+2020-07-28 08:07:53,483 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:07:53,490 [chaos] - INFO - Creating AUTs
+2020-07-28 08:07:53,490 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:07:53,490 [chaos] - DEBUG - [<aut.AUT object at 0x7f6e0d619fd0>]
+2020-07-28 08:07:53,490 [chaos] - INFO - Creating experiments
+2020-07-28 08:07:53,490 [chaos] - INFO - Started scale
+2020-07-28 08:07:53,491 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:07:53,491 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:08:32,963 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:07:53 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   38s\n'
+ 'acl-filter-config-file-green  38s\n'
+ 'acl-filter-config-file-red    38s\n'
+ 'index-html-blue               38s\n'
+ 'index-html-green              38s\n'
+ 'index-html-red                38s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   38s\n'
+ 'acl-filter-nse-green  38s\n'
+ 'acl-filter-nse-red    38s\n'
+ 'nginx-blue            38s\n'
+ 'nginx-green           38s\n'
+ 'nginx-red             38s\n'
+ 'passthrough-1-blue    38s\n'
+ 'passthrough-1-green   38s\n'
+ 'passthrough-1-red     38s\n'
+ 'passthrough-2-blue    38s\n'
+ 'passthrough-2-green   38s\n'
+ 'passthrough-2-red     38s\n'
+ 'passthrough-3-blue    38s\n'
+ 'passthrough-3-green   38s\n'
+ 'passthrough-3-red     38s\n'
+ 'proxy-nsc             38s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-vg6b2  38s\n'
+ 'acl-filter-nse-green-d478579c7-gbv84  38s\n'
+ 'acl-filter-nse-red-795cd877f7-qf848   37s\n'
+ 'nginx-blue-7c457f4665-zslw2           38s\n'
+ 'nginx-green-5fbf684b7d-x5wnj          38s\n'
+ 'nginx-red-569bdbbcbf-ww9mb            38s\n'
+ 'passthrough-1-blue-5bd57b5484-r5jpm   38s\n'
+ 'passthrough-1-green-5bcfb575d4-w86p5  38s\n'
+ 'passthrough-1-red-766495976-b5lhx     38s\n'
+ 'passthrough-2-blue-66d66c7d48-lbkmf   38s\n'
+ 'passthrough-2-green-7c86cc797d-wct92  38s\n'
+ 'passthrough-2-red-585998c5f4-x8ks9    38s\n'
+ 'passthrough-3-blue-6546f768d-4qz7c    38s\n'
+ 'passthrough-3-green-76cb7f74c6-ngwj6  38s\n'
+ 'passthrough-3-red-5d76ccb876-dvmbs    38s\n'
+ 'proxy-nsc-59d894899f-fgj2c            38s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  38s\n'
+ '\n'
+ '\n')
+2020-07-28 08:08:32,963 [experiment] - INFO - Starting container-killer
+2020-07-28 08:08:32,981 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:08:33,878 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:08:33,879 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:08:33,956 [experiment] - INFO - Engine initialized
+2020-07-28 08:08:33,956 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:08:38,994 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:08:44,037 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:08:49,145 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:08:54,187 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:08:59,230 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:09:04,274 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:09:09,317 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:09:14,360 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:09:19,404 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:09:24,503 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:09:29,547 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:09:34,592 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:09:39,647 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:09:44,692 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:09:49,736 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:09:54,797 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:09:59,840 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:10:04,884 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:10:09,927 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:10:14,971 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:10:20,015 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:10:25,059 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:10:30,103 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:10:35,146 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:10:40,193 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:10:45,237 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:10:50,280 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:10:55,321 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 08:10:55,361 [experiment] - INFO - container-killer finished
+2020-07-28 08:10:55,397 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"a747e521-2ca3-4e3f-b819-4a72aeb9e745","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:09:21Z', 'generation': 2, 'labels': {'chaosUID': 'a747e521-2ca3-4e3f-b819-4a72aeb9e745', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14608747', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'b6e27bff-d2ac-4f3a-b5e7-65959ed64ca9'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:10:55,617 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:10:55,619 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:10:56,091 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:10:56,091 [aut] - INFO - Deleting scale
+2020-07-28 08:10:58,372 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:10:58,373 [chaos] - INFO - Installing AUT took 0:00:39.470824
+2020-07-28 08:10:58,373 [chaos] - INFO - Experiment took 0:02:22.397448
+2020-07-28 08:10:58,374 [chaos] - INFO - Total elapsed time: 0:03:04.883350
+~~~~~~~~~~
+2020-07-28 08:11:03,995 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:11:04,001 [chaos] - INFO - Creating AUTs
+2020-07-28 08:11:04,002 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:11:04,002 [chaos] - DEBUG - [<aut.AUT object at 0x7f4342a84f60>]
+2020-07-28 08:11:04,002 [chaos] - INFO - Creating experiments
+2020-07-28 08:11:04,002 [chaos] - INFO - Started scale
+2020-07-28 08:11:04,003 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:11:04,003 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:11:43,457 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:11:04 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-v4gth  38s\n'
+ 'acl-filter-nse-green-d478579c7-g8fqg  39s\n'
+ 'acl-filter-nse-red-795cd877f7-gth7z   39s\n'
+ 'nginx-blue-7c457f4665-fdttw           37s\n'
+ 'nginx-green-5fbf684b7d-46mph          39s\n'
+ 'nginx-red-569bdbbcbf-hcxbl            38s\n'
+ 'passthrough-1-blue-5bd57b5484-hrrvh   38s\n'
+ 'passthrough-1-green-5bcfb575d4-dv9wt  39s\n'
+ 'passthrough-1-red-766495976-vm9qk     38s\n'
+ 'passthrough-2-blue-66d66c7d48-vd6rb   38s\n'
+ 'passthrough-2-green-7c86cc797d-clqg2  39s\n'
+ 'passthrough-2-red-585998c5f4-j6mm9    39s\n'
+ 'passthrough-3-blue-6546f768d-fqtr4    39s\n'
+ 'passthrough-3-green-76cb7f74c6-wkpkq  39s\n'
+ 'passthrough-3-red-5d76ccb876-dnfzm    38s\n'
+ 'proxy-nsc-59d894899f-58ns8            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 08:11:43,458 [experiment] - INFO - Starting container-killer
+2020-07-28 08:11:43,475 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:11:44,368 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:11:44,368 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:11:44,427 [experiment] - INFO - Engine initialized
+2020-07-28 08:11:44,427 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:11:49,469 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:11:54,512 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:11:59,638 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:12:04,680 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:12:09,724 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:12:14,768 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:12:19,866 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:12:24,921 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:12:29,980 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:12:35,024 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:12:40,068 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:12:45,111 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:12:50,155 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:12:55,199 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:13:00,244 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:13:05,287 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:13:10,332 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:13:15,375 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:13:20,418 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:13:25,461 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:13:30,505 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:13:35,548 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:13:40,592 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:13:45,637 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:13:50,680 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:13:55,724 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:14:00,768 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:14:05,812 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 08:14:05,848 [experiment] - INFO - container-killer finished
+2020-07-28 08:14:05,885 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"b0f76ecd-f39b-46d1-8d79-e410389ce6ed","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:12:28Z', 'generation': 2, 'labels': {'chaosUID': 'b0f76ecd-f39b-46d1-8d79-e410389ce6ed', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14610056', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '594fbd3f-743b-4359-977d-39017b1aac69'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:14:06,028 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:14:06,029 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:14:06,602 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:14:06,603 [aut] - INFO - Deleting scale
+2020-07-28 08:14:09,272 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:14:09,273 [chaos] - INFO - Installing AUT took 0:00:39.453402
+2020-07-28 08:14:09,273 [chaos] - INFO - Experiment took 0:02:22.390816
+2020-07-28 08:14:09,273 [chaos] - INFO - Total elapsed time: 0:03:05.271274
+~~~~~~~~~~
+2020-07-28 08:14:14,879 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:14:14,885 [chaos] - INFO - Creating AUTs
+2020-07-28 08:14:14,885 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:14:14,885 [chaos] - DEBUG - [<aut.AUT object at 0x7facb174dfd0>]
+2020-07-28 08:14:14,885 [chaos] - INFO - Creating experiments
+2020-07-28 08:14:14,885 [chaos] - INFO - Started scale
+2020-07-28 08:14:14,886 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:14:14,886 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:14:54,504 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:14:15 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-jdd77  38s\n'
+ 'acl-filter-nse-green-d478579c7-n2j69  39s\n'
+ 'acl-filter-nse-red-795cd877f7-ftkvh   39s\n'
+ 'nginx-blue-7c457f4665-rjwq2           39s\n'
+ 'nginx-green-5fbf684b7d-f6hw4          38s\n'
+ 'nginx-red-569bdbbcbf-6pjb9            39s\n'
+ 'passthrough-1-blue-5bd57b5484-wtzt6   39s\n'
+ 'passthrough-1-green-5bcfb575d4-vjxrk  39s\n'
+ 'passthrough-1-red-766495976-gkdxq     39s\n'
+ 'passthrough-2-blue-66d66c7d48-7wgkz   39s\n'
+ 'passthrough-2-green-7c86cc797d-v8m5r  38s\n'
+ 'passthrough-2-red-585998c5f4-gqdb4    38s\n'
+ 'passthrough-3-blue-6546f768d-kngb8    39s\n'
+ 'passthrough-3-green-76cb7f74c6-rzx98  39s\n'
+ 'passthrough-3-red-5d76ccb876-kwjm2    39s\n'
+ 'proxy-nsc-59d894899f-cmj6r            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 08:14:54,504 [experiment] - INFO - Starting container-killer
+2020-07-28 08:14:54,522 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:14:55,716 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:14:55,716 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:14:55,761 [experiment] - INFO - Engine initialized
+2020-07-28 08:14:55,762 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:15:00,801 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:15:05,845 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:15:10,889 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:15:15,934 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:15:20,979 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:15:26,024 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:15:31,069 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:15:36,204 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:15:41,248 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:15:46,310 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:15:51,352 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:15:56,397 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:16:01,441 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:16:06,485 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:16:11,549 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:16:16,600 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:16:21,645 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:16:26,690 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:16:31,735 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:16:36,788 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:16:41,831 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:16:46,875 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:16:51,921 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:16:56,964 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:17:02,008 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:17:07,053 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:17:12,178 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:17:12,217 [experiment] - INFO - container-killer finished
+2020-07-28 08:17:12,253 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"4552c417-f4a3-4d39-9886-b412e2da2725","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:15:38Z', 'generation': 2, 'labels': {'chaosUID': '4552c417-f4a3-4d39-9886-b412e2da2725', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14611391', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '43fd2e7c-02b2-44ee-87c6-5e75efb43435'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:17:12,394 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:17:12,395 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:17:12,962 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:17:12,962 [aut] - INFO - Deleting scale
+2020-07-28 08:17:15,761 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:17:15,762 [chaos] - INFO - Installing AUT took 0:00:39.616934
+2020-07-28 08:17:15,762 [chaos] - INFO - Experiment took 0:02:17.712871
+2020-07-28 08:17:15,762 [chaos] - INFO - Total elapsed time: 0:03:00.876670
+~~~~~~~~~~
+2020-07-28 08:17:21,376 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:17:21,382 [chaos] - INFO - Creating AUTs
+2020-07-28 08:17:21,382 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:17:21,382 [chaos] - DEBUG - [<aut.AUT object at 0x7f8a48c7bfd0>]
+2020-07-28 08:17:21,382 [chaos] - INFO - Creating experiments
+2020-07-28 08:17:21,382 [chaos] - INFO - Started scale
+2020-07-28 08:17:21,383 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:17:21,383 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:17:58,692 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:17:21 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   37s\n'
+ 'acl-filter-config-file-green  37s\n'
+ 'acl-filter-config-file-red    37s\n'
+ 'index-html-blue               37s\n'
+ 'index-html-green              37s\n'
+ 'index-html-red                37s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   37s\n'
+ 'acl-filter-nse-green  37s\n'
+ 'acl-filter-nse-red    37s\n'
+ 'nginx-blue            37s\n'
+ 'nginx-green           37s\n'
+ 'nginx-red             37s\n'
+ 'passthrough-1-blue    37s\n'
+ 'passthrough-1-green   37s\n'
+ 'passthrough-1-red     37s\n'
+ 'passthrough-2-blue    37s\n'
+ 'passthrough-2-green   37s\n'
+ 'passthrough-2-red     37s\n'
+ 'passthrough-3-blue    37s\n'
+ 'passthrough-3-green   37s\n'
+ 'passthrough-3-red     37s\n'
+ 'proxy-nsc             37s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-7g55h  36s\n'
+ 'acl-filter-nse-green-d478579c7-ns4pm  36s\n'
+ 'acl-filter-nse-red-795cd877f7-w9d9j   35s\n'
+ 'nginx-blue-7c457f4665-gl57k           36s\n'
+ 'nginx-green-5fbf684b7d-dp28w          36s\n'
+ 'nginx-red-569bdbbcbf-t9wm2            36s\n'
+ 'passthrough-1-blue-5bd57b5484-jp7j9   36s\n'
+ 'passthrough-1-green-5bcfb575d4-wdgvq  36s\n'
+ 'passthrough-1-red-766495976-rwg2g     36s\n'
+ 'passthrough-2-blue-66d66c7d48-zzh49   36s\n'
+ 'passthrough-2-green-7c86cc797d-9z8d2  36s\n'
+ 'passthrough-2-red-585998c5f4-bnh89    36s\n'
+ 'passthrough-3-blue-6546f768d-fnb27    36s\n'
+ 'passthrough-3-green-76cb7f74c6-mksxf  35s\n'
+ 'passthrough-3-red-5d76ccb876-jmwdt    36s\n'
+ 'proxy-nsc-59d894899f-4qcvj            36s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  36s\n'
+ '\n'
+ '\n')
+2020-07-28 08:17:58,693 [experiment] - INFO - Starting container-killer
+2020-07-28 08:17:58,710 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:18:03,061 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:18:03,062 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:18:03,106 [experiment] - INFO - Engine initialized
+2020-07-28 08:18:03,106 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:18:08,145 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:18:13,188 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:18:18,231 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:18:23,275 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:18:28,320 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:18:33,364 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:18:38,408 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:18:43,451 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:18:48,494 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:18:53,537 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:18:58,581 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:19:03,623 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:19:08,666 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:19:13,709 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:19:18,753 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:19:23,796 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:19:28,850 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:19:33,892 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:19:38,935 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:19:43,978 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:19:49,021 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:19:54,063 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:19:59,107 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:20:04,149 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:20:09,192 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:20:14,235 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:20:19,279 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:20:19,317 [experiment] - INFO - container-killer finished
+2020-07-28 08:20:19,352 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"8eaba67c-8cda-428e-acec-f8f440ec8392","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:18:46Z', 'generation': 2, 'labels': {'chaosUID': '8eaba67c-8cda-428e-acec-f8f440ec8392', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14612698', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': 'dd9508c9-5bb1-4858-a838-6cf7a4199cfb'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:20:19,513 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:20:19,514 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:20:20,078 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:20:20,078 [aut] - INFO - Deleting scale
+2020-07-28 08:20:22,383 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:20:22,383 [chaos] - INFO - Installing AUT took 0:00:37.308511
+2020-07-28 08:20:22,384 [chaos] - INFO - Experiment took 0:02:20.623863
+2020-07-28 08:20:22,384 [chaos] - INFO - Total elapsed time: 0:03:01.001416
+~~~~~~~~~~
+2020-07-28 08:20:28,007 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:20:28,013 [chaos] - INFO - Creating AUTs
+2020-07-28 08:20:28,014 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:20:28,014 [chaos] - DEBUG - [<aut.AUT object at 0x7f65e3738f60>]
+2020-07-28 08:20:28,014 [chaos] - INFO - Creating experiments
+2020-07-28 08:20:28,014 [chaos] - INFO - Started scale
+2020-07-28 08:20:28,015 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:20:28,015 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:21:07,364 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:20:28 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-4xz44  39s\n'
+ 'acl-filter-nse-green-d478579c7-4q5l7  39s\n'
+ 'acl-filter-nse-red-795cd877f7-qc2dj   39s\n'
+ 'nginx-blue-7c457f4665-9n8c8           39s\n'
+ 'nginx-green-5fbf684b7d-6pzx5          38s\n'
+ 'nginx-red-569bdbbcbf-d5d8t            38s\n'
+ 'passthrough-1-blue-5bd57b5484-r6krv   39s\n'
+ 'passthrough-1-green-5bcfb575d4-lrss9  38s\n'
+ 'passthrough-1-red-766495976-gjd4r     37s\n'
+ 'passthrough-2-blue-66d66c7d48-m7pbw   38s\n'
+ 'passthrough-2-green-7c86cc797d-s5rv2  39s\n'
+ 'passthrough-2-red-585998c5f4-4rbr6    38s\n'
+ 'passthrough-3-blue-6546f768d-95zdt    39s\n'
+ 'passthrough-3-green-76cb7f74c6-td8k4  38s\n'
+ 'passthrough-3-red-5d76ccb876-5tkpg    39s\n'
+ 'proxy-nsc-59d894899f-qfcsk            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 08:21:07,365 [experiment] - INFO - Starting container-killer
+2020-07-28 08:21:07,382 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:21:08,378 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:21:08,378 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:21:08,422 [experiment] - INFO - Engine initialized
+2020-07-28 08:21:08,422 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:21:13,463 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:21:18,506 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:21:23,548 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:21:28,591 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:21:33,635 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:21:38,674 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:21:43,719 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:21:48,764 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:21:53,807 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:21:58,851 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:22:03,897 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:22:08,941 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:22:13,983 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:22:19,027 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:22:24,096 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:22:29,146 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:22:34,193 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 08:22:39,239 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 08:22:44,281 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 08:22:49,323 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 08:22:54,366 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 08:22:59,408 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 08:23:04,452 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 08:23:09,496 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 08:23:14,540 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 08:23:19,584 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 08:23:24,627 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 08:23:24,665 [experiment] - INFO - container-killer finished
+2020-07-28 08:23:24,700 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"92dbc256-cc10-43cc-b561-ec4ed3b4d49b","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T14:21:50Z', 'generation': 2, 'labels': {'chaosUID': '92dbc256-cc10-43cc-b561-ec4ed3b4d49b', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14614010', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '0c726910-d557-4c01-8b88-ffc4b8184e79'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 08:23:24,834 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:23:24,836 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:23:25,398 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:23:25,398 [aut] - INFO - Deleting scale
+2020-07-28 08:23:26,299 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 08:23:26,300 [chaos] - INFO - Installing AUT took 0:00:39.348858
+2020-07-28 08:23:26,300 [chaos] - INFO - Experiment took 0:02:17.300379
+2020-07-28 08:23:26,300 [chaos] - INFO - Total elapsed time: 0:02:58.286042
+~~~~~~~~~~
+2020-07-28 08:23:31,939 [chaos] - INFO - Loading config file: config_scale.yaml
+2020-07-28 08:23:31,945 [chaos] - INFO - Creating AUTs
+2020-07-28 08:23:31,945 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 08:23:31,945 [chaos] - DEBUG - [<aut.AUT object at 0x7f2bf223efd0>]
+2020-07-28 08:23:31,945 [chaos] - INFO - Creating experiments
+2020-07-28 08:23:31,946 [chaos] - INFO - Started scale
+2020-07-28 08:23:31,946 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'container-killer',
+                  'path': 'experiments/container-kill/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 08:23:31,947 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 08:24:05,034 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 08:23:32 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-tbmxx  33s\n'
+ 'acl-filter-nse-green-d478579c7-555m5  33s\n'
+ 'acl-filter-nse-red-795cd877f7-69tvt   33s\n'
+ 'nginx-blue-7c457f4665-p958s           33s\n'
+ 'nginx-green-5fbf684b7d-7kbq7          33s\n'
+ 'nginx-red-569bdbbcbf-mx7dn            32s\n'
+ 'passthrough-1-blue-5bd57b5484-2b25j   32s\n'
+ 'passthrough-1-green-5bcfb575d4-xcq94  32s\n'
+ 'passthrough-1-red-766495976-g2h2m     33s\n'
+ 'passthrough-2-blue-66d66c7d48-6vht9   33s\n'
+ 'passthrough-2-green-7c86cc797d-vz6lm  33s\n'
+ 'passthrough-2-red-585998c5f4-8vndf    33s\n'
+ 'passthrough-3-blue-6546f768d-vjxsx    31s\n'
+ 'passthrough-3-green-76cb7f74c6-m4gh9  32s\n'
+ 'passthrough-3-red-5d76ccb876-27w42    32s\n'
+ 'proxy-nsc-59d894899f-frvwv            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 08:24:05,035 [experiment] - INFO - Starting container-killer
+2020-07-28 08:24:05,053 [experiment] - DEBUG - {'name': 'container-killer', 'path': 'experiments/container-kill/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 08:24:06,049 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/container-killer created\n'
+ 'chaosexperiment.litmuschaos.io/container-kill created\n'
+ 'serviceaccount/container-kill-sa created\n'
+ 'role.rbac.authorization.k8s.io/container-kill-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/container-kill-sa created\n')
+2020-07-28 08:24:06,050 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 08:24:06,118 [experiment] - INFO - Engine initialized
+2020-07-28 08:24:06,118 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 08:24:11,159 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 08:24:16,202 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 08:24:21,251 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 08:24:26,315 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 08:24:31,359 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 08:24:36,428 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 08:24:41,470 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 08:24:46,512 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 08:24:51,560 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 08:24:56,604 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 08:25:01,647 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 08:25:06,690 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 08:25:11,733 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 08:25:16,776 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 08:25:21,820 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 08:25:26,951 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 08:25:26,991 [experiment] - INFO - container-killer finished
+2020-07-28 08:25:27,025 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"6e1e80d1-94e1-4fb6-ac8e-6a81d6c76d6a","type":"ChaosResult"},"name":"container-killer-container-kill","namespace":"default"},"spec":{"engine":"container-killer","experiment":"container-kill"},"status":{"experimentstatus":{"failStep":" [Connectivity check]: Check if wget works on proxy ","phase":"Completed","verdict":"Fail"}}}\n'}, 'creationTimestamp': '2020-07-28T14:24:49Z', 'generation': 2, 'labels': {'chaosUID': '6e1e80d1-94e1-4fb6-ac8e-6a81d6c76d6a', 'type': 'ChaosResult'}, 'name': 'container-killer-container-kill', 'namespace': 'default', 'resourceVersion': '14615067', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/container-killer-container-kill', 'uid': '1f11b319-6e92-4e15-96ac-ba0e4e683efa'}, 'spec': {'engine': 'container-killer', 'experiment': 'container-kill'}, 'status': {'experimentstatus': {'failStep': ' [Connectivity check]: Check if wget works on proxy ', 'phase': 'Completed', 'verdict': 'Fail'}}}
+2020-07-28 08:25:27,584 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "container-killer-container-kill" deleted\n'
+2020-07-28 08:25:27,585 [experiment] - INFO - Deleting container-killer
+2020-07-28 08:25:28,047 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "container-killer" deleted\n'
+ 'chaosexperiment.litmuschaos.io "container-kill" deleted\n'
+ 'serviceaccount "container-kill-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "container-kill-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "container-kill-sa" deleted\n')
+2020-07-28 08:25:28,047 [aut] - INFO - Deleting scale
+2020-07-28 08:25:30,451 [chaos] - INFO - Experiment verdict: Fail
+2020-07-28 08:25:30,452 [chaos] - INFO - Installing AUT took 0:00:33.087205
+2020-07-28 08:25:30,452 [chaos] - INFO - Experiment took 0:01:21.956149
+2020-07-28 08:25:30,452 [chaos] - INFO - Total elapsed time: 0:01:58.506511

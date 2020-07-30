@@ -1,0 +1,2290 @@
+
+~~~~~~~~~~
+2020-07-27 12:21:31,241 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:21:31,247 [chaos] - INFO - Creating AUTs
+2020-07-27 12:21:31,247 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:21:31,248 [chaos] - DEBUG - [<aut.AUT object at 0x7fa80e878fd0>]
+2020-07-27 12:21:31,248 [chaos] - INFO - Creating experiments
+2020-07-27 12:21:31,248 [chaos] - INFO - Started scale
+2020-07-27 12:21:31,249 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:21:31,249 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-27 12:21:58,004 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Mon Jul 27 12:21:31 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   26s\n'
+ 'acl-filter-config-file-green  26s\n'
+ 'acl-filter-config-file-red    26s\n'
+ 'index-html-blue               26s\n'
+ 'index-html-green              26s\n'
+ 'index-html-red                26s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   26s\n'
+ 'acl-filter-nse-green  26s\n'
+ 'acl-filter-nse-red    26s\n'
+ 'nginx-blue            26s\n'
+ 'nginx-green           26s\n'
+ 'nginx-red             26s\n'
+ 'passthrough-1-blue    26s\n'
+ 'passthrough-1-green   26s\n'
+ 'passthrough-1-red     26s\n'
+ 'passthrough-2-blue    26s\n'
+ 'passthrough-2-green   26s\n'
+ 'passthrough-2-red     26s\n'
+ 'passthrough-3-blue    26s\n'
+ 'passthrough-3-green   26s\n'
+ 'passthrough-3-red     26s\n'
+ 'proxy-nsc             26s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-s7gsj  25s\n'
+ 'acl-filter-nse-green-d478579c7-phh8h  25s\n'
+ 'acl-filter-nse-red-795cd877f7-484g8   25s\n'
+ 'nginx-blue-7c457f4665-lxngv           25s\n'
+ 'nginx-green-5fbf684b7d-mfbqq          25s\n'
+ 'nginx-red-569bdbbcbf-dc2zg            25s\n'
+ 'passthrough-1-blue-5bd57b5484-2k4xp   25s\n'
+ 'passthrough-1-green-5bcfb575d4-tj4dt  24s\n'
+ 'passthrough-1-red-766495976-6dpjf     25s\n'
+ 'passthrough-2-blue-66d66c7d48-bstz8   25s\n'
+ 'passthrough-2-green-7c86cc797d-b9hff  25s\n'
+ 'passthrough-2-red-585998c5f4-h6fjp    26s\n'
+ 'passthrough-3-blue-6546f768d-pmnwn    25s\n'
+ 'passthrough-3-green-76cb7f74c6-hjvjw  25s\n'
+ 'passthrough-3-red-5d76ccb876-wpn9x    25s\n'
+ 'proxy-nsc-59d894899f-mstdp            26s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  26s\n'
+ '\n'
+ '\n')
+2020-07-27 12:21:58,005 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:21:58,020 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:21:58,882 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:21:58,883 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:21:58,927 [experiment] - INFO - Engine initialized
+2020-07-27 12:21:58,927 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:22:03,966 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:22:09,013 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:22:14,057 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:22:19,100 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:22:24,144 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:22:29,227 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:22:34,269 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:22:39,312 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:22:44,392 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:22:49,435 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:22:54,478 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:22:59,521 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:23:04,561 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:23:09,605 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:23:14,656 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:23:19,699 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:23:24,841 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:23:29,883 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:23:34,927 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:23:39,987 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:23:45,031 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:23:50,124 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:23:55,167 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:24:00,231 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:24:05,274 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:24:10,321 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 12:24:15,541 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 12:24:20,689 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 12:24:25,733 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 12:24:30,777 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 12:24:35,822 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 12:24:40,865 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 12:24:45,908 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 12:24:50,953 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 12:24:55,997 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 12:25:01,040 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 12:25:06,083 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 12:25:11,128 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 12:25:16,168 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 12:25:21,212 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 12:25:26,257 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 12:25:31,369 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 12:25:36,413 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 12:25:41,459 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 12:25:46,502 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 12:25:51,545 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 12:25:56,664 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 12:26:01,708 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 12:26:06,752 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 12:26:11,797 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 12:26:16,841 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 12:26:21,885 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 12:26:26,928 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 12:26:31,973 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 12:26:37,017 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 12:26:42,094 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 12:26:47,137 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 12:26:52,211 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 12:26:57,256 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 12:27:02,318 [experiment] - INFO - pod-delete finished
+2020-07-27 12:27:02,356 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"ac8fc420-301a-49c2-88ac-c78b6560af00","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"phase":"Running","verdict":"Awaited"}}}\n'}, 'creationTimestamp': '2020-07-27T11:01:58Z', 'generation': 23, 'labels': {'chaosUID': 'ac8fc420-301a-49c2-88ac-c78b6560af00', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14312733', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '647eff82-cb62-435d-a4b0-d0cf042c510a'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'phase': 'Running', 'verdict': 'Awaited'}}}
+2020-07-27 12:27:02,574 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:27:02,575 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:27:03,081 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:27:03,081 [aut] - INFO - Deleting scale
+2020-07-27 12:27:09,742 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-27 12:27:09,743 [chaos] - INFO - Installing AUT took 0:00:26.755035
+2020-07-27 12:27:09,743 [chaos] - INFO - Experiment took 0:05:04.313408
+2020-07-27 12:27:09,743 [chaos] - INFO - Total elapsed time: 0:05:38.495130
+~~~~~~~~~~
+2020-07-27 12:27:10,344 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:27:10,350 [chaos] - INFO - Creating AUTs
+2020-07-27 12:27:10,350 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:27:10,351 [chaos] - DEBUG - [<aut.AUT object at 0x7f413a94cf60>]
+2020-07-27 12:27:10,351 [chaos] - INFO - Creating experiments
+2020-07-27 12:27:10,351 [chaos] - INFO - Started scale
+2020-07-27 12:27:10,352 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:27:10,352 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-27 12:27:43,590 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Mon Jul 27 12:27:10 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   32s\n'
+ 'acl-filter-nse-green  32s\n'
+ 'acl-filter-nse-red    32s\n'
+ 'nginx-blue            32s\n'
+ 'nginx-green           32s\n'
+ 'nginx-red             32s\n'
+ 'passthrough-1-blue    32s\n'
+ 'passthrough-1-green   32s\n'
+ 'passthrough-1-red     32s\n'
+ 'passthrough-2-blue    32s\n'
+ 'passthrough-2-green   32s\n'
+ 'passthrough-2-red     32s\n'
+ 'passthrough-3-blue    32s\n'
+ 'passthrough-3-green   32s\n'
+ 'passthrough-3-red     32s\n'
+ 'proxy-nsc             32s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-vc9dv  32s\n'
+ 'acl-filter-nse-green-d478579c7-l9rrj  32s\n'
+ 'acl-filter-nse-red-795cd877f7-2nptl   31s\n'
+ 'nginx-blue-7c457f4665-kzsfh           32s\n'
+ 'nginx-green-5fbf684b7d-xvmgp          32s\n'
+ 'nginx-red-569bdbbcbf-8c9f2            32s\n'
+ 'passthrough-1-blue-5bd57b5484-svj9l   31s\n'
+ 'passthrough-1-green-5bcfb575d4-6n4z5  32s\n'
+ 'passthrough-1-red-766495976-75bhk     32s\n'
+ 'passthrough-2-blue-66d66c7d48-lrfsg   32s\n'
+ 'passthrough-2-green-7c86cc797d-g5v8b  31s\n'
+ 'passthrough-2-red-585998c5f4-55flw    32s\n'
+ 'passthrough-3-blue-6546f768d-kd8rd    32s\n'
+ 'passthrough-3-green-76cb7f74c6-vgt8k  32s\n'
+ 'passthrough-3-red-5d76ccb876-qhbnw    32s\n'
+ 'proxy-nsc-59d894899f-8vqzn            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  32s\n'
+ '\n'
+ '\n')
+2020-07-27 12:27:43,591 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:27:43,606 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:27:44,448 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:27:44,449 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:27:44,492 [experiment] - INFO - Engine initialized
+2020-07-27 12:27:44,493 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:27:49,532 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:27:54,575 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:27:59,619 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:28:04,664 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:28:09,708 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:28:14,753 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:28:19,797 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:28:24,841 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:28:29,884 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:28:34,928 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:28:39,972 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:28:45,016 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:28:50,059 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:28:55,104 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:29:00,215 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:29:05,266 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:29:10,313 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:29:15,357 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:29:20,398 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:29:25,442 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:29:30,484 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:29:35,598 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:29:40,642 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:29:45,685 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:29:50,729 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:29:50,770 [experiment] - INFO - pod-delete finished
+2020-07-27 12:29:50,805 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"5410cbc7-4ecf-4bf4-8191-fcaa1b6aef15","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-27T18:28:26Z', 'generation': 2, 'labels': {'chaosUID': '5410cbc7-4ecf-4bf4-8191-fcaa1b6aef15', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14328914', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '08081200-d96e-46d6-ae59-9b2f1cf00f5c'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-27 12:29:54,910 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:29:54,912 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:29:55,230 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:29:55,230 [aut] - INFO - Deleting scale
+2020-07-27 12:29:56,511 [chaos] - INFO - Experiment verdict: Pass
+2020-07-27 12:29:56,511 [chaos] - INFO - Installing AUT took 0:00:33.238011
+2020-07-27 12:29:56,511 [chaos] - INFO - Experiment took 0:02:07.179008
+2020-07-27 12:29:56,512 [chaos] - INFO - Total elapsed time: 0:02:46.160787
+~~~~~~~~~~
+2020-07-27 12:29:57,144 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:29:57,150 [chaos] - INFO - Creating AUTs
+2020-07-27 12:29:57,150 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:29:57,151 [chaos] - DEBUG - [<aut.AUT object at 0x7f721738afd0>]
+2020-07-27 12:29:57,151 [chaos] - INFO - Creating experiments
+2020-07-27 12:29:57,151 [chaos] - INFO - Started scale
+2020-07-27 12:29:57,152 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:29:57,152 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-27 12:30:31,135 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Mon Jul 27 12:29:57 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-7l57j  33s\n'
+ 'acl-filter-nse-green-d478579c7-b46qt  33s\n'
+ 'acl-filter-nse-red-795cd877f7-5bgsc   32s\n'
+ 'nginx-blue-7c457f4665-tmmrj           33s\n'
+ 'nginx-green-5fbf684b7d-s7scp          33s\n'
+ 'nginx-red-569bdbbcbf-n2w76            33s\n'
+ 'passthrough-1-blue-5bd57b5484-6t2nc   33s\n'
+ 'passthrough-1-green-5bcfb575d4-dtmdb  33s\n'
+ 'passthrough-1-red-766495976-wgvhl     33s\n'
+ 'passthrough-2-blue-66d66c7d48-ptj5p   33s\n'
+ 'passthrough-2-green-7c86cc797d-bp9m9  33s\n'
+ 'passthrough-2-red-585998c5f4-64p75    32s\n'
+ 'passthrough-3-blue-6546f768d-nzw6d    33s\n'
+ 'passthrough-3-green-76cb7f74c6-x7wxl  32s\n'
+ 'passthrough-3-red-5d76ccb876-6ls5c    32s\n'
+ 'proxy-nsc-59d894899f-s8c4r            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-27 12:30:31,135 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:30:31,150 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:30:31,984 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:30:31,984 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:30:32,028 [experiment] - INFO - Engine initialized
+2020-07-27 12:30:32,028 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:30:37,069 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:30:42,113 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:30:47,190 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:30:52,231 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:30:57,276 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:31:02,321 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:31:07,364 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:31:12,408 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:31:17,452 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:31:22,494 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:31:27,537 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:31:32,581 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:31:37,624 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:31:42,665 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:31:47,709 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:31:52,768 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:31:57,836 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:32:02,880 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:32:07,924 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:32:12,968 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:32:18,011 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:32:23,055 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:32:28,098 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:32:33,142 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:32:38,218 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:32:43,262 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 12:32:48,305 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 12:32:53,513 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 12:32:58,557 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 12:33:03,601 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 12:33:08,644 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 12:33:08,681 [experiment] - INFO - pod-delete finished
+2020-07-27 12:33:08,740 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"4a2add1c-b62b-4173-8e81-785d2a41b441","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-27T18:31:44Z', 'generation': 2, 'labels': {'chaosUID': '4a2add1c-b62b-4173-8e81-785d2a41b441', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14330348', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'dd5fa843-acb6-4821-aea2-e13f1618eb87'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-27 12:33:08,876 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:33:08,878 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:33:09,172 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:33:09,172 [aut] - INFO - Deleting scale
+2020-07-27 12:33:12,000 [chaos] - INFO - Experiment verdict: Pass
+2020-07-27 12:33:12,000 [chaos] - INFO - Installing AUT took 0:00:33.982372
+2020-07-27 12:33:12,000 [chaos] - INFO - Experiment took 0:02:37.545578
+2020-07-27 12:33:12,000 [chaos] - INFO - Total elapsed time: 0:03:14.849597
+~~~~~~~~~~
+2020-07-27 12:33:12,635 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:33:12,641 [chaos] - INFO - Creating AUTs
+2020-07-27 12:33:12,642 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:33:12,642 [chaos] - DEBUG - [<aut.AUT object at 0x7f04db2befd0>]
+2020-07-27 12:33:12,642 [chaos] - INFO - Creating experiments
+2020-07-27 12:33:12,642 [chaos] - INFO - Started scale
+2020-07-27 12:33:12,643 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:33:12,643 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-27 12:33:39,768 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Mon Jul 27 12:33:13 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   26s\n'
+ 'acl-filter-config-file-green  26s\n'
+ 'acl-filter-config-file-red    26s\n'
+ 'index-html-blue               26s\n'
+ 'index-html-green              26s\n'
+ 'index-html-red                26s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   26s\n'
+ 'acl-filter-nse-green  26s\n'
+ 'acl-filter-nse-red    26s\n'
+ 'nginx-blue            26s\n'
+ 'nginx-green           26s\n'
+ 'nginx-red             26s\n'
+ 'passthrough-1-blue    26s\n'
+ 'passthrough-1-green   26s\n'
+ 'passthrough-1-red     26s\n'
+ 'passthrough-2-blue    26s\n'
+ 'passthrough-2-green   26s\n'
+ 'passthrough-2-red     26s\n'
+ 'passthrough-3-blue    26s\n'
+ 'passthrough-3-green   26s\n'
+ 'passthrough-3-red     26s\n'
+ 'proxy-nsc             26s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-vb4mc  26s\n'
+ 'acl-filter-nse-green-d478579c7-6p59g  25s\n'
+ 'acl-filter-nse-red-795cd877f7-6g4p5   26s\n'
+ 'nginx-blue-7c457f4665-mrtpj           26s\n'
+ 'nginx-green-5fbf684b7d-xr2pd          25s\n'
+ 'nginx-red-569bdbbcbf-z82m2            26s\n'
+ 'passthrough-1-blue-5bd57b5484-d82zb   26s\n'
+ 'passthrough-1-green-5bcfb575d4-x8zsg  26s\n'
+ 'passthrough-1-red-766495976-prlxc     25s\n'
+ 'passthrough-2-blue-66d66c7d48-275cv   25s\n'
+ 'passthrough-2-green-7c86cc797d-gv4l8  26s\n'
+ 'passthrough-2-red-585998c5f4-p6gbv    26s\n'
+ 'passthrough-3-blue-6546f768d-jn6bl    26s\n'
+ 'passthrough-3-green-76cb7f74c6-2slsg  26s\n'
+ 'passthrough-3-red-5d76ccb876-xbq8l    26s\n'
+ 'proxy-nsc-59d894899f-f9qv2            26s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  26s\n'
+ '\n'
+ '\n')
+2020-07-27 12:33:39,768 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:33:39,784 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:33:40,706 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:33:40,707 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:33:40,759 [experiment] - INFO - Engine initialized
+2020-07-27 12:33:40,759 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:33:45,799 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:33:50,844 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:33:55,894 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:34:00,937 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:34:05,981 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:34:11,026 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:34:16,071 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:34:21,116 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:34:26,158 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:34:31,202 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:34:36,246 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:34:41,311 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:34:46,355 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:34:51,399 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:34:56,510 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:35:01,562 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:35:06,609 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:35:11,653 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:35:16,697 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:35:21,741 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:35:26,919 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:35:31,963 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:35:37,192 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:35:42,432 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:35:47,475 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:35:52,519 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 12:35:57,564 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 12:36:02,608 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 12:36:07,679 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 12:36:12,724 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 12:36:12,762 [experiment] - INFO - pod-delete finished
+2020-07-27 12:36:12,796 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"d8ec3a91-108f-4919-bca4-3f7557266d41","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-27T18:34:51Z', 'generation': 2, 'labels': {'chaosUID': 'd8ec3a91-108f-4919-bca4-3f7557266d41', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14331746', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '5c4347c3-9d1e-471e-8b53-6fdf45d61d9b'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-27 12:36:12,923 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:36:12,924 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:36:13,332 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:36:13,333 [aut] - INFO - Deleting scale
+2020-07-27 12:36:16,448 [chaos] - INFO - Experiment verdict: Pass
+2020-07-27 12:36:16,449 [chaos] - INFO - Installing AUT took 0:00:27.124507
+2020-07-27 12:36:16,450 [chaos] - INFO - Experiment took 0:02:32.993544
+2020-07-27 12:36:16,450 [chaos] - INFO - Total elapsed time: 0:03:03.807701
+~~~~~~~~~~
+2020-07-27 12:36:17,085 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:36:17,091 [chaos] - INFO - Creating AUTs
+2020-07-27 12:36:17,091 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:36:17,091 [chaos] - DEBUG - [<aut.AUT object at 0x7f578f001fd0>]
+2020-07-27 12:36:17,091 [chaos] - INFO - Creating experiments
+2020-07-27 12:36:17,092 [chaos] - INFO - Started scale
+2020-07-27 12:36:17,092 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:36:17,093 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 12:41:25,210 [aut] - DEBUG - ''
+2020-07-27 12:41:25,210 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:41:25,225 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:41:30,076 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:41:30,076 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:41:30,129 [experiment] - INFO - Engine initialized
+2020-07-27 12:41:30,129 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:41:35,172 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:41:40,216 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:41:45,260 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:41:50,303 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:41:55,347 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:42:00,391 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:42:05,435 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:42:10,479 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:42:15,524 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:42:20,569 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:42:25,613 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:42:30,656 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:42:35,748 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:42:40,792 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:42:45,836 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:42:50,880 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:42:55,926 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:43:00,970 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:43:06,011 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:43:11,056 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:43:16,102 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:43:21,222 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:43:26,265 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:43:31,307 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:43:36,351 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:43:41,395 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 12:43:46,454 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 12:43:51,495 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 12:43:56,537 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 12:44:01,580 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 12:44:06,623 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 12:44:11,667 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 12:44:16,737 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 12:44:21,779 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 12:44:26,823 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 12:44:31,867 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 12:44:36,910 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 12:44:41,953 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 12:44:46,997 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 12:44:52,041 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 12:44:57,086 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 12:45:02,129 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 12:45:07,173 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 12:45:12,273 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 12:45:17,317 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 12:45:22,360 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 12:45:27,428 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 12:45:32,471 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 12:45:37,535 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 12:45:42,579 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 12:45:47,637 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 12:45:52,680 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 12:45:58,038 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 12:46:03,082 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 12:46:08,152 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 12:46:13,196 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 12:46:18,238 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 12:46:23,281 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 12:46:28,368 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 12:46:33,411 [experiment] - INFO - pod-delete finished
+2020-07-27 12:46:33,450 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"cbf9468a-3bfa-4af3-bd0d-58437be64a23","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"phase":"Running","verdict":"Awaited"}}}\n'}, 'creationTimestamp': '2020-07-27T18:42:15Z', 'generation': 1, 'labels': {'chaosUID': 'cbf9468a-3bfa-4af3-bd0d-58437be64a23', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14333571', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '110660a5-3552-45c0-aa46-7298e8f4e94a'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'phase': 'Running', 'verdict': 'Awaited'}}}
+2020-07-27 12:46:33,627 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:46:33,628 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:46:34,145 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:46:34,145 [aut] - INFO - Deleting scale
+2020-07-27 12:46:39,406 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-27 12:46:39,407 [chaos] - INFO - Installing AUT took 0:05:08.116737
+2020-07-27 12:46:39,407 [chaos] - INFO - Experiment took 0:05:08.200982
+2020-07-27 12:46:39,407 [chaos] - INFO - Total elapsed time: 0:10:22.315372
+~~~~~~~~~~
+2020-07-27 12:46:40,007 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:46:40,013 [chaos] - INFO - Creating AUTs
+2020-07-27 12:46:40,013 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:46:40,013 [chaos] - DEBUG - [<aut.AUT object at 0x7f31ba79afd0>]
+2020-07-27 12:46:40,013 [chaos] - INFO - Creating experiments
+2020-07-27 12:46:40,013 [chaos] - INFO - Started scale
+2020-07-27 12:46:40,014 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:46:40,014 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 12:51:48,244 [aut] - DEBUG - ''
+2020-07-27 12:51:48,245 [experiment] - INFO - Starting pod-delete
+2020-07-27 12:51:48,261 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 12:51:52,631 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 12:51:52,632 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 12:51:52,675 [experiment] - INFO - Engine initialized
+2020-07-27 12:51:52,675 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 12:51:57,719 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 12:52:02,762 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 12:52:07,805 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 12:52:12,848 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 12:52:17,961 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 12:52:23,014 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 12:52:28,056 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 12:52:33,117 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 12:52:38,335 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 12:52:43,461 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 12:52:48,660 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 12:52:53,703 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 12:52:58,760 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 12:53:03,804 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 12:53:08,847 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 12:53:13,900 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 12:53:18,991 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 12:53:24,035 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 12:53:29,077 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 12:53:34,122 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 12:53:39,164 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 12:53:44,207 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 12:53:49,251 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 12:53:54,295 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 12:53:59,339 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 12:54:04,383 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 12:54:09,428 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 12:54:14,471 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 12:54:19,516 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 12:54:24,561 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 12:54:29,604 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 12:54:34,647 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 12:54:39,690 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 12:54:44,733 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 12:54:49,900 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 12:54:54,942 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 12:55:00,219 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 12:55:05,261 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 12:55:10,726 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 12:55:15,770 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 12:55:20,814 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 12:55:25,858 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 12:55:30,903 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 12:55:35,945 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 12:55:40,989 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 12:55:46,035 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 12:55:51,079 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 12:55:56,122 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 12:56:01,165 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 12:56:06,206 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 12:56:11,262 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 12:56:16,306 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 12:56:21,394 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 12:56:26,436 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 12:56:31,480 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 12:56:36,525 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 12:56:41,569 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 12:56:46,613 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 12:56:51,804 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 12:56:56,855 [experiment] - INFO - pod-delete finished
+2020-07-27 12:56:56,982 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"dc0ef9d8-77ed-4704-a7e8-34a2d7b7b65e","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"phase":"Running","verdict":"Awaited"}}}\n'}, 'creationTimestamp': '2020-07-27T18:52:34Z', 'generation': 1, 'labels': {'chaosUID': 'dc0ef9d8-77ed-4704-a7e8-34a2d7b7b65e', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14336113', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '84f171c4-0678-4244-adda-d4c2d0c7c4c6'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'phase': 'Running', 'verdict': 'Awaited'}}}
+2020-07-27 12:56:57,145 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 12:56:57,146 [experiment] - INFO - Deleting pod-delete
+2020-07-27 12:56:57,767 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 12:56:57,768 [aut] - INFO - Deleting scale
+2020-07-27 12:57:06,095 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-27 12:57:06,095 [chaos] - INFO - Installing AUT took 0:05:08.229528
+2020-07-27 12:57:06,096 [chaos] - INFO - Experiment took 0:05:08.610201
+2020-07-27 12:57:06,096 [chaos] - INFO - Total elapsed time: 0:10:26.082259
+~~~~~~~~~~
+2020-07-27 12:57:06,728 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 12:57:06,734 [chaos] - INFO - Creating AUTs
+2020-07-27 12:57:06,734 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 12:57:06,734 [chaos] - DEBUG - [<aut.AUT object at 0x7f49863eefd0>]
+2020-07-27 12:57:06,734 [chaos] - INFO - Creating experiments
+2020-07-27 12:57:06,734 [chaos] - INFO - Started scale
+2020-07-27 12:57:06,735 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 12:57:06,736 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:02:15,274 [aut] - DEBUG - ''
+2020-07-27 13:02:15,275 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:02:15,290 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:02:19,946 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:02:19,946 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:02:19,988 [experiment] - INFO - Engine initialized
+2020-07-27 13:02:19,988 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:02:25,027 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:02:30,072 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:02:35,147 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:02:40,201 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:02:45,245 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:02:50,290 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:02:55,330 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:03:00,408 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:03:05,452 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:03:10,497 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:03:15,541 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:03:20,585 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:03:25,630 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:03:30,812 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:03:35,972 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:03:41,166 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:03:46,378 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:03:51,604 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:03:56,648 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:04:01,693 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:04:06,737 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:04:11,781 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:04:16,825 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:04:21,869 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:04:26,914 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:04:31,957 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:04:36,999 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:04:42,043 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:04:47,086 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:04:52,133 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:04:57,175 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:05:02,220 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:05:07,262 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:05:12,323 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:05:17,365 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:05:22,452 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:05:27,495 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:05:32,539 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:05:37,583 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:05:42,628 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:05:47,670 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:05:52,714 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:05:57,758 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:06:02,801 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:06:07,843 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:06:12,887 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:06:17,931 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:06:22,981 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:06:28,025 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:06:33,099 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:06:38,214 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:06:43,266 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:06:48,310 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:06:53,354 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:06:58,397 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:07:03,440 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:07:08,485 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:07:13,527 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:07:18,571 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:07:23,621 [experiment] - INFO - pod-delete finished
+2020-07-27 13:07:23,659 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"401f71d2-daa9-43f9-a5ce-3a09fdf76751","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"phase":"Running","verdict":"Awaited"}}}\n'}, 'creationTimestamp': '2020-07-27T19:03:03Z', 'generation': 1, 'labels': {'chaosUID': '401f71d2-daa9-43f9-a5ce-3a09fdf76751', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14338618', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'c8f8e255-22bc-45e1-9793-c5b400816446'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'phase': 'Running', 'verdict': 'Awaited'}}}
+2020-07-27 13:07:23,911 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 13:07:23,912 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:07:24,422 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:07:24,423 [aut] - INFO - Deleting scale
+2020-07-27 13:07:29,385 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-27 13:07:29,386 [chaos] - INFO - Installing AUT took 0:05:08.538271
+2020-07-27 13:07:29,386 [chaos] - INFO - Experiment took 0:05:08.347009
+2020-07-27 13:07:29,386 [chaos] - INFO - Total elapsed time: 0:10:22.651804
+~~~~~~~~~~
+2020-07-27 13:07:30,021 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:07:30,028 [chaos] - INFO - Creating AUTs
+2020-07-27 13:07:30,028 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:07:30,028 [chaos] - DEBUG - [<aut.AUT object at 0x7f384eb4bfd0>]
+2020-07-27 13:07:30,028 [chaos] - INFO - Creating experiments
+2020-07-27 13:07:30,028 [chaos] - INFO - Started scale
+2020-07-27 13:07:30,029 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:07:30,029 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:12:38,110 [aut] - DEBUG - ''
+2020-07-27 13:12:38,110 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:12:38,127 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:12:43,026 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:12:43,026 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:12:43,076 [experiment] - INFO - Engine initialized
+2020-07-27 13:12:43,076 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:12:48,127 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:12:53,168 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:12:58,221 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:13:03,265 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:13:08,309 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:13:13,353 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:13:18,397 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:13:23,476 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:13:28,520 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:13:33,573 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:13:38,617 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:13:43,684 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:13:48,728 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:13:53,802 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:13:58,845 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:14:03,899 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:14:08,942 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:14:14,004 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:14:19,046 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:14:24,095 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:14:29,139 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:14:34,218 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:14:39,279 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:14:44,648 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:14:49,874 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:14:54,917 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:14:59,968 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:15:05,011 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:15:10,055 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:15:15,098 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:15:20,141 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:15:25,183 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:15:30,227 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:15:35,271 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:15:40,314 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:15:45,359 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:15:50,401 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:15:55,444 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:16:00,487 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:16:05,556 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:16:10,646 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:16:15,690 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:16:20,733 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:16:25,777 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:16:30,820 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:16:35,863 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:16:40,906 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:16:45,950 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:16:50,993 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:16:56,037 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:17:01,097 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:17:06,163 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:17:11,207 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:17:16,251 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:17:21,293 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:17:26,334 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:17:31,446 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:17:36,490 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:17:41,542 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:17:46,585 [experiment] - INFO - pod-delete finished
+2020-07-27 13:17:46,623 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"a08e624c-e552-4b48-8704-45f07a8167c9","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"phase":"Running","verdict":"Awaited"}}}\n'}, 'creationTimestamp': '2020-07-27T19:13:24Z', 'generation': 1, 'labels': {'chaosUID': 'a08e624c-e552-4b48-8704-45f07a8167c9', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14341090', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'd0f5d133-741c-45c6-a3c5-2509701e7586'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'phase': 'Running', 'verdict': 'Awaited'}}}
+2020-07-27 13:17:46,843 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-27 13:17:46,845 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:17:47,411 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:17:47,411 [aut] - INFO - Deleting scale
+2020-07-27 13:17:55,483 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-27 13:17:55,483 [chaos] - INFO - Installing AUT took 0:05:08.080165
+2020-07-27 13:17:55,483 [chaos] - INFO - Experiment took 0:05:08.475033
+2020-07-27 13:17:55,484 [chaos] - INFO - Total elapsed time: 0:10:25.455282
+~~~~~~~~~~
+2020-07-27 13:17:56,115 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:17:56,121 [chaos] - INFO - Creating AUTs
+2020-07-27 13:17:56,121 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:17:56,122 [chaos] - DEBUG - [<aut.AUT object at 0x7fd2a5ec0fd0>]
+2020-07-27 13:17:56,122 [chaos] - INFO - Creating experiments
+2020-07-27 13:17:56,122 [chaos] - INFO - Started scale
+2020-07-27 13:17:56,123 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:17:56,123 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:23:04,182 [aut] - DEBUG - ''
+2020-07-27 13:23:04,182 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:23:04,197 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:23:08,739 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:23:08,739 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:23:08,783 [experiment] - INFO - Engine initialized
+2020-07-27 13:23:08,783 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:23:13,828 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:23:18,869 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:23:23,912 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:23:28,957 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:23:34,002 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:23:39,101 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:23:44,145 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:23:49,189 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:23:54,233 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:23:59,276 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:24:04,320 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:24:09,363 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:24:14,413 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:24:19,455 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:24:24,500 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:24:29,552 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:24:34,600 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:24:39,644 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:24:44,687 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:24:49,732 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:24:54,776 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:24:59,819 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:25:04,863 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:25:09,908 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:25:14,952 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:25:19,996 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:25:25,104 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:25:30,149 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:25:35,191 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:25:40,232 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:25:45,276 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:25:50,320 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:25:55,365 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:26:00,407 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:26:05,453 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:26:10,498 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:26:15,708 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:26:20,752 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:26:25,845 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:26:30,888 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:26:35,931 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:26:40,976 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:26:46,021 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:26:51,117 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:26:56,163 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:27:01,208 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:27:06,250 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:27:11,294 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:27:16,339 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:27:21,380 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:27:26,424 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:27:31,491 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:27:36,535 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:27:41,579 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:27:46,621 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:27:51,684 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:27:56,738 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:28:01,781 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:28:06,824 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:28:11,868 [experiment] - INFO - pod-delete finished
+2020-07-27 13:28:11,907 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:28:12,315 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:28:12,316 [aut] - INFO - Deleting scale
+2020-07-27 13:28:17,295 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 13:28:17,296 [chaos] - INFO - Installing AUT took 0:05:08.058352
+2020-07-27 13:28:17,296 [chaos] - INFO - Experiment took 0:05:07.686517
+2020-07-27 13:28:17,296 [chaos] - INFO - Total elapsed time: 0:10:21.174272
+~~~~~~~~~~
+2020-07-27 13:28:17,931 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:28:17,938 [chaos] - INFO - Creating AUTs
+2020-07-27 13:28:17,938 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:28:17,938 [chaos] - DEBUG - [<aut.AUT object at 0x7fb0ce010fd0>]
+2020-07-27 13:28:17,938 [chaos] - INFO - Creating experiments
+2020-07-27 13:28:17,938 [chaos] - INFO - Started scale
+2020-07-27 13:28:17,939 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:28:17,939 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:33:26,029 [aut] - DEBUG - ''
+2020-07-27 13:33:26,029 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:33:26,044 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:33:30,689 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:33:30,690 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:33:30,733 [experiment] - INFO - Engine initialized
+2020-07-27 13:33:30,733 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:33:35,796 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:33:40,840 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:33:45,886 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:33:50,930 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:33:55,974 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:34:01,019 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:34:06,065 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:34:11,107 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:34:16,152 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:34:21,193 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:34:26,238 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:34:31,283 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:34:36,326 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:34:41,369 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:34:46,414 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:34:51,460 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:34:56,516 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:35:01,560 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:35:06,611 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:35:11,655 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:35:16,700 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:35:21,811 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:35:26,856 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:35:31,899 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:35:36,942 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:35:41,986 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:35:47,029 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:35:52,111 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:35:57,211 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:36:02,255 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:36:07,300 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:36:12,358 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:36:17,403 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:36:22,444 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:36:27,543 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:36:32,587 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:36:37,631 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:36:42,675 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:36:47,719 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:36:52,893 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:36:57,941 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:37:03,011 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:37:08,060 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:37:13,103 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:37:18,147 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:37:23,191 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:37:28,235 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:37:33,279 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:37:38,322 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:37:43,365 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:37:48,409 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:37:53,464 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:37:58,509 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:38:03,551 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:38:08,597 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:38:13,641 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:38:18,685 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:38:23,728 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:38:28,772 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:38:33,816 [experiment] - INFO - pod-delete finished
+2020-07-27 13:38:33,879 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:38:34,333 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:38:34,334 [aut] - INFO - Deleting scale
+2020-07-27 13:38:39,229 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 13:38:39,229 [chaos] - INFO - Installing AUT took 0:05:08.089203
+2020-07-27 13:38:39,229 [chaos] - INFO - Experiment took 0:05:07.786888
+2020-07-27 13:38:39,229 [chaos] - INFO - Total elapsed time: 0:10:21.291185
+~~~~~~~~~~
+2020-07-27 13:38:39,833 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:38:39,839 [chaos] - INFO - Creating AUTs
+2020-07-27 13:38:39,840 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:38:39,840 [chaos] - DEBUG - [<aut.AUT object at 0x7f7875ad5fd0>]
+2020-07-27 13:38:39,840 [chaos] - INFO - Creating experiments
+2020-07-27 13:38:39,840 [chaos] - INFO - Started scale
+2020-07-27 13:38:39,841 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:38:39,841 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:43:48,087 [aut] - DEBUG - ''
+2020-07-27 13:43:48,088 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:43:48,103 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:43:52,719 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:43:52,720 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:43:52,781 [experiment] - INFO - Engine initialized
+2020-07-27 13:43:52,782 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:43:57,824 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:44:02,868 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:44:07,952 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:44:12,995 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:44:18,039 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:44:23,084 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:44:28,129 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:44:33,224 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:44:38,268 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:44:43,312 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:44:48,385 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:44:53,429 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:44:58,473 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:45:03,696 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:45:08,788 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:45:13,834 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:45:18,878 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:45:23,954 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:45:28,998 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:45:34,041 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:45:39,084 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:45:44,128 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:45:49,171 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:45:54,214 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:45:59,258 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:46:04,301 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:46:09,344 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:46:14,390 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:46:19,433 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:46:24,494 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:46:29,537 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:46:34,579 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:46:39,623 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:46:44,668 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:46:49,713 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:46:54,769 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:46:59,995 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:47:05,176 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:47:10,235 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:47:15,280 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:47:20,322 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:47:25,376 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:47:30,419 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:47:35,463 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:47:40,506 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:47:45,546 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:47:50,589 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:47:55,644 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:48:00,689 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:48:05,783 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:48:10,826 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:48:15,870 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:48:20,913 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:48:25,958 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:48:31,001 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:48:36,045 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:48:41,090 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:48:46,134 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:48:51,179 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:48:56,223 [experiment] - INFO - pod-delete finished
+2020-07-27 13:48:56,262 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:48:56,719 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:48:56,719 [aut] - INFO - Deleting scale
+2020-07-27 13:49:01,644 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 13:49:01,644 [chaos] - INFO - Installing AUT took 0:05:08.245949
+2020-07-27 13:49:01,645 [chaos] - INFO - Experiment took 0:05:08.135491
+2020-07-27 13:49:01,645 [chaos] - INFO - Total elapsed time: 0:10:21.805580
+~~~~~~~~~~
+2020-07-27 13:49:02,248 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:49:02,254 [chaos] - INFO - Creating AUTs
+2020-07-27 13:49:02,255 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:49:02,255 [chaos] - DEBUG - [<aut.AUT object at 0x7ff2c858cfd0>]
+2020-07-27 13:49:02,255 [chaos] - INFO - Creating experiments
+2020-07-27 13:49:02,255 [chaos] - INFO - Started scale
+2020-07-27 13:49:02,256 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:49:02,256 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 13:54:10,253 [aut] - DEBUG - ''
+2020-07-27 13:54:10,253 [experiment] - INFO - Starting pod-delete
+2020-07-27 13:54:10,270 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 13:54:15,032 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 13:54:15,033 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 13:54:15,129 [experiment] - INFO - Engine initialized
+2020-07-27 13:54:15,129 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 13:54:20,170 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 13:54:25,214 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 13:54:30,258 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 13:54:35,305 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 13:54:40,349 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 13:54:45,537 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 13:54:50,581 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 13:54:55,654 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 13:55:00,698 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 13:55:05,742 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 13:55:10,787 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 13:55:15,834 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 13:55:20,878 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 13:55:25,920 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 13:55:30,964 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 13:55:36,014 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 13:55:41,059 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 13:55:46,105 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 13:55:51,247 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 13:55:56,292 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 13:56:01,336 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 13:56:06,406 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 13:56:11,450 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 13:56:16,509 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 13:56:21,554 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 13:56:26,594 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 13:56:31,637 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 13:56:36,680 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 13:56:41,724 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 13:56:46,768 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 13:56:51,811 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 13:56:56,935 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 13:57:01,979 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 13:57:07,023 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 13:57:12,068 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 13:57:17,112 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 13:57:22,157 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 13:57:27,201 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 13:57:32,245 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 13:57:37,290 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 13:57:42,335 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 13:57:47,379 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 13:57:52,423 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 13:57:57,508 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 13:58:02,551 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 13:58:07,597 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 13:58:12,641 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 13:58:17,694 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 13:58:22,738 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 13:58:27,782 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 13:58:32,843 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 13:58:37,887 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 13:58:42,931 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 13:58:47,976 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 13:58:53,020 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 13:58:58,065 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 13:59:03,108 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 13:59:08,154 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 13:59:13,198 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 13:59:18,261 [experiment] - INFO - pod-delete finished
+2020-07-27 13:59:18,300 [experiment] - INFO - Deleting pod-delete
+2020-07-27 13:59:18,739 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 13:59:18,740 [aut] - INFO - Deleting scale
+2020-07-27 13:59:22,999 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 13:59:22,999 [chaos] - INFO - Installing AUT took 0:05:07.996593
+2020-07-27 13:59:23,000 [chaos] - INFO - Experiment took 0:05:08.008265
+2020-07-27 13:59:23,000 [chaos] - INFO - Total elapsed time: 0:10:20.744729
+~~~~~~~~~~
+2020-07-27 13:59:23,617 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 13:59:23,624 [chaos] - INFO - Creating AUTs
+2020-07-27 13:59:23,624 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 13:59:23,624 [chaos] - DEBUG - [<aut.AUT object at 0x7f88b8355fd0>]
+2020-07-27 13:59:23,624 [chaos] - INFO - Creating experiments
+2020-07-27 13:59:23,624 [chaos] - INFO - Started scale
+2020-07-27 13:59:23,625 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 13:59:23,625 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:04:31,699 [aut] - DEBUG - ''
+2020-07-27 14:04:31,699 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:04:31,715 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:04:36,631 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:04:36,632 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:04:36,674 [experiment] - INFO - Engine initialized
+2020-07-27 14:04:36,674 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:04:41,716 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:04:46,761 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:04:51,805 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:04:56,849 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:05:01,893 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:05:07,026 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:05:12,071 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:05:17,144 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:05:22,188 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:05:27,233 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:05:32,278 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:05:37,321 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:05:42,364 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:05:47,419 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:05:52,460 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:05:57,512 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:06:02,559 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:06:07,633 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:06:12,676 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:06:17,721 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:06:22,765 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:06:27,806 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:06:32,860 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:06:37,930 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:06:42,973 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:06:48,017 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:06:53,118 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:06:58,162 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:07:03,204 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:07:08,249 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:07:13,293 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:07:18,337 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:07:23,382 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:07:28,427 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:07:33,471 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:07:38,513 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:07:43,558 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:07:48,601 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:07:53,645 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:07:58,689 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:08:03,732 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 14:08:08,776 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 14:08:13,821 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 14:08:18,866 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 14:08:23,910 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 14:08:28,954 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 14:08:33,997 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 14:08:39,040 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 14:08:44,086 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 14:08:49,130 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 14:08:54,169 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 14:08:59,212 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 14:09:04,258 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 14:09:09,303 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 14:09:14,356 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 14:09:19,400 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 14:09:24,444 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 14:09:29,487 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 14:09:34,531 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 14:09:39,571 [experiment] - INFO - pod-delete finished
+2020-07-27 14:09:39,637 [experiment] - INFO - Deleting pod-delete
+2020-07-27 14:09:40,140 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 14:09:40,140 [aut] - INFO - Deleting scale
+2020-07-27 14:09:44,545 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 14:09:44,546 [chaos] - INFO - Installing AUT took 0:05:08.073449
+2020-07-27 14:09:44,546 [chaos] - INFO - Experiment took 0:05:07.871921
+2020-07-27 14:09:44,546 [chaos] - INFO - Total elapsed time: 0:10:20.921693
+~~~~~~~~~~
+2020-07-27 14:09:45,204 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 14:09:45,210 [chaos] - INFO - Creating AUTs
+2020-07-27 14:09:45,210 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 14:09:45,210 [chaos] - DEBUG - [<aut.AUT object at 0x7f27a13d6fd0>]
+2020-07-27 14:09:45,210 [chaos] - INFO - Creating experiments
+2020-07-27 14:09:45,211 [chaos] - INFO - Started scale
+2020-07-27 14:09:45,211 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 14:09:45,211 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:14:53,387 [aut] - DEBUG - ''
+2020-07-27 14:14:53,387 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:14:53,402 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:14:58,041 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:14:58,041 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:14:58,084 [experiment] - INFO - Engine initialized
+2020-07-27 14:14:58,085 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:15:03,124 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:15:08,179 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:15:13,223 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:15:18,267 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:15:23,310 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:15:28,352 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:15:33,394 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:15:38,437 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:15:43,481 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:15:48,526 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:15:53,569 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:15:58,613 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:16:03,682 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:16:08,726 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:16:13,769 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:16:18,821 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:16:23,870 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:16:28,913 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:16:33,956 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:16:39,000 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:16:44,044 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:16:49,088 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:16:54,131 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:16:59,264 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:17:04,308 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:17:09,352 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:17:14,396 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:17:19,440 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:17:24,484 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:17:29,528 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:17:34,573 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:17:39,617 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:17:44,661 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:17:49,705 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:17:54,750 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:17:59,793 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:18:04,837 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:18:09,881 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:18:14,925 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:18:19,970 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:18:25,014 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 14:18:30,057 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 14:18:35,101 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 14:18:40,141 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 14:18:45,184 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 14:18:50,228 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 14:18:55,273 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 14:19:00,318 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 14:19:05,363 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 14:19:10,440 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 14:19:15,482 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 14:19:20,525 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 14:19:25,568 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 14:19:30,612 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 14:19:35,656 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 14:19:40,700 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 14:19:45,790 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 14:19:50,833 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 14:19:55,878 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 14:20:00,923 [experiment] - INFO - pod-delete finished
+2020-07-27 14:20:00,960 [experiment] - INFO - Deleting pod-delete
+2020-07-27 14:20:01,414 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 14:20:01,414 [aut] - INFO - Deleting scale
+2020-07-27 14:20:06,422 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 14:20:06,423 [chaos] - INFO - Installing AUT took 0:05:08.174960
+2020-07-27 14:20:06,423 [chaos] - INFO - Experiment took 0:05:07.535509
+2020-07-27 14:20:06,423 [chaos] - INFO - Total elapsed time: 0:10:21.212738
+~~~~~~~~~~
+2020-07-27 14:20:07,065 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 14:20:07,071 [chaos] - INFO - Creating AUTs
+2020-07-27 14:20:07,071 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 14:20:07,071 [chaos] - DEBUG - [<aut.AUT object at 0x7fdd37e28fd0>]
+2020-07-27 14:20:07,072 [chaos] - INFO - Creating experiments
+2020-07-27 14:20:07,072 [chaos] - INFO - Started scale
+2020-07-27 14:20:07,073 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 14:20:07,073 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:25:16,116 [aut] - DEBUG - ''
+2020-07-27 14:25:16,116 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:25:16,133 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:25:20,442 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:25:20,443 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:25:20,487 [experiment] - INFO - Engine initialized
+2020-07-27 14:25:20,487 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:25:25,529 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:25:30,571 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:25:35,617 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:25:40,660 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:25:45,768 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:25:50,812 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:25:55,856 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:26:00,900 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:26:05,944 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:26:10,989 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:26:16,033 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:26:21,102 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:26:26,147 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:26:31,189 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:26:36,231 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:26:41,277 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:26:46,321 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:26:51,365 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:26:56,410 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:27:01,453 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:27:06,497 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:27:11,541 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:27:16,595 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:27:21,638 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:27:26,682 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:27:31,749 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:27:36,797 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:27:41,841 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:27:46,892 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:27:51,936 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:27:56,980 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:28:02,024 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:28:07,067 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:28:12,111 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:28:17,155 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:28:22,200 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:28:27,244 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:28:32,287 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:28:37,331 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:28:42,374 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:28:47,432 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 14:28:52,475 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 14:28:57,524 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 14:29:02,568 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 14:29:07,614 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 14:29:12,657 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 14:29:17,701 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 14:29:22,833 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 14:29:27,882 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 14:29:32,933 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 14:29:37,979 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 14:29:43,023 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 14:29:48,068 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 14:29:53,112 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 14:29:58,156 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 14:30:03,200 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 14:30:08,245 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 14:30:13,289 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 14:30:18,332 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 14:30:23,376 [experiment] - INFO - pod-delete finished
+2020-07-27 14:30:23,414 [experiment] - INFO - Deleting pod-delete
+2020-07-27 14:30:23,884 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 14:30:23,885 [aut] - INFO - Deleting scale
+2020-07-27 14:30:28,607 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 14:30:28,607 [chaos] - INFO - Installing AUT took 0:05:09.042845
+2020-07-27 14:30:28,607 [chaos] - INFO - Experiment took 0:05:07.259582
+2020-07-27 14:30:28,607 [chaos] - INFO - Total elapsed time: 0:10:21.535693
+~~~~~~~~~~
+2020-07-27 14:30:29,211 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 14:30:29,218 [chaos] - INFO - Creating AUTs
+2020-07-27 14:30:29,218 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 14:30:29,218 [chaos] - DEBUG - [<aut.AUT object at 0x7f5a69943fd0>]
+2020-07-27 14:30:29,218 [chaos] - INFO - Creating experiments
+2020-07-27 14:30:29,218 [chaos] - INFO - Started scale
+2020-07-27 14:30:29,219 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 14:30:29,219 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:35:37,270 [aut] - DEBUG - ''
+2020-07-27 14:35:37,271 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:35:37,286 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:35:42,466 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:35:42,466 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:35:42,530 [experiment] - INFO - Engine initialized
+2020-07-27 14:35:42,530 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:35:47,577 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:35:52,621 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:35:57,773 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:36:02,816 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:36:07,862 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:36:12,939 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:36:17,983 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:36:23,026 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:36:28,070 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:36:33,114 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:36:38,158 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:36:43,208 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:36:48,253 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:36:53,297 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:36:58,341 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:37:03,394 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:37:08,440 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:37:13,485 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:37:18,530 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:37:23,574 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:37:28,618 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:37:33,662 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:37:38,705 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:37:43,748 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:37:48,792 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:37:53,836 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:37:58,879 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:38:03,922 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:38:08,993 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:38:14,064 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:38:19,144 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:38:24,188 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:38:29,231 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:38:34,321 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:38:39,365 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:38:44,406 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:38:49,450 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:38:54,494 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:38:59,537 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:39:04,581 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:39:09,624 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 14:39:14,667 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 14:39:19,710 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 14:39:24,754 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 14:39:29,798 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 14:39:34,842 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 14:39:39,886 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 14:39:44,929 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 14:39:49,973 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 14:39:55,017 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 14:40:00,061 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 14:40:05,104 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 14:40:10,147 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 14:40:15,192 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 14:40:20,322 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 14:40:25,363 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 14:40:30,407 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 14:40:35,451 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 14:40:40,495 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 14:40:45,539 [experiment] - INFO - pod-delete finished
+2020-07-27 14:40:45,578 [experiment] - INFO - Deleting pod-delete
+2020-07-27 14:40:46,074 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 14:40:46,074 [aut] - INFO - Deleting scale
+2020-07-27 14:40:50,297 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 14:40:50,298 [chaos] - INFO - Installing AUT took 0:05:08.050589
+2020-07-27 14:40:50,298 [chaos] - INFO - Experiment took 0:05:08.268539
+2020-07-27 14:40:50,298 [chaos] - INFO - Total elapsed time: 0:10:21.079989
+~~~~~~~~~~
+2020-07-27 14:40:50,935 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 14:40:50,942 [chaos] - INFO - Creating AUTs
+2020-07-27 14:40:50,942 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 14:40:50,942 [chaos] - DEBUG - [<aut.AUT object at 0x7fed43b0ffd0>]
+2020-07-27 14:40:50,942 [chaos] - INFO - Creating experiments
+2020-07-27 14:40:50,942 [chaos] - INFO - Started scale
+2020-07-27 14:40:50,943 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 14:40:50,943 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:45:59,078 [aut] - DEBUG - ''
+2020-07-27 14:45:59,079 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:45:59,094 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:46:04,052 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:46:04,052 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:46:04,197 [experiment] - INFO - Engine initialized
+2020-07-27 14:46:04,197 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:46:09,238 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:46:14,348 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:46:19,391 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:46:24,435 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:46:29,480 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:46:34,525 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:46:39,565 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:46:44,609 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:46:49,653 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:46:54,698 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:46:59,741 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:47:04,785 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:47:09,829 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:47:14,872 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:47:19,917 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:47:24,970 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:47:30,014 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:47:35,103 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:47:40,151 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:47:45,197 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:47:50,241 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:47:55,284 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:48:00,327 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:48:05,371 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:48:10,413 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:48:15,458 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:48:20,502 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:48:25,706 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:48:30,827 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:48:35,886 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:48:41,023 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:48:46,326 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:48:51,376 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:48:56,421 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:49:01,464 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:49:06,508 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:49:11,553 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:49:16,596 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:49:21,640 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:49:26,684 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:49:31,728 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 14:49:36,772 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 14:49:41,841 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 14:49:46,885 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 14:49:51,929 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 14:49:56,972 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 14:50:02,016 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 14:50:07,060 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 14:50:12,104 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 14:50:17,147 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 14:50:22,192 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 14:50:27,235 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 14:50:32,319 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 14:50:37,363 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 14:50:42,407 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 14:50:47,451 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 14:50:52,494 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 14:50:57,537 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 14:51:02,581 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 14:51:07,620 [experiment] - INFO - pod-delete finished
+2020-07-27 14:51:07,658 [experiment] - INFO - Deleting pod-delete
+2020-07-27 14:51:08,503 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 14:51:08,504 [aut] - INFO - Deleting scale
+2020-07-27 14:51:13,790 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 14:51:13,791 [chaos] - INFO - Installing AUT took 0:05:08.134468
+2020-07-27 14:51:13,791 [chaos] - INFO - Experiment took 0:05:08.541392
+2020-07-27 14:51:13,791 [chaos] - INFO - Total elapsed time: 0:10:22.848598
+~~~~~~~~~~
+2020-07-27 14:51:14,429 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 14:51:14,435 [chaos] - INFO - Creating AUTs
+2020-07-27 14:51:14,435 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 14:51:14,435 [chaos] - DEBUG - [<aut.AUT object at 0x7f2c80cadfd0>]
+2020-07-27 14:51:14,435 [chaos] - INFO - Creating experiments
+2020-07-27 14:51:14,435 [chaos] - INFO - Started scale
+2020-07-27 14:51:14,436 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 14:51:14,436 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 14:56:22,666 [aut] - DEBUG - ''
+2020-07-27 14:56:22,666 [experiment] - INFO - Starting pod-delete
+2020-07-27 14:56:22,682 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 14:56:27,500 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 14:56:27,500 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 14:56:27,543 [experiment] - INFO - Engine initialized
+2020-07-27 14:56:27,543 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 14:56:32,582 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 14:56:37,624 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 14:56:42,668 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 14:56:47,713 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 14:56:52,757 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 14:56:57,801 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 14:57:02,899 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 14:57:07,943 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 14:57:12,987 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 14:57:18,032 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 14:57:23,213 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 14:57:28,327 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 14:57:33,509 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 14:57:38,552 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 14:57:43,596 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 14:57:48,641 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 14:57:53,685 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 14:57:58,729 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 14:58:03,773 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 14:58:08,817 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 14:58:13,861 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 14:58:18,902 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 14:58:23,947 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 14:58:29,079 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 14:58:34,124 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 14:58:39,167 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 14:58:44,211 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 14:58:49,255 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 14:58:54,297 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 14:58:59,339 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 14:59:04,384 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 14:59:09,427 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 14:59:14,471 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 14:59:19,514 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 14:59:24,569 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 14:59:29,615 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 14:59:34,666 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 14:59:39,710 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 14:59:44,874 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 14:59:49,919 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 14:59:55,024 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 15:00:00,069 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 15:00:05,125 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 15:00:10,169 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 15:00:15,249 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 15:00:20,294 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 15:00:25,337 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 15:00:30,382 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 15:00:35,425 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 15:00:40,467 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 15:00:45,513 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 15:00:50,559 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 15:00:55,603 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 15:01:00,648 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 15:01:05,692 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 15:01:10,737 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 15:01:15,782 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 15:01:20,827 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 15:01:25,870 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 15:01:30,915 [experiment] - INFO - pod-delete finished
+2020-07-27 15:01:30,953 [experiment] - INFO - Deleting pod-delete
+2020-07-27 15:01:31,296 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 15:01:31,297 [aut] - INFO - Deleting scale
+2020-07-27 15:01:35,946 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 15:01:35,946 [chaos] - INFO - Installing AUT took 0:05:08.229097
+2020-07-27 15:01:35,946 [chaos] - INFO - Experiment took 0:05:08.249304
+2020-07-27 15:01:35,947 [chaos] - INFO - Total elapsed time: 0:10:21.511076
+~~~~~~~~~~
+2020-07-27 15:01:36,548 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 15:01:36,554 [chaos] - INFO - Creating AUTs
+2020-07-27 15:01:36,554 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 15:01:36,554 [chaos] - DEBUG - [<aut.AUT object at 0x7f3b88601fd0>]
+2020-07-27 15:01:36,554 [chaos] - INFO - Creating experiments
+2020-07-27 15:01:36,554 [chaos] - INFO - Started scale
+2020-07-27 15:01:36,555 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 15:01:36,555 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 15:06:44,698 [aut] - DEBUG - ''
+2020-07-27 15:06:44,698 [experiment] - INFO - Starting pod-delete
+2020-07-27 15:06:44,714 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 15:06:49,514 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 15:06:49,515 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 15:06:49,564 [experiment] - INFO - Engine initialized
+2020-07-27 15:06:49,565 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 15:06:54,606 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 15:06:59,649 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 15:07:04,693 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 15:07:09,735 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 15:07:14,781 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 15:07:19,825 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 15:07:24,869 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 15:07:29,913 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 15:07:34,957 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 15:07:40,001 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 15:07:45,045 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 15:07:50,090 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 15:07:55,134 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 15:08:00,179 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 15:08:05,223 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 15:08:10,273 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 15:08:15,321 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 15:08:20,365 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 15:08:25,410 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 15:08:30,453 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 15:08:35,495 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 15:08:40,540 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 15:08:45,586 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 15:08:50,631 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 15:08:55,745 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 15:09:00,789 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 15:09:05,833 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 15:09:10,878 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 15:09:15,921 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 15:09:20,964 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 15:09:26,010 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 15:09:31,053 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 15:09:36,154 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 15:09:41,199 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 15:09:46,263 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 15:09:51,307 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 15:09:56,356 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 15:10:01,399 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 15:10:06,443 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 15:10:11,487 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 15:10:16,532 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 15:10:21,574 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 15:10:26,618 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 15:10:31,661 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 15:10:36,706 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 15:10:41,749 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 15:10:46,792 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 15:10:51,836 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 15:10:56,880 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 15:11:01,925 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 15:11:06,969 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 15:11:12,014 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 15:11:17,063 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 15:11:22,107 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 15:11:27,152 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 15:11:32,195 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 15:11:37,239 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 15:11:42,283 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 15:11:47,326 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 15:11:52,370 [experiment] - INFO - pod-delete finished
+2020-07-27 15:11:52,419 [experiment] - INFO - Deleting pod-delete
+2020-07-27 15:11:52,854 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 15:11:52,854 [aut] - INFO - Deleting scale
+2020-07-27 15:11:57,147 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 15:11:57,147 [chaos] - INFO - Installing AUT took 0:05:08.142231
+2020-07-27 15:11:57,148 [chaos] - INFO - Experiment took 0:05:07.671706
+2020-07-27 15:11:57,148 [chaos] - INFO - Total elapsed time: 0:10:20.593475
+~~~~~~~~~~
+2020-07-27 15:11:57,767 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-27 15:11:57,773 [chaos] - INFO - Creating AUTs
+2020-07-27 15:11:57,773 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-27 15:11:57,774 [chaos] - DEBUG - [<aut.AUT object at 0x7fbcaad75fd0>]
+2020-07-27 15:11:57,774 [chaos] - INFO - Creating experiments
+2020-07-27 15:11:57,774 [chaos] - INFO - Started scale
+2020-07-27 15:11:57,775 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-27 15:11:57,775 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-27 15:17:05,782 [aut] - DEBUG - ''
+2020-07-27 15:17:05,783 [experiment] - INFO - Starting pod-delete
+2020-07-27 15:17:05,798 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-27 15:17:10,648 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-27 15:17:10,649 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-27 15:17:10,720 [experiment] - INFO - Engine initialized
+2020-07-27 15:17:10,720 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-27 15:17:15,759 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-27 15:17:20,802 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-27 15:17:25,845 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-27 15:17:30,889 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-27 15:17:35,931 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-27 15:17:40,975 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-27 15:17:46,145 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-27 15:17:51,188 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-27 15:17:56,232 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-27 15:18:01,277 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-27 15:18:06,320 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-27 15:18:11,363 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-27 15:18:16,406 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-27 15:18:21,450 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-27 15:18:26,494 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-27 15:18:31,538 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-27 15:18:36,583 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-27 15:18:41,628 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-27 15:18:46,672 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-27 15:18:51,721 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-27 15:18:56,791 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-27 15:19:01,847 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-27 15:19:06,890 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-27 15:19:11,934 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-27 15:19:17,094 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-27 15:19:22,138 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-27 15:19:27,222 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-27 15:19:32,267 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-27 15:19:37,311 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-27 15:19:42,354 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-27 15:19:47,397 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-27 15:19:52,440 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-27 15:19:57,485 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-27 15:20:02,529 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-27 15:20:07,572 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-27 15:20:12,615 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-27 15:20:17,659 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-27 15:20:22,703 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-27 15:20:27,747 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-27 15:20:32,792 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-27 15:20:37,836 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-27 15:20:42,881 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-27 15:20:47,925 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-27 15:20:53,013 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-27 15:20:58,065 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-27 15:21:03,109 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-27 15:21:08,201 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-27 15:21:13,244 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-27 15:21:18,284 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-27 15:21:23,327 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-27 15:21:28,371 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-27 15:21:33,415 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-27 15:21:38,459 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-27 15:21:43,504 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-27 15:21:48,547 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-27 15:21:53,589 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-27 15:21:58,656 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-27 15:22:03,700 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-27 15:22:08,743 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-27 15:22:13,787 [experiment] - INFO - pod-delete finished
+2020-07-27 15:22:13,825 [experiment] - INFO - Deleting pod-delete
+2020-07-27 15:22:14,241 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-27 15:22:14,242 [aut] - INFO - Deleting scale
+2020-07-27 15:22:18,891 [chaos] - INFO - Experiment verdict: Fail
+2020-07-27 15:22:18,891 [chaos] - INFO - Installing AUT took 0:05:08.007381
+2020-07-27 15:22:18,891 [chaos] - INFO - Experiment took 0:05:08.004738
+2020-07-27 15:22:18,891 [chaos] - INFO - Total elapsed time: 0:10:21.117566

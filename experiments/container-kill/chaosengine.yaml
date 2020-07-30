@@ -7,9 +7,9 @@ spec:
   annotationCheck: 'true'
   engineState: 'active'
   appinfo:
-    appns: 'default'
-    applabel: 'app=enb'
-    appkind: 'deployment'
+    appns: '{ns}'
+    applabel: '{label}'
+    appkind: '{kind}'
   chaosServiceAccount: container-kill-sa
   # use retain to keep the job for debug
   jobCleanUpPolicy: 'retain' 
@@ -20,16 +20,16 @@ spec:
           env:
             # specify the name of the container to be killed
             - name: TARGET_CONTAINER
-              value: 'enb'
+              value: '{container}'
             - name: LIB_IMAGE
               value: 'litmuschaos/container-kill-helper:latest'
             - name: LIB
               value: 'containerd'
             - name: PRECONDITION
-              value: 'wget --timeout 5 -O - 10.60.1.1'
+              value: '{pre_condition}'
             - name: POSTCONDITION
-              value: 'wget --timeout 5 -O - 10.60.1.1'
+              value: '{post_condition}'
             - name: ENTRYPOINT
-              value: 'gogtp-ue'
+              value: '{entrypoint_pod}'
             - name: ENTRYPOINT_CONTAINER
-              value: 'gogtp-ue'
+              value: '{entrypoint_container}'

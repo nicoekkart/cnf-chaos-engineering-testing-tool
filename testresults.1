@@ -1,0 +1,1988 @@
+
+~~~~~~~~~~
+2020-07-28 01:15:40,051 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:15:40,057 [chaos] - INFO - Creating AUTs
+2020-07-28 01:15:40,057 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:15:40,057 [chaos] - DEBUG - [<aut.AUT object at 0x7fb27b846f60>]
+2020-07-28 01:15:40,057 [chaos] - INFO - Creating experiments
+2020-07-28 01:15:40,058 [chaos] - INFO - Started scale
+2020-07-28 01:15:40,058 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:15:40,059 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:16:16,961 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:15:40 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   32s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    32s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           32s\n'
+ 'nginx-red             32s\n'
+ 'passthrough-1-blue    32s\n'
+ 'passthrough-1-green   32s\n'
+ 'passthrough-1-red     32s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     32s\n'
+ 'passthrough-3-blue    32s\n'
+ 'passthrough-3-green   32s\n'
+ 'passthrough-3-red     32s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-pgp6x  32s\n'
+ 'acl-filter-nse-green-d478579c7-ld78n  32s\n'
+ 'acl-filter-nse-red-795cd877f7-949jw   32s\n'
+ 'nginx-blue-7c457f4665-ndpqk           32s\n'
+ 'nginx-green-5fbf684b7d-ltdqp          32s\n'
+ 'nginx-red-569bdbbcbf-dpj4q            32s\n'
+ 'passthrough-1-blue-5bd57b5484-ncs7n   32s\n'
+ 'passthrough-1-green-5bcfb575d4-vh64d  32s\n'
+ 'passthrough-1-red-766495976-rf7qm     32s\n'
+ 'passthrough-2-blue-66d66c7d48-gx5qq   32s\n'
+ 'passthrough-2-green-7c86cc797d-db42r  32s\n'
+ 'passthrough-2-red-585998c5f4-9676t    32s\n'
+ 'passthrough-3-blue-6546f768d-2frb4    32s\n'
+ 'passthrough-3-green-76cb7f74c6-bxt5s  31s\n'
+ 'passthrough-3-red-5d76ccb876-kw5b5    32s\n'
+ 'proxy-nsc-59d894899f-4q7ct            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  32s\n'
+ '\n'
+ '\n')
+2020-07-28 01:16:16,962 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:16:16,976 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:16:17,993 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:16:17,993 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:16:18,038 [experiment] - INFO - Engine initialized
+2020-07-28 01:16:18,039 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:16:23,079 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:16:28,124 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:16:33,166 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:16:38,207 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:16:43,250 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:16:48,310 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:16:53,353 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:16:58,395 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:17:03,438 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:17:08,482 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:17:13,524 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:17:18,567 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:17:23,611 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:17:28,653 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:17:33,697 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:17:38,740 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:17:43,792 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:17:48,836 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:17:53,880 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:17:58,924 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:18:03,967 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:18:09,012 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:18:14,054 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:18:19,098 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:18:24,141 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:18:29,182 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:18:34,227 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:18:34,262 [experiment] - INFO - pod-delete finished
+2020-07-28 01:18:34,309 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"4adfa9bd-8450-4ff4-9e1d-884f94216e73","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:17:05Z', 'generation': 2, 'labels': {'chaosUID': '4adfa9bd-8450-4ff4-9e1d-884f94216e73', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14481561', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '2ceba9a5-5a5f-442c-aa21-68e730889607'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:18:34,503 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:18:34,505 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:18:34,810 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:18:34,810 [aut] - INFO - Deleting scale
+2020-07-28 01:18:38,164 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:18:38,165 [chaos] - INFO - Installing AUT took 0:00:36.902082
+2020-07-28 01:18:38,165 [chaos] - INFO - Experiment took 0:02:17.300724
+2020-07-28 01:18:38,165 [chaos] - INFO - Total elapsed time: 0:02:58.107601
+~~~~~~~~~~
+2020-07-28 01:18:43,808 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:18:43,814 [chaos] - INFO - Creating AUTs
+2020-07-28 01:18:43,814 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:18:43,815 [chaos] - DEBUG - [<aut.AUT object at 0x7fbf1b967fd0>]
+2020-07-28 01:18:43,815 [chaos] - INFO - Creating experiments
+2020-07-28 01:18:43,815 [chaos] - INFO - Started scale
+2020-07-28 01:18:43,816 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:18:43,816 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:19:17,170 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:18:44 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-5lwx2  33s\n'
+ 'acl-filter-nse-green-d478579c7-2fmrw  33s\n'
+ 'acl-filter-nse-red-795cd877f7-fg5xz   33s\n'
+ 'nginx-blue-7c457f4665-k4fj7           33s\n'
+ 'nginx-green-5fbf684b7d-8s5h4          32s\n'
+ 'nginx-red-569bdbbcbf-wvvrj            33s\n'
+ 'passthrough-1-blue-5bd57b5484-btllc   32s\n'
+ 'passthrough-1-green-5bcfb575d4-n4f8q  33s\n'
+ 'passthrough-1-red-766495976-kbwqk     32s\n'
+ 'passthrough-2-blue-66d66c7d48-qszqv   32s\n'
+ 'passthrough-2-green-7c86cc797d-9wr55  32s\n'
+ 'passthrough-2-red-585998c5f4-zjgt9    33s\n'
+ 'passthrough-3-blue-6546f768d-ncftn    32s\n'
+ 'passthrough-3-green-76cb7f74c6-dkrlt  32s\n'
+ 'passthrough-3-red-5d76ccb876-btjjf    33s\n'
+ 'proxy-nsc-59d894899f-mskpr            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:19:17,171 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:19:17,186 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:19:18,043 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:19:18,043 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:19:18,086 [experiment] - INFO - Engine initialized
+2020-07-28 01:19:18,086 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:19:23,126 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:19:28,166 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:19:33,209 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:19:38,252 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:19:43,296 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:19:48,341 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:19:53,400 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:19:58,479 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:20:03,522 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:20:08,566 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:20:13,609 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:20:18,651 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:20:23,694 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:20:28,737 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:20:33,791 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:20:38,838 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:20:43,903 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:20:48,946 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:20:54,038 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:20:59,376 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:21:04,578 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:21:09,620 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:21:14,696 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:21:19,736 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:21:24,779 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:21:29,820 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:21:34,863 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:21:39,905 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 01:21:39,967 [experiment] - INFO - pod-delete finished
+2020-07-28 01:21:40,000 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"1ee95a8f-703d-4d5c-ae2c-570224c526b2","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:20:06Z', 'generation': 2, 'labels': {'chaosUID': '1ee95a8f-703d-4d5c-ae2c-570224c526b2', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14482931', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '2112bc75-2911-4a44-94f8-92d54558a1d8'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:21:40,134 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:21:40,136 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:21:40,452 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:21:40,453 [aut] - INFO - Deleting scale
+2020-07-28 01:21:43,453 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:21:43,453 [chaos] - INFO - Installing AUT took 0:00:33.353920
+2020-07-28 01:21:43,453 [chaos] - INFO - Experiment took 0:02:22.796082
+2020-07-28 01:21:43,453 [chaos] - INFO - Total elapsed time: 0:02:59.638535
+~~~~~~~~~~
+2020-07-28 01:21:49,085 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:21:49,092 [chaos] - INFO - Creating AUTs
+2020-07-28 01:21:49,092 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:21:49,092 [chaos] - DEBUG - [<aut.AUT object at 0x7f2211687fd0>]
+2020-07-28 01:21:49,092 [chaos] - INFO - Creating experiments
+2020-07-28 01:21:49,092 [chaos] - INFO - Started scale
+2020-07-28 01:21:49,093 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:21:49,093 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:22:28,616 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:21:49 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-k875l  39s\n'
+ 'acl-filter-nse-green-d478579c7-qjk5l  38s\n'
+ 'acl-filter-nse-red-795cd877f7-2pnx9   39s\n'
+ 'nginx-blue-7c457f4665-wbvz6           39s\n'
+ 'nginx-green-5fbf684b7d-dzms4          39s\n'
+ 'nginx-red-569bdbbcbf-qtgnn            39s\n'
+ 'passthrough-1-blue-5bd57b5484-j6xdj   38s\n'
+ 'passthrough-1-green-5bcfb575d4-kw7fb  37s\n'
+ 'passthrough-1-red-766495976-xtqg9     39s\n'
+ 'passthrough-2-blue-66d66c7d48-hgdvp   39s\n'
+ 'passthrough-2-green-7c86cc797d-92jdl  39s\n'
+ 'passthrough-2-red-585998c5f4-wpkp2    38s\n'
+ 'passthrough-3-blue-6546f768d-b2f5m    39s\n'
+ 'passthrough-3-green-76cb7f74c6-qp8hz  38s\n'
+ 'passthrough-3-red-5d76ccb876-hhfkl    38s\n'
+ 'proxy-nsc-59d894899f-rdcg5            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 01:22:28,616 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:22:28,631 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:22:29,547 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:22:29,548 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:22:29,590 [experiment] - INFO - Engine initialized
+2020-07-28 01:22:29,591 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:22:34,630 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:22:39,674 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:22:44,744 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:22:49,788 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:22:54,836 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:22:59,968 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:23:05,012 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:23:10,073 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:23:15,115 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:23:20,158 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:23:25,201 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:23:30,284 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:23:35,326 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:23:40,369 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:23:45,429 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:23:50,472 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:23:55,516 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:24:00,559 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:24:05,603 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:24:10,647 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:24:15,698 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:24:20,741 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:24:25,789 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:24:30,832 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:24:35,896 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:24:40,938 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:24:40,986 [experiment] - INFO - pod-delete finished
+2020-07-28 01:24:41,021 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"90b3e9b8-1129-4fc6-89be-dd8e61df0b4d","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:23:14Z', 'generation': 2, 'labels': {'chaosUID': '90b3e9b8-1129-4fc6-89be-dd8e61df0b4d', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14484263', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '5115ed45-a127-4427-9cf2-9b235353e307'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:24:45,400 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:24:45,401 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:24:45,706 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:24:45,706 [aut] - INFO - Deleting scale
+2020-07-28 01:24:48,154 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:24:48,154 [chaos] - INFO - Installing AUT took 0:00:39.522303
+2020-07-28 01:24:48,155 [chaos] - INFO - Experiment took 0:02:12.369971
+2020-07-28 01:24:48,155 [chaos] - INFO - Total elapsed time: 0:02:59.062659
+~~~~~~~~~~
+2020-07-28 01:24:53,760 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:24:53,766 [chaos] - INFO - Creating AUTs
+2020-07-28 01:24:53,767 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:24:53,767 [chaos] - DEBUG - [<aut.AUT object at 0x7f1d1081efd0>]
+2020-07-28 01:24:53,767 [chaos] - INFO - Creating experiments
+2020-07-28 01:24:53,767 [chaos] - INFO - Started scale
+2020-07-28 01:24:53,768 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:24:53,768 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:25:27,029 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:24:54 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-nbkcw  33s\n'
+ 'acl-filter-nse-green-d478579c7-2q4q5  33s\n'
+ 'acl-filter-nse-red-795cd877f7-bpfnh   31s\n'
+ 'nginx-blue-7c457f4665-blgrx           33s\n'
+ 'nginx-green-5fbf684b7d-g82g2          33s\n'
+ 'nginx-red-569bdbbcbf-r752g            32s\n'
+ 'passthrough-1-blue-5bd57b5484-thg9x   32s\n'
+ 'passthrough-1-green-5bcfb575d4-wwn54  33s\n'
+ 'passthrough-1-red-766495976-t88zx     32s\n'
+ 'passthrough-2-blue-66d66c7d48-7c8kp   33s\n'
+ 'passthrough-2-green-7c86cc797d-nbp7s  33s\n'
+ 'passthrough-2-red-585998c5f4-55zqp    32s\n'
+ 'passthrough-3-blue-6546f768d-jvhjq    32s\n'
+ 'passthrough-3-green-76cb7f74c6-rkdsd  32s\n'
+ 'passthrough-3-red-5d76ccb876-wn5bm    33s\n'
+ 'proxy-nsc-59d894899f-k49tw            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:25:27,029 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:25:27,044 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:25:27,979 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:25:27,980 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:25:28,027 [experiment] - INFO - Engine initialized
+2020-07-28 01:25:28,028 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:25:33,076 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:25:38,120 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:25:43,162 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:25:48,204 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:25:53,248 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:25:58,317 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:26:03,360 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:26:08,403 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:26:13,446 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:26:18,489 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:26:23,532 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:26:28,576 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:26:33,641 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:26:38,684 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:26:43,728 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:26:48,774 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:26:53,826 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:26:58,870 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:27:03,949 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:27:09,010 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:27:14,080 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:27:19,140 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:27:24,183 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:27:29,226 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:27:34,292 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:27:39,335 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:27:44,378 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:27:49,422 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-28 01:27:49,458 [experiment] - INFO - pod-delete finished
+2020-07-28 01:27:49,493 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"b20d3ae2-d760-456f-b547-9522f55db0f7","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:26:13Z', 'generation': 2, 'labels': {'chaosUID': 'b20d3ae2-d760-456f-b547-9522f55db0f7', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14485652', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '5a21c001-7ee5-4392-a231-3c5afac55f37'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:27:49,641 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:27:49,642 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:27:50,034 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:27:50,035 [aut] - INFO - Deleting scale
+2020-07-28 01:27:55,433 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:27:55,434 [chaos] - INFO - Installing AUT took 0:00:33.260443
+2020-07-28 01:27:55,434 [chaos] - INFO - Experiment took 0:02:22.428932
+2020-07-28 01:27:55,434 [chaos] - INFO - Total elapsed time: 0:03:01.667404
+~~~~~~~~~~
+2020-07-28 01:28:01,075 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:28:01,082 [chaos] - INFO - Creating AUTs
+2020-07-28 01:28:01,082 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:28:01,082 [chaos] - DEBUG - [<aut.AUT object at 0x7fb0f1330fd0>]
+2020-07-28 01:28:01,082 [chaos] - INFO - Creating experiments
+2020-07-28 01:28:01,082 [chaos] - INFO - Started scale
+2020-07-28 01:28:01,083 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:28:01,083 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:28:40,702 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:28:01 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-lmgf9  39s\n'
+ 'acl-filter-nse-green-d478579c7-b8jdk  39s\n'
+ 'acl-filter-nse-red-795cd877f7-h9bcz   38s\n'
+ 'nginx-blue-7c457f4665-h97t7           38s\n'
+ 'nginx-green-5fbf684b7d-59szt          38s\n'
+ 'nginx-red-569bdbbcbf-k6sv6            39s\n'
+ 'passthrough-1-blue-5bd57b5484-24rmb   39s\n'
+ 'passthrough-1-green-5bcfb575d4-rpdww  37s\n'
+ 'passthrough-1-red-766495976-ktn4q     39s\n'
+ 'passthrough-2-blue-66d66c7d48-45gd6   38s\n'
+ 'passthrough-2-green-7c86cc797d-s577g  39s\n'
+ 'passthrough-2-red-585998c5f4-28nvl    38s\n'
+ 'passthrough-3-blue-6546f768d-vl6vc    39s\n'
+ 'passthrough-3-green-76cb7f74c6-cq672  39s\n'
+ 'passthrough-3-red-5d76ccb876-s8kfw    39s\n'
+ 'proxy-nsc-59d894899f-cktbt            38s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 01:28:40,702 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:28:40,716 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:28:41,618 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:28:41,619 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:28:41,662 [experiment] - INFO - Engine initialized
+2020-07-28 01:28:41,662 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:28:46,700 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:28:51,744 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:28:56,787 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:29:01,829 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:29:06,873 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:29:11,917 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:29:16,961 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:29:22,005 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:29:27,048 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:29:32,093 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:29:37,136 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:29:42,179 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:29:47,402 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:29:52,446 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:29:57,531 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:30:02,582 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:30:07,627 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:30:12,671 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:30:17,714 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:30:22,758 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:30:27,829 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:30:32,977 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:30:38,020 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:30:43,083 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:30:48,153 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:30:48,191 [experiment] - INFO - pod-delete finished
+2020-07-28 01:30:48,227 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"cd8f95e6-c67e-4be2-88af-2b0779cb4787","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:29:23Z', 'generation': 2, 'labels': {'chaosUID': 'cd8f95e6-c67e-4be2-88af-2b0779cb4787', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14487010', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'd132dda5-b782-4052-9ff9-a2a6990f6a66'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:30:48,368 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:30:48,370 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:30:49,189 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:30:49,190 [aut] - INFO - Deleting scale
+2020-07-28 01:30:51,619 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:30:51,620 [chaos] - INFO - Installing AUT took 0:00:39.617948
+2020-07-28 01:30:51,620 [chaos] - INFO - Experiment took 0:02:07.489315
+2020-07-28 01:30:51,620 [chaos] - INFO - Total elapsed time: 0:02:50.537906
+~~~~~~~~~~
+2020-07-28 01:30:57,260 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:30:57,267 [chaos] - INFO - Creating AUTs
+2020-07-28 01:30:57,267 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:30:57,267 [chaos] - DEBUG - [<aut.AUT object at 0x7fc70df0bfd0>]
+2020-07-28 01:30:57,267 [chaos] - INFO - Creating experiments
+2020-07-28 01:30:57,267 [chaos] - INFO - Started scale
+2020-07-28 01:30:57,268 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:30:57,268 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:31:30,505 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:30:57 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-tgdpc  32s\n'
+ 'acl-filter-nse-green-d478579c7-vgkbg  32s\n'
+ 'acl-filter-nse-red-795cd877f7-fdrfs   33s\n'
+ 'nginx-blue-7c457f4665-7m8p4           33s\n'
+ 'nginx-green-5fbf684b7d-p86h4          32s\n'
+ 'nginx-red-569bdbbcbf-7hbtw            32s\n'
+ 'passthrough-1-blue-5bd57b5484-6kzg2   32s\n'
+ 'passthrough-1-green-5bcfb575d4-9rnwn  32s\n'
+ 'passthrough-1-red-766495976-w7p7z     32s\n'
+ 'passthrough-2-blue-66d66c7d48-s4lj5   32s\n'
+ 'passthrough-2-green-7c86cc797d-k89b9  32s\n'
+ 'passthrough-2-red-585998c5f4-zdppr    33s\n'
+ 'passthrough-3-blue-6546f768d-t7sfd    32s\n'
+ 'passthrough-3-green-76cb7f74c6-trzpm  33s\n'
+ 'passthrough-3-red-5d76ccb876-9kfck    31s\n'
+ 'proxy-nsc-59d894899f-x6jt8            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:31:30,505 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:31:30,520 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:31:31,388 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:31:31,388 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:31:31,432 [experiment] - INFO - Engine initialized
+2020-07-28 01:31:31,432 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:31:36,472 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:31:41,515 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:31:46,557 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:31:51,601 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:31:56,644 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:32:01,689 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:32:06,731 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:32:11,774 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:32:16,817 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:32:21,858 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:32:26,901 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:32:31,944 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:32:36,986 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:32:42,029 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:32:47,088 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:32:52,292 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:32:57,384 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:33:02,427 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:33:07,657 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:33:12,700 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:33:17,742 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:33:22,784 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:33:27,827 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:33:32,870 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:33:37,932 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:33:42,975 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:33:48,019 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:33:48,058 [experiment] - INFO - pod-delete finished
+2020-07-28 01:33:48,092 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"05e3517f-2939-4a5c-9510-beaba71c363f","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:32:14Z', 'generation': 2, 'labels': {'chaosUID': '05e3517f-2939-4a5c-9510-beaba71c363f', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14488355', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '9011f867-7bca-489b-9ee3-8417017fb0ed'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:33:48,228 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:33:48,230 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:33:48,580 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:33:48,580 [aut] - INFO - Deleting scale
+2020-07-28 01:33:51,158 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:33:51,159 [chaos] - INFO - Installing AUT took 0:00:33.236054
+2020-07-28 01:33:51,159 [chaos] - INFO - Experiment took 0:02:17.552398
+2020-07-28 01:33:51,159 [chaos] - INFO - Total elapsed time: 0:02:53.891838
+~~~~~~~~~~
+2020-07-28 01:33:56,766 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:33:56,772 [chaos] - INFO - Creating AUTs
+2020-07-28 01:33:56,772 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:33:56,773 [chaos] - DEBUG - [<aut.AUT object at 0x7f2b34464fd0>]
+2020-07-28 01:33:56,773 [chaos] - INFO - Creating experiments
+2020-07-28 01:33:56,773 [chaos] - INFO - Started scale
+2020-07-28 01:33:56,774 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:33:56,774 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:34:30,100 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:33:57 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-sq4cz  33s\n'
+ 'acl-filter-nse-green-d478579c7-flglx  32s\n'
+ 'acl-filter-nse-red-795cd877f7-2qnzw   33s\n'
+ 'nginx-blue-7c457f4665-qnfwg           33s\n'
+ 'nginx-green-5fbf684b7d-z5dzq          33s\n'
+ 'nginx-red-569bdbbcbf-jk92p            32s\n'
+ 'passthrough-1-blue-5bd57b5484-hgkvf   32s\n'
+ 'passthrough-1-green-5bcfb575d4-jwzf5  32s\n'
+ 'passthrough-1-red-766495976-vmbz9     33s\n'
+ 'passthrough-2-blue-66d66c7d48-mhvf2   33s\n'
+ 'passthrough-2-green-7c86cc797d-x5vx7  33s\n'
+ 'passthrough-2-red-585998c5f4-49mdh    33s\n'
+ 'passthrough-3-blue-6546f768d-bhtxb    33s\n'
+ 'passthrough-3-green-76cb7f74c6-4mzqs  33s\n'
+ 'passthrough-3-red-5d76ccb876-mvs96    32s\n'
+ 'proxy-nsc-59d894899f-mj2jk            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:34:30,101 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:34:30,118 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:34:31,014 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:34:31,015 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:34:31,059 [experiment] - INFO - Engine initialized
+2020-07-28 01:34:31,059 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:34:36,100 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:34:41,143 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:34:46,184 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:34:51,228 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:34:56,267 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:35:01,311 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:35:06,355 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:35:11,398 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:35:16,441 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:35:21,484 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:35:26,526 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:35:31,569 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:35:36,655 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:35:41,699 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:35:46,742 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:35:51,786 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:35:56,829 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:36:01,883 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:36:06,925 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:36:11,968 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:36:17,013 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:36:22,141 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:36:27,183 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:36:32,225 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:36:37,269 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:36:37,306 [experiment] - INFO - pod-delete finished
+2020-07-28 01:36:37,338 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"4f8b6a12-6d12-47d2-be46-9d6e991f762a","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:35:12Z', 'generation': 2, 'labels': {'chaosUID': '4f8b6a12-6d12-47d2-be46-9d6e991f762a', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14489681', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '40756dfd-d172-4340-82f2-d0b2c1d7823f'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:36:41,539 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:36:41,541 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:36:41,837 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:36:41,837 [aut] - INFO - Deleting scale
+2020-07-28 01:36:44,620 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:36:44,621 [chaos] - INFO - Installing AUT took 0:00:33.325838
+2020-07-28 01:36:44,621 [chaos] - INFO - Experiment took 0:02:07.204683
+2020-07-28 01:36:44,621 [chaos] - INFO - Total elapsed time: 0:02:47.848319
+~~~~~~~~~~
+2020-07-28 01:36:50,230 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:36:50,236 [chaos] - INFO - Creating AUTs
+2020-07-28 01:36:50,236 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:36:50,236 [chaos] - DEBUG - [<aut.AUT object at 0x7fdfad57ffd0>]
+2020-07-28 01:36:50,236 [chaos] - INFO - Creating experiments
+2020-07-28 01:36:50,236 [chaos] - INFO - Started scale
+2020-07-28 01:36:50,237 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:36:50,237 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:37:23,469 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:36:50 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-v2klx  32s\n'
+ 'acl-filter-nse-green-d478579c7-slpbg  32s\n'
+ 'acl-filter-nse-red-795cd877f7-xvk4k   32s\n'
+ 'nginx-blue-7c457f4665-cntwh           32s\n'
+ 'nginx-green-5fbf684b7d-v8fpj          32s\n'
+ 'nginx-red-569bdbbcbf-tfqlj            32s\n'
+ 'passthrough-1-blue-5bd57b5484-6gd2z   32s\n'
+ 'passthrough-1-green-5bcfb575d4-cqhfn  32s\n'
+ 'passthrough-1-red-766495976-9chfs     32s\n'
+ 'passthrough-2-blue-66d66c7d48-txt5l   31s\n'
+ 'passthrough-2-green-7c86cc797d-n8t26  32s\n'
+ 'passthrough-2-red-585998c5f4-wns69    32s\n'
+ 'passthrough-3-blue-6546f768d-5wxqp    32s\n'
+ 'passthrough-3-green-76cb7f74c6-p2ddk  32s\n'
+ 'passthrough-3-red-5d76ccb876-pt5dk    32s\n'
+ 'proxy-nsc-59d894899f-5vmqv            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:37:23,469 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:37:23,484 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:37:24,365 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:37:24,366 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:37:24,409 [experiment] - INFO - Engine initialized
+2020-07-28 01:37:24,409 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:37:29,448 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:37:34,491 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:37:39,534 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:37:44,577 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:37:49,620 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:37:54,680 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:37:59,723 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:38:04,766 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:38:09,810 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:38:14,848 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:38:20,093 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:38:25,137 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:38:30,180 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:38:35,222 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:38:40,288 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:38:45,686 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:38:50,896 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:38:55,943 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:39:01,113 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:39:06,317 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:39:11,442 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:39:16,484 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:39:21,527 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:39:26,571 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:39:31,616 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:39:36,658 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:39:36,696 [experiment] - INFO - pod-delete finished
+2020-07-28 01:39:36,732 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"f7e58e94-40d3-4391-9801-e859d3fbb1ec","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:38:06Z', 'generation': 2, 'labels': {'chaosUID': 'f7e58e94-40d3-4391-9801-e859d3fbb1ec', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14491027', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'cf44195d-895a-4fcd-b3d0-b38f5025c201'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:39:36,875 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:39:36,876 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:39:37,278 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:39:37,278 [aut] - INFO - Deleting scale
+2020-07-28 01:39:43,274 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:39:43,275 [chaos] - INFO - Installing AUT took 0:00:33.230626
+2020-07-28 01:39:43,275 [chaos] - INFO - Experiment took 0:02:13.226650
+2020-07-28 01:39:43,275 [chaos] - INFO - Total elapsed time: 0:02:53.038541
+~~~~~~~~~~
+2020-07-28 01:39:48,910 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:39:48,916 [chaos] - INFO - Creating AUTs
+2020-07-28 01:39:48,916 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:39:48,916 [chaos] - DEBUG - [<aut.AUT object at 0x7f0057e11fd0>]
+2020-07-28 01:39:48,916 [chaos] - INFO - Creating experiments
+2020-07-28 01:39:48,917 [chaos] - INFO - Started scale
+2020-07-28 01:39:48,917 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:39:48,918 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:40:34,775 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:39:49 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   45s\n'
+ 'acl-filter-config-file-green  45s\n'
+ 'acl-filter-config-file-red    45s\n'
+ 'index-html-blue               45s\n'
+ 'index-html-green              45s\n'
+ 'index-html-red                45s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   45s\n'
+ 'acl-filter-nse-green  45s\n'
+ 'acl-filter-nse-red    45s\n'
+ 'nginx-blue            45s\n'
+ 'nginx-green           45s\n'
+ 'nginx-red             45s\n'
+ 'passthrough-1-blue    45s\n'
+ 'passthrough-1-green   45s\n'
+ 'passthrough-1-red     45s\n'
+ 'passthrough-2-blue    45s\n'
+ 'passthrough-2-green   45s\n'
+ 'passthrough-2-red     45s\n'
+ 'passthrough-3-blue    45s\n'
+ 'passthrough-3-green   45s\n'
+ 'passthrough-3-red     45s\n'
+ 'proxy-nsc             45s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-gprzn  44s\n'
+ 'acl-filter-nse-green-d478579c7-7pbl9  44s\n'
+ 'acl-filter-nse-red-795cd877f7-2xj56   45s\n'
+ 'nginx-blue-7c457f4665-jfnmq           45s\n'
+ 'nginx-green-5fbf684b7d-hs6qr          45s\n'
+ 'nginx-red-569bdbbcbf-xg6ns            45s\n'
+ 'passthrough-1-blue-5bd57b5484-7tdvw   44s\n'
+ 'passthrough-1-green-5bcfb575d4-2vlqd  45s\n'
+ 'passthrough-1-red-766495976-m7bgq     45s\n'
+ 'passthrough-2-blue-66d66c7d48-s2ggq   45s\n'
+ 'passthrough-2-green-7c86cc797d-l7rdl  44s\n'
+ 'passthrough-2-red-585998c5f4-t8w6j    44s\n'
+ 'passthrough-3-blue-6546f768d-j788t    45s\n'
+ 'passthrough-3-green-76cb7f74c6-zl7bw  44s\n'
+ 'passthrough-3-red-5d76ccb876-6trlk    45s\n'
+ 'proxy-nsc-59d894899f-fxl2t            45s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  45s\n'
+ '\n'
+ '\n')
+2020-07-28 01:40:34,776 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:40:34,791 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:40:35,656 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:40:35,656 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:40:35,700 [experiment] - INFO - Engine initialized
+2020-07-28 01:40:35,701 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:40:40,741 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:40:45,785 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:40:50,828 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:40:55,872 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:41:00,937 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:41:05,978 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:41:11,022 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:41:16,065 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:41:21,173 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:41:26,217 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:41:31,260 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:41:36,327 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:41:41,370 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:41:46,415 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:41:51,458 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:41:56,511 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:42:01,600 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:42:06,644 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:42:11,688 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:42:16,732 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:42:21,775 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:42:26,819 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:42:31,875 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:42:37,012 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:42:42,059 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:42:47,103 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:42:47,143 [experiment] - INFO - pod-delete finished
+2020-07-28 01:42:47,178 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"19d09411-72cc-48eb-a5a3-3e10178a11ba","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:41:18Z', 'generation': 2, 'labels': {'chaosUID': '19d09411-72cc-48eb-a5a3-3e10178a11ba', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14492395', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '040f75c1-1ff0-4c23-997c-f7330c482deb'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:42:47,331 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:42:47,332 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:42:47,641 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:42:47,641 [aut] - INFO - Deleting scale
+2020-07-28 01:42:50,461 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:42:50,462 [chaos] - INFO - Installing AUT took 0:00:45.856991
+2020-07-28 01:42:50,462 [chaos] - INFO - Experiment took 0:02:12.367605
+2020-07-28 01:42:50,462 [chaos] - INFO - Total elapsed time: 0:03:01.545484
+~~~~~~~~~~
+2020-07-28 01:42:56,098 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:42:56,104 [chaos] - INFO - Creating AUTs
+2020-07-28 01:42:56,104 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:42:56,104 [chaos] - DEBUG - [<aut.AUT object at 0x7f3aeb984fd0>]
+2020-07-28 01:42:56,104 [chaos] - INFO - Creating experiments
+2020-07-28 01:42:56,104 [chaos] - INFO - Started scale
+2020-07-28 01:42:56,105 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:42:56,106 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:43:29,470 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:42:56 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-66n8k  32s\n'
+ 'acl-filter-nse-green-d478579c7-827m5  32s\n'
+ 'acl-filter-nse-red-795cd877f7-czr4w   32s\n'
+ 'nginx-blue-7c457f4665-zjfxg           32s\n'
+ 'nginx-green-5fbf684b7d-x4qjp          32s\n'
+ 'nginx-red-569bdbbcbf-nl5pk            32s\n'
+ 'passthrough-1-blue-5bd57b5484-qtqh5   32s\n'
+ 'passthrough-1-green-5bcfb575d4-n4twd  31s\n'
+ 'passthrough-1-red-766495976-pmzps     32s\n'
+ 'passthrough-2-blue-66d66c7d48-8xpdr   32s\n'
+ 'passthrough-2-green-7c86cc797d-7gs7k  32s\n'
+ 'passthrough-2-red-585998c5f4-n9gwf    32s\n'
+ 'passthrough-3-blue-6546f768d-w6f5q    32s\n'
+ 'passthrough-3-green-76cb7f74c6-6gklb  32s\n'
+ 'passthrough-3-red-5d76ccb876-89f5n    32s\n'
+ 'proxy-nsc-59d894899f-xlq7m            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:43:29,471 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:43:29,486 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:43:30,358 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:43:30,359 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:43:30,446 [experiment] - INFO - Engine initialized
+2020-07-28 01:43:30,447 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:43:35,487 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:43:40,530 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:43:45,572 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:43:50,615 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:43:55,659 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:44:00,705 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:44:05,748 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:44:10,791 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:44:15,877 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:44:20,921 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:44:25,963 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:44:31,006 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:44:36,050 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:44:41,093 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:44:46,135 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:44:51,180 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:44:56,224 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:45:01,267 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:45:06,393 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:45:11,437 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:45:16,480 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:45:21,528 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:45:26,587 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:45:31,631 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:45:36,675 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:45:41,718 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:45:41,755 [experiment] - INFO - pod-delete finished
+2020-07-28 01:45:41,790 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"30ba49bf-8c18-419f-a932-81ea94ebd711","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:44:13Z', 'generation': 2, 'labels': {'chaosUID': '30ba49bf-8c18-419f-a932-81ea94ebd711', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14493729', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'fa726da9-01f6-4be9-9d5a-87dd68233049'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:45:41,922 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:45:41,924 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:45:42,253 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:45:42,253 [aut] - INFO - Deleting scale
+2020-07-28 01:45:44,974 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:45:44,974 [chaos] - INFO - Installing AUT took 0:00:33.364118
+2020-07-28 01:45:44,974 [chaos] - INFO - Experiment took 0:02:12.284644
+2020-07-28 01:45:44,974 [chaos] - INFO - Total elapsed time: 0:02:48.869847
+~~~~~~~~~~
+2020-07-28 01:45:50,579 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:45:50,585 [chaos] - INFO - Creating AUTs
+2020-07-28 01:45:50,585 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:45:50,585 [chaos] - DEBUG - [<aut.AUT object at 0x7fe101a24f60>]
+2020-07-28 01:45:50,585 [chaos] - INFO - Creating experiments
+2020-07-28 01:45:50,585 [chaos] - INFO - Started scale
+2020-07-28 01:45:50,586 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:45:50,586 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:46:30,103 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:45:50 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-2dcgf  39s\n'
+ 'acl-filter-nse-green-d478579c7-v5kjn  38s\n'
+ 'acl-filter-nse-red-795cd877f7-ff2gd   39s\n'
+ 'nginx-blue-7c457f4665-bqfhm           39s\n'
+ 'nginx-green-5fbf684b7d-x7c9x          39s\n'
+ 'nginx-red-569bdbbcbf-mmflx            39s\n'
+ 'passthrough-1-blue-5bd57b5484-5r2vr   39s\n'
+ 'passthrough-1-green-5bcfb575d4-h2kx6  39s\n'
+ 'passthrough-1-red-766495976-jwfnf     38s\n'
+ 'passthrough-2-blue-66d66c7d48-hj5vr   39s\n'
+ 'passthrough-2-green-7c86cc797d-ckxmm  39s\n'
+ 'passthrough-2-red-585998c5f4-8bqws    39s\n'
+ 'passthrough-3-blue-6546f768d-qfrk2    39s\n'
+ 'passthrough-3-green-76cb7f74c6-79wvt  39s\n'
+ 'passthrough-3-red-5d76ccb876-8rktz    39s\n'
+ 'proxy-nsc-59d894899f-nwhxj            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 01:46:30,104 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:46:30,118 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:46:31,047 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:46:31,048 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:46:31,110 [experiment] - INFO - Engine initialized
+2020-07-28 01:46:31,110 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:46:36,209 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:46:41,251 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:46:46,310 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:46:51,358 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:46:56,402 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:47:01,442 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:47:06,485 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:47:11,528 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:47:16,572 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:47:21,615 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:47:26,659 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:47:31,704 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:47:36,877 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:47:41,958 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:47:47,002 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:47:52,047 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:47:57,091 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:48:02,133 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:48:07,178 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:48:12,312 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:48:17,355 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:48:22,398 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:48:27,441 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:48:32,482 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:48:37,525 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:48:42,568 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:48:42,607 [experiment] - INFO - pod-delete finished
+2020-07-28 01:48:42,641 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"e6b1dd97-ad62-4e51-85d6-32b57a33e715","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:47:12Z', 'generation': 2, 'labels': {'chaosUID': 'e6b1dd97-ad62-4e51-85d6-32b57a33e715', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14495086', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '504e35cb-c602-4f86-9660-635d6399c3d0'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:48:46,731 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:48:46,732 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:48:47,117 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:48:47,118 [aut] - INFO - Deleting scale
+2020-07-28 01:48:50,138 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:48:50,138 [chaos] - INFO - Installing AUT took 0:00:39.516030
+2020-07-28 01:48:50,138 [chaos] - INFO - Experiment took 0:02:12.503354
+2020-07-28 01:48:50,138 [chaos] - INFO - Total elapsed time: 0:02:59.552976
+~~~~~~~~~~
+2020-07-28 01:48:55,743 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:48:55,749 [chaos] - INFO - Creating AUTs
+2020-07-28 01:48:55,749 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:48:55,749 [chaos] - DEBUG - [<aut.AUT object at 0x7f7c5e71cfd0>]
+2020-07-28 01:48:55,749 [chaos] - INFO - Creating experiments
+2020-07-28 01:48:55,750 [chaos] - INFO - Started scale
+2020-07-28 01:48:55,750 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:48:55,751 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:49:28,755 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:48:56 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   32s\n'
+ 'acl-filter-config-file-green  32s\n'
+ 'acl-filter-config-file-red    32s\n'
+ 'index-html-blue               32s\n'
+ 'index-html-green              32s\n'
+ 'index-html-red                32s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   32s\n'
+ 'acl-filter-nse-green  32s\n'
+ 'acl-filter-nse-red    32s\n'
+ 'nginx-blue            32s\n'
+ 'nginx-green           32s\n'
+ 'nginx-red             32s\n'
+ 'passthrough-1-blue    32s\n'
+ 'passthrough-1-green   32s\n'
+ 'passthrough-1-red     32s\n'
+ 'passthrough-2-blue    32s\n'
+ 'passthrough-2-green   32s\n'
+ 'passthrough-2-red     32s\n'
+ 'passthrough-3-blue    32s\n'
+ 'passthrough-3-green   32s\n'
+ 'passthrough-3-red     32s\n'
+ 'proxy-nsc             32s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-x2qr5  31s\n'
+ 'acl-filter-nse-green-d478579c7-x2xml  32s\n'
+ 'acl-filter-nse-red-795cd877f7-g4t8b   32s\n'
+ 'nginx-blue-7c457f4665-8pbfw           32s\n'
+ 'nginx-green-5fbf684b7d-t4bqs          32s\n'
+ 'nginx-red-569bdbbcbf-wx7rz            32s\n'
+ 'passthrough-1-blue-5bd57b5484-gw4gr   32s\n'
+ 'passthrough-1-green-5bcfb575d4-wzkhd  31s\n'
+ 'passthrough-1-red-766495976-b97lq     32s\n'
+ 'passthrough-2-blue-66d66c7d48-6pkd2   32s\n'
+ 'passthrough-2-green-7c86cc797d-wx2mt  32s\n'
+ 'passthrough-2-red-585998c5f4-v8d5j    32s\n'
+ 'passthrough-3-blue-6546f768d-2nrhv    32s\n'
+ 'passthrough-3-green-76cb7f74c6-cvg76  32s\n'
+ 'passthrough-3-red-5d76ccb876-bpgrq    32s\n'
+ 'proxy-nsc-59d894899f-xp4v5            32s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  32s\n'
+ '\n'
+ '\n')
+2020-07-28 01:49:28,755 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:49:28,770 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:49:29,591 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:49:29,591 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:49:29,634 [experiment] - INFO - Engine initialized
+2020-07-28 01:49:29,635 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:49:34,675 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:49:39,719 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:49:44,762 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:49:49,804 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:49:54,848 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:49:59,892 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:50:04,935 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:50:09,979 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:50:15,023 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:50:20,063 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:50:25,133 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:50:30,176 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:50:35,284 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:50:40,328 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:50:45,370 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:50:50,412 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:50:55,489 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:51:00,532 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:51:05,696 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:51:10,755 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:51:15,812 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:51:20,881 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:51:25,924 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:51:30,968 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:51:36,011 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:51:41,072 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:51:46,114 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:51:46,152 [experiment] - INFO - pod-delete finished
+2020-07-28 01:51:46,217 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"93ee0830-0594-423a-9e0f-659a2de27e6a","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:50:17Z', 'generation': 2, 'labels': {'chaosUID': '93ee0830-0594-423a-9e0f-659a2de27e6a', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14496449', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '6157823f-2f44-4f9b-8af0-d7f6944a1368'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:51:46,357 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:51:46,358 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:51:46,676 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:51:46,677 [aut] - INFO - Deleting scale
+2020-07-28 01:51:53,426 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:51:53,426 [chaos] - INFO - Installing AUT took 0:00:33.003711
+2020-07-28 01:51:53,426 [chaos] - INFO - Experiment took 0:02:17.396604
+2020-07-28 01:51:53,426 [chaos] - INFO - Total elapsed time: 0:02:57.676781
+~~~~~~~~~~
+2020-07-28 01:51:59,049 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:51:59,055 [chaos] - INFO - Creating AUTs
+2020-07-28 01:51:59,056 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:51:59,056 [chaos] - DEBUG - [<aut.AUT object at 0x7f7f53079fd0>]
+2020-07-28 01:51:59,056 [chaos] - INFO - Creating experiments
+2020-07-28 01:51:59,056 [chaos] - INFO - Started scale
+2020-07-28 01:51:59,057 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:51:59,057 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:52:32,439 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:51:59 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-t7kwd  33s\n'
+ 'acl-filter-nse-green-d478579c7-45hlb  32s\n'
+ 'acl-filter-nse-red-795cd877f7-clwtg   33s\n'
+ 'nginx-blue-7c457f4665-2b88f           32s\n'
+ 'nginx-green-5fbf684b7d-fltwd          32s\n'
+ 'nginx-red-569bdbbcbf-fswqs            31s\n'
+ 'passthrough-1-blue-5bd57b5484-mkpsw   33s\n'
+ 'passthrough-1-green-5bcfb575d4-8tf88  33s\n'
+ 'passthrough-1-red-766495976-w8ck8     32s\n'
+ 'passthrough-2-blue-66d66c7d48-lh8zt   32s\n'
+ 'passthrough-2-green-7c86cc797d-crrp9  33s\n'
+ 'passthrough-2-red-585998c5f4-zt6xs    33s\n'
+ 'passthrough-3-blue-6546f768d-8ms82    33s\n'
+ 'passthrough-3-green-76cb7f74c6-bgvlp  32s\n'
+ 'passthrough-3-red-5d76ccb876-4ls5m    32s\n'
+ 'proxy-nsc-59d894899f-hvf95            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:52:32,439 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:52:32,454 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:52:33,341 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:52:33,341 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:52:33,439 [experiment] - INFO - Engine initialized
+2020-07-28 01:52:33,439 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:52:38,480 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:52:43,523 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:52:48,650 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:52:53,692 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:52:58,736 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:53:03,780 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:53:08,824 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:53:13,868 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:53:18,911 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:53:23,952 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:53:29,021 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:53:34,065 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:53:39,108 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:53:44,165 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:53:49,209 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:53:54,259 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:53:59,306 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:54:04,351 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:54:09,527 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:54:14,569 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:54:19,611 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:54:24,655 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:54:29,700 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:54:34,743 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:54:39,787 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:54:44,830 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:54:49,874 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:54:49,912 [experiment] - INFO - pod-delete finished
+2020-07-28 01:54:49,948 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"a255a0f1-8048-4ea1-b4c1-13243bacab04","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:53:18Z', 'generation': 2, 'labels': {'chaosUID': 'a255a0f1-8048-4ea1-b4c1-13243bacab04', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14497794', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '04fcc301-981d-41b3-ab0f-6752d07369d7'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:54:50,175 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:54:50,177 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:54:50,497 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:54:50,497 [aut] - INFO - Deleting scale
+2020-07-28 01:54:53,108 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:54:53,109 [chaos] - INFO - Installing AUT took 0:00:33.381327
+2020-07-28 01:54:53,109 [chaos] - INFO - Experiment took 0:02:17.472292
+2020-07-28 01:54:53,109 [chaos] - INFO - Total elapsed time: 0:02:54.053260
+~~~~~~~~~~
+2020-07-28 01:54:58,746 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:54:58,752 [chaos] - INFO - Creating AUTs
+2020-07-28 01:54:58,752 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:54:58,752 [chaos] - DEBUG - [<aut.AUT object at 0x7f5d9c60cfd0>]
+2020-07-28 01:54:58,753 [chaos] - INFO - Creating experiments
+2020-07-28 01:54:58,753 [chaos] - INFO - Started scale
+2020-07-28 01:54:58,754 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:54:58,754 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:55:38,296 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:54:59 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   39s\n'
+ 'acl-filter-config-file-green  39s\n'
+ 'acl-filter-config-file-red    39s\n'
+ 'index-html-blue               39s\n'
+ 'index-html-green              39s\n'
+ 'index-html-red                39s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   39s\n'
+ 'acl-filter-nse-green  39s\n'
+ 'acl-filter-nse-red    39s\n'
+ 'nginx-blue            39s\n'
+ 'nginx-green           39s\n'
+ 'nginx-red             39s\n'
+ 'passthrough-1-blue    39s\n'
+ 'passthrough-1-green   39s\n'
+ 'passthrough-1-red     39s\n'
+ 'passthrough-2-blue    39s\n'
+ 'passthrough-2-green   39s\n'
+ 'passthrough-2-red     39s\n'
+ 'passthrough-3-blue    39s\n'
+ 'passthrough-3-green   39s\n'
+ 'passthrough-3-red     39s\n'
+ 'proxy-nsc             39s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-5kqsj  39s\n'
+ 'acl-filter-nse-green-d478579c7-hwgg6  38s\n'
+ 'acl-filter-nse-red-795cd877f7-dnmlh   39s\n'
+ 'nginx-blue-7c457f4665-g689x           39s\n'
+ 'nginx-green-5fbf684b7d-cnfrr          39s\n'
+ 'nginx-red-569bdbbcbf-pdpcm            39s\n'
+ 'passthrough-1-blue-5bd57b5484-gl48c   39s\n'
+ 'passthrough-1-green-5bcfb575d4-z5pgs  39s\n'
+ 'passthrough-1-red-766495976-cm58b     39s\n'
+ 'passthrough-2-blue-66d66c7d48-hzxlf   39s\n'
+ 'passthrough-2-green-7c86cc797d-d6bhg  39s\n'
+ 'passthrough-2-red-585998c5f4-vbkrw    39s\n'
+ 'passthrough-3-blue-6546f768d-qgq8s    38s\n'
+ 'passthrough-3-green-76cb7f74c6-b5v4g  39s\n'
+ 'passthrough-3-red-5d76ccb876-llg5s    39s\n'
+ 'proxy-nsc-59d894899f-fljns            39s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  39s\n'
+ '\n'
+ '\n')
+2020-07-28 01:55:38,297 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:55:38,311 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:55:39,150 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:55:39,151 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:55:39,194 [experiment] - INFO - Engine initialized
+2020-07-28 01:55:39,195 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:55:44,266 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:55:49,310 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:55:54,384 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:55:59,427 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:56:04,471 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:56:09,639 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:56:14,683 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:56:19,726 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:56:24,770 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:56:29,908 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:56:34,953 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:56:39,997 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:56:45,041 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:56:50,085 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:56:55,128 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:57:00,180 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 01:57:05,227 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 01:57:10,271 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 01:57:15,314 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 01:57:20,359 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 01:57:25,399 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 01:57:30,447 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 01:57:35,493 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 01:57:40,541 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 01:57:45,603 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 01:57:50,646 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 01:57:55,690 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-28 01:57:55,728 [experiment] - INFO - pod-delete finished
+2020-07-28 01:57:55,763 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"705c8e10-23b6-4c20-9949-698273f95e38","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:56:21Z', 'generation': 2, 'labels': {'chaosUID': '705c8e10-23b6-4c20-9949-698273f95e38', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14499189', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': '900ad928-d9dc-437f-9952-28f2a4ff6a60'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 01:57:55,897 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 01:57:55,898 [experiment] - INFO - Deleting pod-delete
+2020-07-28 01:57:56,193 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 01:57:56,193 [aut] - INFO - Deleting scale
+2020-07-28 01:57:57,174 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 01:57:57,175 [chaos] - INFO - Installing AUT took 0:00:39.541941
+2020-07-28 01:57:57,175 [chaos] - INFO - Experiment took 0:02:17.431438
+2020-07-28 01:57:57,175 [chaos] - INFO - Total elapsed time: 0:02:58.422210
+~~~~~~~~~~
+2020-07-28 01:58:02,810 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-28 01:58:02,816 [chaos] - INFO - Creating AUTs
+2020-07-28 01:58:02,816 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '3']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-28 01:58:02,816 [chaos] - DEBUG - [<aut.AUT object at 0x7ff8bf70cfd0>]
+2020-07-28 01:58:02,816 [chaos] - INFO - Creating experiments
+2020-07-28 01:58:02,816 [chaos] - INFO - Started scale
+2020-07-28 01:58:02,817 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': 3}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-28 01:58:02,817 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '3'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-28 01:58:36,116 [aut] - DEBUG - ('NAME:   scale\n'
+ 'LAST DEPLOYED: Tue Jul 28 01:58:03 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME                          AGE\n'
+ 'acl-filter-config-file-blue   33s\n'
+ 'acl-filter-config-file-green  33s\n'
+ 'acl-filter-config-file-red    33s\n'
+ 'index-html-blue               33s\n'
+ 'index-html-green              33s\n'
+ 'index-html-red                33s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME                  AGE\n'
+ 'acl-filter-nse-blue   33s\n'
+ 'acl-filter-nse-green  33s\n'
+ 'acl-filter-nse-red    33s\n'
+ 'nginx-blue            33s\n'
+ 'nginx-green           33s\n'
+ 'nginx-red             33s\n'
+ 'passthrough-1-blue    33s\n'
+ 'passthrough-1-green   33s\n'
+ 'passthrough-1-red     33s\n'
+ 'passthrough-2-blue    33s\n'
+ 'passthrough-2-green   33s\n'
+ 'passthrough-2-red     33s\n'
+ 'passthrough-3-blue    33s\n'
+ 'passthrough-3-green   33s\n'
+ 'passthrough-3-red     33s\n'
+ 'proxy-nsc             33s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                                  AGE\n'
+ 'acl-filter-nse-blue-6f6bd55556-xz8lk  33s\n'
+ 'acl-filter-nse-green-d478579c7-x87d7  32s\n'
+ 'acl-filter-nse-red-795cd877f7-4wvl5   33s\n'
+ 'nginx-blue-7c457f4665-tllsr           32s\n'
+ 'nginx-green-5fbf684b7d-mntd4          33s\n'
+ 'nginx-red-569bdbbcbf-fq25s            32s\n'
+ 'passthrough-1-blue-5bd57b5484-mbkhz   33s\n'
+ 'passthrough-1-green-5bcfb575d4-fgxfv  33s\n'
+ 'passthrough-1-red-766495976-cxk4q     33s\n'
+ 'passthrough-2-blue-66d66c7d48-6nktj   32s\n'
+ 'passthrough-2-green-7c86cc797d-nws9p  32s\n'
+ 'passthrough-2-red-585998c5f4-rc6mk    32s\n'
+ 'passthrough-3-blue-6546f768d-lz7jz    33s\n'
+ 'passthrough-3-green-76cb7f74c6-2r76x  33s\n'
+ 'passthrough-3-red-5d76ccb876-chhlh    33s\n'
+ 'proxy-nsc-59d894899f-v466k            33s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME         AGE\n'
+ 'web-service  33s\n'
+ '\n'
+ '\n')
+2020-07-28 01:58:36,117 [experiment] - INFO - Starting pod-delete
+2020-07-28 01:58:36,131 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=acl-filter', 'kind': 'deployment', 'container': 'acl-filter'}}
+2020-07-28 01:58:36,950 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-07-28 01:58:36,950 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-28 01:58:36,994 [experiment] - INFO - Engine initialized
+2020-07-28 01:58:36,994 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-28 01:58:42,034 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-28 01:58:47,077 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-28 01:58:52,120 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-28 01:58:57,164 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-28 01:59:02,208 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-28 01:59:07,252 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-28 01:59:12,295 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-28 01:59:17,339 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-28 01:59:22,383 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-28 01:59:27,427 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-28 01:59:32,470 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-28 01:59:37,511 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-28 01:59:42,554 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-28 01:59:47,597 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-28 01:59:52,641 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-28 01:59:57,684 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-28 02:00:02,728 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-28 02:00:07,772 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-28 02:00:12,815 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-28 02:00:17,858 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-28 02:00:22,902 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-28 02:00:27,945 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-28 02:00:32,988 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-28 02:00:38,029 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-28 02:00:43,094 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-28 02:00:48,138 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-28 02:00:48,221 [experiment] - INFO - pod-delete finished
+2020-07-28 02:00:48,254 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"9eae9cb2-e000-42d0-8d05-eb951e351532","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-07-28T07:59:19Z', 'generation': 2, 'labels': {'chaosUID': '9eae9cb2-e000-42d0-8d05-eb951e351532', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '14500506', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'a4974242-d277-4e23-b68e-41468ed54aa6'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-07-28 02:00:52,467 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-07-28 02:00:52,469 [experiment] - INFO - Deleting pod-delete
+2020-07-28 02:00:52,785 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-07-28 02:00:52,785 [aut] - INFO - Deleting scale
+2020-07-28 02:00:56,387 [chaos] - INFO - Experiment verdict: Pass
+2020-07-28 02:00:56,387 [chaos] - INFO - Installing AUT took 0:00:33.298156
+2020-07-28 02:00:56,387 [chaos] - INFO - Experiment took 0:02:12.104813
+2020-07-28 02:00:56,387 [chaos] - INFO - Total elapsed time: 0:02:53.571103

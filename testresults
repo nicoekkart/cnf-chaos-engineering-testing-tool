@@ -1,0 +1,35 @@
+2020-07-30 04:22:22,332 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-30 04:22:22,338 [chaos] - INFO - Creating AUTs
+2020-07-30 04:22:22,338 [chaos] - DEBUG - [[['passthrough.sfc_replicas', '1'], ['passthrough.sfc_replicas', '2'], ['passthrough.sfc_replicas', '3'], ['passthrough.sfc_replicas', '4'], ['passthrough.sfc_replicas', '5'], ['passthrough.sfc_replicas', '6'], ['passthrough.sfc_replicas', '7'], ['passthrough.sfc_replicas', '8'], ['passthrough.sfc_replicas', '9'], ['passthrough.sfc_replicas', '10'], ['passthrough.sfc_replicas', '11'], ['passthrough.sfc_replicas', '12'], ['passthrough.sfc_replicas', '13'], ['passthrough.sfc_replicas', '14'], ['passthrough.sfc_replicas', '15']], [['chaosdeploy', 'acl-filter-nse-blue']]]
+2020-07-30 04:22:22,339 [chaos] - DEBUG - [<aut.AUT object at 0x7fdc5717afd0>, <aut.AUT object at 0x7fdc56ccb240>, <aut.AUT object at 0x7fdc56ccb1d0>, <aut.AUT object at 0x7fdc56ccb4e0>, <aut.AUT object at 0x7fdc56ccb4a8>, <aut.AUT object at 0x7fdc56ccb470>, <aut.AUT object at 0x7fdc56ccb438>, <aut.AUT object at 0x7fdc56ccb6a0>, <aut.AUT object at 0x7fdc56ccb5f8>, <aut.AUT object at 0x7fdc56ccb588>, <aut.AUT object at 0x7fdc56ccb748>, <aut.AUT object at 0x7fdc56ccb780>, <aut.AUT object at 0x7fdc56ccb550>, <aut.AUT object at 0x7fdc56ccb7b8>, <aut.AUT object at 0x7fdc56ccb278>]
+2020-07-30 04:22:22,339 [chaos] - INFO - Creating experiments
+2020-07-30 04:22:22,339 [chaos] - INFO - Started scale
+2020-07-30 04:22:22,340 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'scale', 'path': 'use_cases/scale/sfc-proxy'},
+         'values': {'chaosdeploy': 'acl-filter-nse-blue',
+                    'passthrough.sfc_replicas': '1..15'}},
+ 'conditions': [{'command': 'wget -O - localhost:8080 --header="NSM-Color: '
+                            'blue"\n',
+                 'entrypoint': {'container': 'proxy-nsc', 'pod': 'proxy'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'acl-filter',
+                             'kind': 'deployment',
+                             'label': 'app=acl-filter',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-07-30 04:22:22,340 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '1'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Traceback (most recent call last):
+  File "main.py", line 10, in <module>
+    chaos_runner.run()
+  File "/users/nekkartu/chaos/chaos.py", line 51, in run
+    aut.install()
+  File "/users/nekkartu/chaos/aut.py", line 29, in install
+    '--wait'], stdout=subprocess.PIPE)
+  File "/usr/lib/python3.6/subprocess.py", line 425, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.6/subprocess.py", line 850, in communicate
+    stdout = self.stdout.read()
+KeyboardInterrupt

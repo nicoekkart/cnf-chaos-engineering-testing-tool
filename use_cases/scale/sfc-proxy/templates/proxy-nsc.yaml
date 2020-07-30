@@ -16,7 +16,7 @@ spec:
       containers:
         - name: proxy-nsc
           image: nicoekkart/sfc-proxy-proxy-nsc:latest
-          imagePullPolicy: Always
+          imagePullPolicy: Never
           env:
             - name: CLIENT_NETWORK_SERVICE
               value: "web-service"
