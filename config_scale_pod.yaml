@@ -24,5 +24,5 @@ aut:
     path: use_cases/scale/sfc-proxy
     name: scale
   values:
-    passthrough.sfc_replicas: 1..15
+    passthrough.sfc_replicas: 95,100,150,200,250,300,350,400
     chaosdeploy: acl-filter-nse-blue

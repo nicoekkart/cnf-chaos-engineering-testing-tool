@@ -9,4 +9,5 @@ def logger(name):
         _logger.setLevel(logging.DEBUG)
         c_handler.setFormatter(formatter)
         _logger.addHandler(c_handler)
+        _logger.setLevel('INFO')
     return _logger

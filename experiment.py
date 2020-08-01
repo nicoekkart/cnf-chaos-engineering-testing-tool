@@ -60,6 +60,8 @@ class Experiment:
            return obj['status']['engineStatus']=='initialized'
         except kubernetes.client.rest.ApiException as _:
             return False
+        except KeyError as _:
+            return False
 
     @property
     def is_completed(self):
@@ -110,3 +112,5 @@ class Experiment:
         self.logger.debug(pformat(kubectl_delete.stdout.decode('utf-8')))
 
         
+    def __str__(self):
+        return '{}'.format(self.experiment_name)

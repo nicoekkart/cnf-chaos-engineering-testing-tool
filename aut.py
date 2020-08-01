@@ -41,7 +41,14 @@ class AUT:
             bounds = list(int(bound) for bound in value[1].split('..'))
             bounds[1] += 1
             return [[value[0], str(i)] for i in range(*bounds)]
+        elif type(value[1])==str and ',' in value[1]:
+            bounds = list(int(bound) for bound in value[1].split(','))
+            return [[value[0], str(i)] for i in bounds]
         else:
             return [[value[0], str(value[1])]]
+
+        
+    def __str__(self):
+        return '{} {}'.format(self.config['chart']['name'], self.values)
 
 

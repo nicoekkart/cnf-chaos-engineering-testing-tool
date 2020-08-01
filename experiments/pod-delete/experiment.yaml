@@ -40,7 +40,7 @@ spec:
           - "get"
           - "list"
     image: "nicoekkart/ansible-runner:latest"
-    imagePullPolicy: Never
+    imagePullPolicy: IfNotPresent
     args:
     - -c
     - ansible-playbook ./experiments/nsm/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

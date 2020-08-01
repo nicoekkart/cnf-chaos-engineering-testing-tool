@@ -1,0 +1,160 @@
+2020-07-30 15:25:27,902 [chaos] - INFO - Loading config file: config_scale_pod.yaml
+2020-07-30 15:25:27,908 [chaos] - INFO - Creating AUTs
+2020-07-30 15:25:27,909 [chaos] - INFO - Creating experiments
+2020-07-30 15:25:27,909 [chaos] - INFO - Started scale
+2020-07-30 15:25:27,910 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '25'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: networkservices.networkservicemesh.io "web-service" already exists
+2020-07-30 15:25:28,843 [experiment] - INFO - Starting pod-delete
+2020-07-30 15:25:30,117 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-30 15:25:30,195 [experiment] - INFO - Engine initialized
+2020-07-30 15:25:30,196 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-30 15:25:35,246 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-30 15:25:40,319 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-30 15:25:45,382 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-30 15:25:50,501 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-30 15:25:55,550 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-30 15:26:00,601 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-30 15:26:05,644 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-30 15:26:10,693 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-30 15:26:15,778 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-30 15:26:20,822 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-30 15:26:25,865 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-30 15:26:30,909 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-30 15:26:35,953 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-30 15:26:40,997 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-30 15:26:46,039 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-30 15:26:51,083 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-30 15:26:56,162 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-30 15:27:01,206 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-30 15:27:06,248 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-30 15:27:11,291 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-30 15:27:16,334 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-30 15:27:21,378 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-30 15:27:26,421 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-30 15:27:31,465 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-30 15:27:36,508 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-30 15:27:41,552 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-30 15:27:46,596 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-30 15:27:51,638 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-30 15:27:56,693 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-30 15:28:01,735 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-30 15:28:06,778 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-30 15:28:06,822 [experiment] - INFO - pod-delete finished
+2020-07-30 15:28:06,995 [experiment] - INFO - Deleting pod-delete
+2020-07-30 15:28:07,767 [aut] - INFO - Deleting scale
+2020-07-30 15:28:10,486 [chaos] - INFO - Experiment verdict: Pass
+2020-07-30 15:28:10,486 [chaos] - INFO - Installing AUT took 0:00:00.932551
+2020-07-30 15:28:10,486 [chaos] - INFO - Experiment took 0:02:37.979394
+2020-07-30 15:28:10,487 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '26'], ['chaosdeploy', 'acl-filter-nse-blue'])
+2020-07-30 15:30:11,694 [experiment] - INFO - Starting pod-delete
+2020-07-30 15:30:12,102 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-30 15:30:12,141 [experiment] - INFO - Engine initialized
+2020-07-30 15:30:12,142 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-30 15:30:17,186 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-30 15:30:22,230 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-30 15:30:27,272 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-30 15:30:32,316 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-30 15:30:37,358 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-30 15:30:42,402 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-30 15:30:47,445 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-30 15:30:52,487 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-30 15:30:57,529 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-30 15:31:02,572 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-30 15:31:07,613 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-30 15:31:12,655 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-30 15:31:17,698 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-30 15:31:22,759 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-30 15:31:27,810 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-30 15:31:32,852 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-30 15:31:37,894 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-30 15:31:42,938 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-30 15:31:47,981 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-30 15:31:53,024 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-30 15:31:58,066 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-30 15:32:03,110 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-30 15:32:08,154 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-30 15:32:13,196 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-30 15:32:18,240 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-30 15:32:18,277 [experiment] - INFO - pod-delete finished
+2020-07-30 15:32:18,442 [experiment] - INFO - Deleting pod-delete
+2020-07-30 15:32:18,698 [aut] - INFO - Deleting scale
+2020-07-30 15:32:24,779 [chaos] - INFO - Experiment verdict: Pass
+2020-07-30 15:32:24,780 [chaos] - INFO - Installing AUT took 0:02:01.186300
+2020-07-30 15:32:24,780 [chaos] - INFO - Experiment took 0:02:06.583287
+2020-07-30 15:32:24,780 [aut] - INFO - Running scale with values (['passthrough.sfc_replicas', '27'], ['chaosdeploy', 'acl-filter-nse-blue'])
+Error: release scale failed: timed out waiting for the condition
+2020-07-30 15:38:29,702 [experiment] - INFO - Starting pod-delete
+2020-07-30 15:38:30,132 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-07-30 15:38:30,172 [experiment] - INFO - Engine initialized
+2020-07-30 15:38:30,172 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-07-30 15:38:35,212 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-07-30 15:38:40,254 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-07-30 15:38:45,297 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-07-30 15:38:50,340 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-07-30 15:38:55,383 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-07-30 15:39:00,426 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-07-30 15:39:05,471 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-07-30 15:39:10,514 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-07-30 15:39:15,557 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-07-30 15:39:20,599 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-07-30 15:39:25,642 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-07-30 15:39:30,685 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-07-30 15:39:35,729 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-07-30 15:39:40,772 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-07-30 15:39:45,837 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-07-30 15:39:50,879 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-07-30 15:39:56,072 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-07-30 15:40:01,114 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-07-30 15:40:06,156 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-07-30 15:40:11,200 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-07-30 15:40:16,248 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-07-30 15:40:21,323 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-07-30 15:40:26,366 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-07-30 15:40:31,407 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-07-30 15:40:36,451 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-07-30 15:40:41,495 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-07-30 15:40:46,538 [experiment] - INFO - Waiting for engine completion (28/60)
+2020-07-30 15:40:51,583 [experiment] - INFO - Waiting for engine completion (29/60)
+2020-07-30 15:40:56,626 [experiment] - INFO - Waiting for engine completion (30/60)
+2020-07-30 15:41:01,670 [experiment] - INFO - Waiting for engine completion (31/60)
+2020-07-30 15:41:06,713 [experiment] - INFO - Waiting for engine completion (32/60)
+2020-07-30 15:41:11,756 [experiment] - INFO - Waiting for engine completion (33/60)
+2020-07-30 15:41:16,798 [experiment] - INFO - Waiting for engine completion (34/60)
+2020-07-30 15:41:21,845 [experiment] - INFO - Waiting for engine completion (35/60)
+2020-07-30 15:41:26,889 [experiment] - INFO - Waiting for engine completion (36/60)
+2020-07-30 15:41:31,932 [experiment] - INFO - Waiting for engine completion (37/60)
+2020-07-30 15:41:37,003 [experiment] - INFO - Waiting for engine completion (38/60)
+2020-07-30 15:41:42,045 [experiment] - INFO - Waiting for engine completion (39/60)
+2020-07-30 15:41:47,088 [experiment] - INFO - Waiting for engine completion (40/60)
+2020-07-30 15:41:52,130 [experiment] - INFO - Waiting for engine completion (41/60)
+2020-07-30 15:41:57,173 [experiment] - INFO - Waiting for engine completion (42/60)
+2020-07-30 15:42:02,216 [experiment] - INFO - Waiting for engine completion (43/60)
+2020-07-30 15:42:07,256 [experiment] - INFO - Waiting for engine completion (44/60)
+2020-07-30 15:42:12,297 [experiment] - INFO - Waiting for engine completion (45/60)
+2020-07-30 15:42:17,340 [experiment] - INFO - Waiting for engine completion (46/60)
+2020-07-30 15:42:22,382 [experiment] - INFO - Waiting for engine completion (47/60)
+2020-07-30 15:42:27,426 [experiment] - INFO - Waiting for engine completion (48/60)
+2020-07-30 15:42:32,469 [experiment] - INFO - Waiting for engine completion (49/60)
+2020-07-30 15:42:37,512 [experiment] - INFO - Waiting for engine completion (50/60)
+2020-07-30 15:42:42,555 [experiment] - INFO - Waiting for engine completion (51/60)
+2020-07-30 15:42:47,597 [experiment] - INFO - Waiting for engine completion (52/60)
+2020-07-30 15:42:52,638 [experiment] - INFO - Waiting for engine completion (53/60)
+2020-07-30 15:42:57,682 [experiment] - INFO - Waiting for engine completion (54/60)
+2020-07-30 15:43:02,725 [experiment] - INFO - Waiting for engine completion (55/60)
+2020-07-30 15:43:07,769 [experiment] - INFO - Waiting for engine completion (56/60)
+2020-07-30 15:43:12,813 [experiment] - INFO - Waiting for engine completion (57/60)
+2020-07-30 15:43:17,853 [experiment] - INFO - Waiting for engine completion (58/60)
+2020-07-30 15:43:22,896 [experiment] - INFO - Waiting for engine completion (59/60)
+2020-07-30 15:43:27,953 [experiment] - INFO - Waiting for engine completion (60/60)
+2020-07-30 15:43:32,995 [experiment] - INFO - pod-delete finished
+2020-07-30 15:43:33,185 [experiment] - INFO - Deleting pod-delete
+2020-07-30 15:43:33,592 [aut] - INFO - Deleting scale
+2020-07-30 15:43:40,019 [chaos] - INFO - Experiment verdict: Awaited
+2020-07-30 15:43:40,020 [chaos] - INFO - Installing AUT took 0:06:04.921268
+2020-07-30 15:43:40,020 [chaos] - INFO - Experiment took 0:05:03.293159
+2020-07-30 15:43:40,020 [chaos] - INFO - Full experiment summary:
+2020-07-30 15:43:40,020 [chaos] - INFO - AUT	Experiment	AUT Install Time	Experiment time	Verdict
+2020-07-30 15:43:40,020 [chaos] - INFO - scale (['passthrough.sfc_replicas', '25'], ['chaosdeploy', 'acl-filter-nse-blue'])	pod-delete	0:00:00.932551	0:02:37.979394	Pass
+2020-07-30 15:43:40,020 [chaos] - INFO - scale (['passthrough.sfc_replicas', '26'], ['chaosdeploy', 'acl-filter-nse-blue'])	pod-delete	0:02:01.186300	0:02:06.583287	Pass
+2020-07-30 15:43:40,021 [chaos] - INFO - scale (['passthrough.sfc_replicas', '27'], ['chaosdeploy', 'acl-filter-nse-blue'])	pod-delete	0:06:04.921268	0:05:03.293159	Awaited
+2020-07-30 15:43:40,021 [chaos] - INFO - Total elapsed time: 0:18:12.111844
