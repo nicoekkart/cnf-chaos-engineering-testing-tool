@@ -2,14 +2,22 @@
 ---
 name: scale
 experiments:
-  - name: container-killer
-    path: experiments/container-kill/
+  - name: pod-delete
+    path: experiments/pod-delete/
+    target: 
+      ns: 'default'
+      label: 'app=enb'
+      kind: 'deployment'
+      container: 'enb'
 
 conditions:
   - name: Wget should work
     command: |
-      echo "works"
+      /bin/sh -c "wget -T 10 -t 1 -O - 10.60.1.1"
     type: [pre, post]
+    entrypoint:
+      pod: ue
+      container: gogtp-ue
 
 aut:
   chart: 

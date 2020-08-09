@@ -5,9 +5,9 @@ metadata:
   namespace: default
 spec:
   appinfo:
-    appns: 'default'
-    applabel: 'app=acl-filter'
-    appkind: 'deployment'
+    appns: '{ns}'
+    applabel: '{label}'
+    appkind: '{kind}'
   # It can be true/false
   annotationCheck: 'true'
   # It can be active/stop
@@ -26,11 +26,17 @@ spec:
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
               value: '30'
-
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '10'
-              
             # pod failures without '--force' & default terminationGracePeriodSeconds
             - name: FORCE
               value: 'false'
+            - name: PRECONDITION
+              value: '{pre_condition}'
+            - name: POSTCONDITION
+              value: '{post_condition}'
+            - name: ENTRYPOINT
+              value: '{entrypoint_pod}'
+            - name: ENTRYPOINT_CONTAINER
+              value: '{entrypoint_container}'

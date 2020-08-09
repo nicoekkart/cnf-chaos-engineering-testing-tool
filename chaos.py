@@ -52,17 +52,21 @@ class Chaos:
         for aut in self.auts:
             tries = 0
             done = False
-            while not done and tries<4:
+            max_tries = 1
+            while not done and tries<max_tries:
                 for experiment in self.experiments:
-                    aut.install()
-                    experiment.run(aut) 
-                    experiment.delete()
+                    if aut.install():
+                        experiment.run(aut) 
+                        experiment.delete()
+                    else:
+                        experiment.verdict = 'Fail'
+                        self.logger.info('Experiment failed because problem with helm install')
                     aut.delete()
                     self.logger.info('Experiment verdict: {}'.format(experiment.verdict))
                     self.logger.info('Installing AUT took {}'.format(aut.install_duration))
                     self.logger.info('Experiment took {}'.format(experiment.duration))
+                    experiment_results.append((str(aut), str(experiment), str(aut.install_duration), str(experiment.duration), str(experiment.verdict)))
                     if experiment.verdict == 'Pass':
-                        experiment_results.append((str(aut), str(experiment), str(aut.install_duration), str(experiment.duration), str(experiment.verdict)))
                         done = True
                     else:
                         tries += 1
@@ -77,7 +81,7 @@ class Chaos:
                     sleep(60)
                     subprocess.run(["helm", "install", "nsm/nsm", "--name=nsm", "--values=/users/nekkartu/cnf-testbed/examples/workload-infra/nsm-k8s/values.yaml"])
                     self.logger.info('Installed nsm')
-                    sleep(60)
+                    #sleep(20)
             if not done:
                 break
 

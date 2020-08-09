@@ -79,3 +79,5 @@ endpoints:
     local_addresses:
       sgi_ip: "10.60.1.*"
       euu_ip: "10.60.4.0/24"
+
+chaosdeploy: enb

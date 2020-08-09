@@ -29,6 +29,7 @@ class AUT:
             '--wait'], stdout=subprocess.PIPE)
         self.install_end_time = datetime.now()
         self.logger.debug(pformat(helm_install.stdout.decode('utf-8')))
+        return helm_install.returncode==0
 
     def delete(self):
         self.logger.info(f"Deleting {self.config['chart']['name']}")

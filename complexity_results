@@ -1,0 +1,122 @@
+2020-08-04 10:30:56,244 [chaos] - INFO - Loading config file: config_complexity.yaml
+2020-08-04 10:30:56,250 [chaos] - INFO - Creating AUTs
+2020-08-04 10:30:56,250 [chaos] - DEBUG - [[['chaosdeploy', 'enb']]]
+2020-08-04 10:30:56,250 [chaos] - DEBUG - [<aut.AUT object at 0x7f66bba79c50>]
+2020-08-04 10:30:56,250 [chaos] - INFO - Creating experiments
+2020-08-04 10:30:56,250 [chaos] - INFO - Started scale
+2020-08-04 10:30:56,251 [chaos] - DEBUG - Parsed config file 
+{'aut': {'chart': {'name': 'gogtp', 'path': 'use_cases/complexity/gogtp'},
+         'values': {'chaosdeploy': 'enb'}},
+ 'conditions': [{'command': '/bin/sh -c "wget -T 10 -t 1 -O - 10.60.1.1"\n',
+                 'entrypoint': {'container': 'gogtp-ue', 'pod': 'ue'},
+                 'name': 'Wget should work',
+                 'type': ['pre', 'post']}],
+ 'experiments': [{'name': 'pod-delete',
+                  'path': 'experiments/pod-delete/',
+                  'target': {'container': 'enb',
+                             'kind': 'deployment',
+                             'label': 'app=enb',
+                             'ns': 'default'}}],
+ 'name': 'scale'}
+2020-08-04 10:30:56,251 [aut] - INFO - Running gogtp with values (['chaosdeploy', 'enb'],)
+2020-08-04 10:31:38,200 [aut] - DEBUG - ('NAME:   gogtp\n'
+ 'LAST DEPLOYED: Tue Aug  4 10:30:56 2020\n'
+ 'NAMESPACE: default\n'
+ 'STATUS: DEPLOYED\n'
+ '\n'
+ 'RESOURCES:\n'
+ '==> v1/ConfigMap\n'
+ 'NAME             DATA  AGE\n'
+ 'gogtp-conf-enb   1     42s\n'
+ 'gogtp-conf-ext   1     42s\n'
+ 'gogtp-conf-mme   1     42s\n'
+ 'gogtp-conf-pgw   1     42s\n'
+ 'gogtp-conf-sgw   1     42s\n'
+ 'gogtp-conf-ue    1     42s\n'
+ 'gogtp-setup-enb  1     42s\n'
+ 'gogtp-setup-mme  1     42s\n'
+ 'gogtp-setup-pgw  1     42s\n'
+ 'gogtp-setup-sgw  1     42s\n'
+ '\n'
+ '==> v1/Deployment\n'
+ 'NAME       READY  UP-TO-DATE  AVAILABLE  AGE\n'
+ 'gogtp-enb  1/1    1           1          42s\n'
+ 'gogtp-ext  1/1    1           1          42s\n'
+ 'gogtp-mme  1/1    1           1          42s\n'
+ 'gogtp-pgw  1/1    1           1          42s\n'
+ 'gogtp-sgw  1/1    1           1          42s\n'
+ 'gogtp-ue   1/1    1           1          42s\n'
+ '\n'
+ '==> v1/Pod(related)\n'
+ 'NAME                        READY  STATUS   RESTARTS  AGE\n'
+ 'gogtp-enb-7f6fb8854-xfrz7   5/5    Running  0         41s\n'
+ 'gogtp-ext-7ddf68bbf9-8tnn8  4/4    Running  0         41s\n'
+ 'gogtp-mme-68c6676d49-6wfjt  3/3    Running  0         41s\n'
+ 'gogtp-pgw-56f5747b4c-hj6vz  5/5    Running  0         41s\n'
+ 'gogtp-sgw-5b4b4c64d7-qwx6p  5/5    Running  0         41s\n'
+ 'gogtp-ue-7df56c574f-bz274   4/4    Running  0         41s\n'
+ '\n'
+ '==> v1alpha1/NetworkService\n'
+ 'NAME   AGE\n'
+ 'gogtp  42s\n'
+ '\n'
+ '\n')
+2020-08-04 10:31:38,200 [experiment] - INFO - Starting pod-delete
+2020-08-04 10:31:38,218 [experiment] - DEBUG - {'name': 'pod-delete', 'path': 'experiments/pod-delete/', 'target': {'ns': 'default', 'label': 'app=enb', 'kind': 'deployment', 'container': 'enb'}}
+2020-08-04 10:31:39,212 [experiment] - DEBUG - ('chaosengine.litmuschaos.io/pod-delete created\n'
+ 'chaosexperiment.litmuschaos.io/pod-delete created\n'
+ 'serviceaccount/pod-delete-sa created\n'
+ 'role.rbac.authorization.k8s.io/pod-delete-sa created\n'
+ 'rolebinding.rbac.authorization.k8s.io/pod-delete-sa created\n')
+2020-08-04 10:31:39,212 [experiment] - INFO - Waiting for engine initialization (1/60)
+2020-08-04 10:31:39,255 [experiment] - INFO - Engine initialized
+2020-08-04 10:31:39,255 [experiment] - INFO - Waiting for engine completion (1/60)
+2020-08-04 10:31:44,321 [experiment] - INFO - Waiting for engine completion (2/60)
+2020-08-04 10:31:49,364 [experiment] - INFO - Waiting for engine completion (3/60)
+2020-08-04 10:31:54,408 [experiment] - INFO - Waiting for engine completion (4/60)
+2020-08-04 10:31:59,452 [experiment] - INFO - Waiting for engine completion (5/60)
+2020-08-04 10:32:04,520 [experiment] - INFO - Waiting for engine completion (6/60)
+2020-08-04 10:32:09,565 [experiment] - INFO - Waiting for engine completion (7/60)
+2020-08-04 10:32:14,604 [experiment] - INFO - Waiting for engine completion (8/60)
+2020-08-04 10:32:19,648 [experiment] - INFO - Waiting for engine completion (9/60)
+2020-08-04 10:32:24,692 [experiment] - INFO - Waiting for engine completion (10/60)
+2020-08-04 10:32:29,735 [experiment] - INFO - Waiting for engine completion (11/60)
+2020-08-04 10:32:34,780 [experiment] - INFO - Waiting for engine completion (12/60)
+2020-08-04 10:32:39,829 [experiment] - INFO - Waiting for engine completion (13/60)
+2020-08-04 10:32:44,872 [experiment] - INFO - Waiting for engine completion (14/60)
+2020-08-04 10:32:49,916 [experiment] - INFO - Waiting for engine completion (15/60)
+2020-08-04 10:32:54,960 [experiment] - INFO - Waiting for engine completion (16/60)
+2020-08-04 10:33:00,005 [experiment] - INFO - Waiting for engine completion (17/60)
+2020-08-04 10:33:05,057 [experiment] - INFO - Waiting for engine completion (18/60)
+2020-08-04 10:33:10,101 [experiment] - INFO - Waiting for engine completion (19/60)
+2020-08-04 10:33:15,145 [experiment] - INFO - Waiting for engine completion (20/60)
+2020-08-04 10:33:20,188 [experiment] - INFO - Waiting for engine completion (21/60)
+2020-08-04 10:33:25,231 [experiment] - INFO - Waiting for engine completion (22/60)
+2020-08-04 10:33:30,276 [experiment] - INFO - Waiting for engine completion (23/60)
+2020-08-04 10:33:35,320 [experiment] - INFO - Waiting for engine completion (24/60)
+2020-08-04 10:33:40,376 [experiment] - INFO - Waiting for engine completion (25/60)
+2020-08-04 10:33:45,420 [experiment] - INFO - Waiting for engine completion (26/60)
+2020-08-04 10:33:50,460 [experiment] - INFO - Waiting for engine completion (27/60)
+2020-08-04 10:33:50,496 [experiment] - INFO - pod-delete finished
+2020-08-04 10:33:50,531 [experiment] - DEBUG - {'apiVersion': 'litmuschaos.io/v1alpha1', 'kind': 'ChaosResult', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"litmuschaos.io/v1alpha1","kind":"ChaosResult","metadata":{"annotations":{},"labels":{"chaosUID":"30b3494d-1c5c-4440-a6b7-457ea76ecc98","type":"ChaosResult"},"name":"pod-delete-pod-delete","namespace":"default"},"spec":{"engine":"pod-delete","experiment":"pod-delete"},"status":{"experimentstatus":{"failStep":"N/A","phase":"Completed","verdict":"Pass"}}}\n'}, 'creationTimestamp': '2020-08-04T16:32:21Z', 'generation': 2, 'labels': {'chaosUID': '30b3494d-1c5c-4440-a6b7-457ea76ecc98', 'type': 'ChaosResult'}, 'name': 'pod-delete-pod-delete', 'namespace': 'default', 'resourceVersion': '1309328', 'selfLink': '/apis/litmuschaos.io/v1alpha1/namespaces/default/chaosresults/pod-delete-pod-delete', 'uid': 'ba0bd734-d0a7-42c3-a865-990c8f495cfc'}, 'spec': {'engine': 'pod-delete', 'experiment': 'pod-delete'}, 'status': {'experimentstatus': {'failStep': 'N/A', 'phase': 'Completed', 'verdict': 'Pass'}}}
+2020-08-04 10:33:50,658 [experiment] - DEBUG - 'chaosresult.litmuschaos.io "pod-delete-pod-delete" deleted\n'
+2020-08-04 10:33:50,660 [experiment] - INFO - Deleting pod-delete
+2020-08-04 10:33:51,044 [experiment] - DEBUG - ('chaosengine.litmuschaos.io "pod-delete" deleted\n'
+ 'chaosexperiment.litmuschaos.io "pod-delete" deleted\n'
+ 'serviceaccount "pod-delete-sa" deleted\n'
+ 'role.rbac.authorization.k8s.io "pod-delete-sa" deleted\n'
+ 'rolebinding.rbac.authorization.k8s.io "pod-delete-sa" deleted\n')
+2020-08-04 10:33:51,045 [aut] - INFO - Deleting gogtp
+2020-08-04 10:33:52,213 [chaos] - INFO - Experiment verdict: Pass
+2020-08-04 10:33:52,213 [chaos] - INFO - Installing AUT took 0:00:41.947992
+2020-08-04 10:33:52,213 [chaos] - INFO - Experiment took 0:02:12.295975
+2020-08-04 10:34:05,627 [chaos] - INFO - Deleted nsm
+2020-08-04 10:34:05,627 [chaos] - INFO - Handling node1
+2020-08-04 10:34:16,270 [chaos] - INFO - Handling node2
+2020-08-04 10:34:27,013 [chaos] - INFO - Handling node3
+2020-08-04 10:34:37,898 [chaos] - INFO - Handling node4
+2020-08-04 10:35:52,185 [chaos] - INFO - Installed nsm
+2020-08-04 10:35:52,185 [chaos] - INFO - Full experiment summary:
+2020-08-04 10:35:52,186 [chaos] - INFO - AUT	Experiment	AUT Install Time	Experiment time	Verdict
+2020-08-04 10:35:52,186 [chaos] - INFO - gogtp (['chaosdeploy', 'enb'],)	pod-delete	0:00:41.947992	0:02:12.295975	Pass
+2020-08-04 10:35:52,186 [chaos] - INFO - Total elapsed time: 0:04:55.935362
